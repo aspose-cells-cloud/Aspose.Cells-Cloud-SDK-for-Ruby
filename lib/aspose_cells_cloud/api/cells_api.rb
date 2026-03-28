@@ -496,6 +496,20 @@ module AsposeCellsCloud
        return data
     end
 
+
+    def accept_all_revisions( accept_all_revisions_request, opts = {})
+
+       data, _status_code, _headers = accept_all_revisions_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+
+    def accept_all_revisions_in_remote_spreadsheet( accept_all_revisions_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = accept_all_revisions_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Applies dual-layer password protection to Excel spreadsheets, supporting both open and modify passwords with encryption.
 
     def protect_spreadsheet( protect_spreadsheet_request, opts = {})

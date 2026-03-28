@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="SplitTable_request.rb.cs">
+ <copyright company="Aspose" file="AcceptAllRevisions_request.rb.cs">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -29,16 +29,9 @@
 require "uri"
 
 module AsposeCellsCloud
-  class SplitTableRequest
+  class AcceptAllRevisionsRequest
 
     attr_accessor :spreadsheet  
-    attr_accessor :worksheet  
-    attr_accessor :table_name  
-    attr_accessor :split_column_name  
-    attr_accessor :save_split_column  
-    attr_accessor :split_row_number  
-    attr_accessor :to_new_workbook  
-    attr_accessor :to_multiple_files  
     attr_accessor :out_path  
     attr_accessor :out_storage_name  
     attr_accessor :fonts_location  
@@ -53,34 +46,6 @@ module AsposeCellsCloud
 
       if attributes.has_key?(:'Spreadsheet')
           self.spreadsheet = attributes[:'Spreadsheet']
-      end
-
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
-
-      if attributes.has_key?(:'tableName')
-          self.table_name = attributes[:'tableName']
-      end
-
-      if attributes.has_key?(:'splitColumnName')
-          self.split_column_name = attributes[:'splitColumnName']
-      end
-
-      if attributes.has_key?(:'saveSplitColumn')
-          self.save_split_column = attributes[:'saveSplitColumn']
-      end
-
-      if attributes.has_key?(:'splitRowNumber')
-          self.split_row_number = attributes[:'splitRowNumber']
-      end
-
-      if attributes.has_key?(:'toNewWorkbook')
-          self.to_new_workbook = attributes[:'toNewWorkbook']
-      end
-
-      if attributes.has_key?(:'toMultipleFiles')
-          self.to_multiple_files = attributes[:'toMultipleFiles']
       end
 
       if attributes.has_key?(:'outPath')
@@ -108,13 +73,6 @@ module AsposeCellsCloud
     def self.attribute_map
       {
         :'spreadsheet' => :'Spreadsheet',
-        :'worksheet' => :'worksheet',
-        :'table_name' => :'tableName',
-        :'split_column_name' => :'splitColumnName',
-        :'save_split_column' => :'saveSplitColumn',
-        :'split_row_number' => :'splitRowNumber',
-        :'to_new_workbook' => :'toNewWorkbook',
-        :'to_multiple_files' => :'toMultipleFiles',
         :'out_path' => :'outPath',
         :'out_storage_name' => :'outStorageName',
         :'fonts_location' => :'fontsLocation',
@@ -127,13 +85,6 @@ module AsposeCellsCloud
     def self.swagger_types
       {
         :'spreadsheet' => :'String',
-        :'worksheet' => :'String',
-        :'table_name' => :'String',
-        :'split_column_name' => :'String',
-        :'save_split_column' => :'BOOLEAN',
-        :'split_row_number' => :'Integer',
-        :'to_new_workbook' => :'BOOLEAN',
-        :'to_multiple_files' => :'BOOLEAN',
         :'out_path' => :'String',
         :'out_storage_name' => :'String',
         :'fonts_location' => :'String',
@@ -144,53 +95,18 @@ module AsposeCellsCloud
 
     def create_http_request(api_client,opts = {})
       if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.split_table ..."
+        api_client.config.logger.debug "Calling API: CellsApi.accept_all_revisions ..."
       end
       api_client.request_token_if_needed
       # verify the required parameter 'spreadsheet' is set
       if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'worksheet' is set
-      if api_client.config.client_side_validation && worksheet.nil?
-          fail ArgumentError, "Missing the required parameter 'worksheet' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'table_name' is set
-      if api_client.config.client_side_validation && table_name.nil?
-          fail ArgumentError, "Missing the required parameter 'table_name' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'split_column_name' is set
-      if api_client.config.client_side_validation && split_column_name.nil?
-          fail ArgumentError, "Missing the required parameter 'split_column_name' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'save_split_column' is set
-      if api_client.config.client_side_validation && save_split_column.nil?
-          fail ArgumentError, "Missing the required parameter 'save_split_column' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'split_row_number' is set
-      if api_client.config.client_side_validation && split_row_number.nil?
-          fail ArgumentError, "Missing the required parameter 'split_row_number' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'to_new_workbook' is set
-      if api_client.config.client_side_validation && to_new_workbook.nil?
-          fail ArgumentError, "Missing the required parameter 'to_new_workbook' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'to_multiple_files' is set
-      if api_client.config.client_side_validation && to_multiple_files.nil?
-          fail ArgumentError, "Missing the required parameter 'to_multiple_files' when calling CellsApi.split_table "
+          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.accept_all_revisions "
       end 
 
       # resource path
-      local_var_path = "v4.0/cells/split/table"
+      local_var_path = "v4.0/cells/spreadsheet/accept-all-revisions"
       # query parameters
       query_params = {}
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'tableName'] = self.table_name if !self.table_name.nil? 
-      query_params[:'splitColumnName'] = self.split_column_name if !self.split_column_name.nil? 
-      query_params[:'saveSplitColumn'] = self.save_split_column if !self.save_split_column.nil? 
-      query_params[:'splitRowNumber'] = self.split_row_number if !self.split_row_number.nil? 
-      query_params[:'toNewWorkbook'] = self.to_new_workbook if !self.to_new_workbook.nil? 
-      query_params[:'toMultipleFiles'] = self.to_multiple_files if !self.to_multiple_files.nil? 
       query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
       query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
       query_params[:'fontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
@@ -222,7 +138,7 @@ module AsposeCellsCloud
         :auth_names => auth_names,
         :return_type => 'File')
       if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.split_table\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        api_client.config.logger.debug "API called: Specification.Name>Api.accept_all_revisions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
