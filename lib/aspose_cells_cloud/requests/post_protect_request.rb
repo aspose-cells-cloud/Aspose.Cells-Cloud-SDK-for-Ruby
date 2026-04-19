@@ -102,9 +102,12 @@ module AsposeCellsCloud
       # form parameters
       form_params = {}
       post_body = nil 
+
       header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      file.each do |filename , context|
-      form_params[File.basename(filename)]  = context
+      if !file.nil?
+          file.each do |filename , context|
+          form_params[File.basename(filename)]  = context
+          end
       end
       form_params['protect_workbook_request']  = post_body.to_json
 

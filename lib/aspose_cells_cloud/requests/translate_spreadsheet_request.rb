@@ -111,6 +111,7 @@ module AsposeCellsCloud
       # form parameters
       form_params = {}
       post_body = nil 
+
       header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
       if !spreadsheet.empty? && File.exist?(spreadsheet )
           form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   

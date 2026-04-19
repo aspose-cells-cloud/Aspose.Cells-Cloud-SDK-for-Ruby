@@ -102,6 +102,7 @@ module AsposeCellsCloud
       # form parameters
       form_params = {}
       post_body = nil 
+
       header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
       if !upload_files.empty? && File.exist?(upload_files )
           form_params[File.basename(upload_files)] =  ::File.open(upload_files,"r")   

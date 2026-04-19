@@ -780,6 +780,30 @@ module AsposeCellsCloud
        return data
     end
 
+    # Switch rows and columns in the spreadsheet.
+
+    def transpose_data( transpose_data_request, opts = {})
+
+       data, _status_code, _headers = transpose_data_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Switch rows and columns in the spreadsheet.
+
+    def unpivot_range( unpivot_range_request, opts = {})
+
+       data, _status_code, _headers = unpivot_range_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Switch rows and columns in the spreadsheet.
+
+    def unpivot_table( unpivot_table_request, opts = {})
+
+       data, _status_code, _headers = unpivot_table_request.create_http_request(@api_client,opts )
+       return data
+    end
+
 
     def download_file( download_file_request, opts = {})
 
