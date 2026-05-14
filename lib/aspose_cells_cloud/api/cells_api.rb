@@ -510,6 +510,22 @@ module AsposeCellsCloud
        return data
     end
 
+    # Structurally convert the core metadata, worksheets, tables, pivot tables, charts, shapes, and other information of an Excel workbook into a JObject type JSON object, for scenarios such as data export, API responses, and log recording.
+
+    def get_spreadsheet_structure( get_spreadsheet_structure_request, opts = {})
+
+       data, _status_code, _headers = get_spreadsheet_structure_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Structurally convert the core metadata, worksheets, tables, pivot tables, charts, shapes, and other information of an Excel workbook into a JObject type JSON object, for scenarios such as data export, API responses, and log recording.
+
+    def get_structure_in_remote_spreadsheet( get_structure_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = get_structure_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Applies dual-layer password protection to Excel spreadsheets, supporting both open and modify passwords with encryption.
 
     def protect_spreadsheet( protect_spreadsheet_request, opts = {})
@@ -662,6 +678,14 @@ module AsposeCellsCloud
 
     # The TrimSpreadsheetContent API is designed to process and trim content within a spreadsheet. This API allows users to remove extra spaces, line breaks, or other unnecessary characters from the content of selected cells. It is particularly useful for cleaning up data entries and ensuring consistency in spreadsheet formatting
 
+    def trim_character_in_remote_spreadsheet( trim_character_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = trim_character_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # The TrimSpreadsheetContent API is designed to process and trim content within a remote spreadsheet. This API allows users to remove extra spaces, line breaks, or other unnecessary characters from the content of selected cells. It is particularly useful for cleaning up data entries and ensuring consistency in spreadsheet formatting
+
     def trim_character( trim_character_request, opts = {})
 
        data, _status_code, _headers = trim_character_request.create_http_request(@api_client,opts )
@@ -676,11 +700,27 @@ module AsposeCellsCloud
        return data
     end
 
+    # Specify changing the text case in a remote spreadsheet to switch between uppercase, lowercase, capitalizing the first letter of each word, or capitalizing the first letter of a sentence, and adjust the text according to specific needs.
+
+    def update_word_case_in_remote_spreadsheet( update_word_case_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = update_word_case_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Deletes user-defined characters, predefined symbol sets, or any substring from every cell in the chosen range while preserving formulas, formatting and data-validation.
 
     def remove_characters( remove_characters_request, opts = {})
 
        data, _status_code, _headers = remove_characters_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Deletes user-defined characters, predefined symbol sets, or any substring from every cell in the chosen range while preserving formulas, formatting and data-validation for a remote spreadsheet.
+
+    def remove_characters_in_remote_spreadsheet( remove_characters_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = remove_characters_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
        return data
     end
 
@@ -692,11 +732,27 @@ module AsposeCellsCloud
        return data
     end
 
+    # Deletes characters from every cell in the target range by position (first/last N, before/after a substring, or between two delimiters) while preserving formulas, formatting and data-validation.
+
+    def remove_characters_by_position_in_remote_spreadsheet( remove_characters_by_position_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = remove_characters_by_position_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Finds and removes repeated substrings inside every cell of the chosen range, using user-defined or preset delimiters, while preserving formulas, formatting and data-validation.
 
     def remove_duplicate_substrings( remove_duplicate_substrings_request, opts = {})
 
        data, _status_code, _headers = remove_duplicate_substrings_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Finds and removes repeated substrings inside every cell of the chosen range, using user-defined or preset delimiters, while preserving formulas, formatting and data-validation.
+
+    def remove_duplicate_substrings_in_remote_spreadsheet( remove_duplicate_substrings_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = remove_duplicate_substrings_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
        return data
     end
 
@@ -708,11 +764,27 @@ module AsposeCellsCloud
        return data
     end
 
+    # Specify appending text to multiple cells at once, allowing you to add prefixes, suffixes, labels, or any specific characters. You can choose the exact position of the text—in the beginning, at the end, or before or after certain characters in the cell.
+
+    def add_text_in_remote_spreadsheet( add_text_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = add_text_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Indicates converting the numbers stored as text into the correct number format, replacing unwanted characters and line breaks with the desired characters, and converting accented characters to their equivalent characters without accents.
 
     def convert_text( convert_text_request, opts = {})
 
        data, _status_code, _headers = convert_text_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Indicates converting the numbers stored as text into the correct number format, replacing unwanted characters and line breaks with the desired characters, and converting accented characters to their equivalent characters without accents.
+
+    def convert_text_in_remote_spreadsheet( convert_text_in_remote_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = convert_text_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
        return data
     end
 

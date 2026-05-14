@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.4.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.4.0?style=for-the-badge)
+![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.5.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.5.0?style=for-the-badge)
 
 [Aspose.Cells Cloud SDK for Ruby](https://products.aspose.cloud/cells/ruby) is a cloud-native REST API that enables Ruby developers to **create**, **read**, **edit**, **convert**, and **repair** spreadsheet files—including **Excel** (**XLS**, **XLSX**, **XLSB**, **XLSM**), **OpenDocument Spreadsheet (ODS**), **CSV**, **TSV**, **JSON**, **HTML**, **PDF**, and **more—without requiring Microsoft Excel or Office to be installed**.
 
@@ -22,7 +22,7 @@ To begin with Aspose.Cells Cloud, here's what you need to do:
 - execute the following command to get the latest Gem package.
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.4.0'
+gem 'aspose_cells_cloud', '~> 26.5.0'
 ```
 
 or install directly
@@ -155,14 +155,23 @@ graph TB
 - Import/Export: Facilitates importing data from various sources into spreadsheets and exporting spreadsheet data to other formats.
 - Security Management: Offers a range of security features like data encryption, access control, and permission management to safeguard the security and integrity of spreadsheet data.
 
-## Feature & Enhancements in Version v26.4.0
+## Feature & Enhancements in Version v26.5.0
 
 Full list of issues covering all changes in this release:
 
 | **Summary**                                                                                                   | **Category** |
 | :------------------------------------------------------------------------------------------------------------ | :----------- |
-| Implement the data transpose Web API on Aspose Cells Cloud.                                                   | New Feature |
-| Implement the data unpivot Web API on Aspose Cells Cloud.                                                    | New Feature |
+| New Web API:  Get the spreadsheet structure. | Task |
+| Enhance the return file token for the upload file function. | Improvement |
+| New MCP Tool: Download file based on file token. | New Feature |
+| Enhance MCP Tools: Save file as with file token | Improvement |
+| Enhance Get Workbook endpoint functionality. | Improvement |
+| Support trim content in remote storage | New Feature |
+| Support to case word in remote spreadsheet | New Feature |
+| Support to remove characters in remote spreadsheet | New Feature |
+| Support to add text in remote spreadsheet. | New Feature |
+| Support to convert text in remote spreadsheet. | New Feature |
+| [Forum] Test topic-2026-0402 | Bug |
 
 ## Available SDKs
 
