@@ -39,6 +39,8 @@ module AsposeCellsCloud
     attr_accessor :out_path  
     attr_accessor :out_storage_name  
     attr_accessor :fonts_location  
+    attr_accessor :auto_rows_fit  
+    attr_accessor :auto_columns_fit  
     attr_accessor :region  
     attr_accessor :password  
 
@@ -80,6 +82,14 @@ module AsposeCellsCloud
           self.fonts_location = attributes[:'fontsLocation']
       end
 
+      if attributes.has_key?(:'AutoRowsFit')
+          self.auto_rows_fit = attributes[:'AutoRowsFit']
+      end
+
+      if attributes.has_key?(:'AutoColumnsFit')
+          self.auto_columns_fit = attributes[:'AutoColumnsFit']
+      end
+
       if attributes.has_key?(:'region')
           self.region = attributes[:'region']
       end
@@ -100,6 +110,8 @@ module AsposeCellsCloud
         :'out_path' => :'outPath',
         :'out_storage_name' => :'outStorageName',
         :'fonts_location' => :'fontsLocation',
+        :'auto_rows_fit' => :'AutoRowsFit',
+        :'auto_columns_fit' => :'AutoColumnsFit',
         :'region' => :'region',
         :'password' => :'password'
       }
@@ -116,6 +128,8 @@ module AsposeCellsCloud
         :'out_path' => :'String',
         :'out_storage_name' => :'String',
         :'fonts_location' => :'String',
+        :'auto_rows_fit' => :'String',
+        :'auto_columns_fit' => :'String',
         :'region' => :'String',
         :'password' => :'String'
       }
@@ -145,6 +159,8 @@ module AsposeCellsCloud
       query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
       query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
       query_params[:'fontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
+      query_params[:'AutoRowsFit'] = self.auto_rows_fit if !self.auto_rows_fit.nil? 
+      query_params[:'AutoColumnsFit'] = self.auto_columns_fit if !self.auto_columns_fit.nil? 
       query_params[:'region'] = self.region if !self.region.nil? 
       query_params[:'password'] = self.password if !self.password.nil? 
 

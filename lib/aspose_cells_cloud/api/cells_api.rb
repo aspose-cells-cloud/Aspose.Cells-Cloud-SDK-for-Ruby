@@ -64,6 +64,21 @@ module AsposeCellsCloud
        return data
     end
 
+
+    def report_ai_analysis( report_ai_analysis_request, opts = {})
+
+       data, _status_code, _headers = report_ai_analysis_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Summarizes spreadsheet content using AI and returns the summary as a downloadable text file.
+
+    def summarize_spreadsheet( summarize_spreadsheet_request, opts = {})
+
+       data, _status_code, _headers = summarize_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # The Aggregate by Color API provides a convenient way to perform calculations on cells that share the same fill or font color. This API supports a range of aggregate operations, including count, sum, maximum value, minimum value, and average value, enabling you to analyze and summarize data based on color distinctions.
 
     def aggregate_cells_by_color( aggregate_cells_by_color_request, opts = {})
