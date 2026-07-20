@@ -121,8 +121,8 @@ module AsposeCellsCloud
         :'out_path' => :'String',
         :'out_storage_name' => :'String',
         :'fonts_location' => :'String',
-        :'auto_rows_fit' => :'String',
-        :'auto_columns_fit' => :'String',
+        :'auto_rows_fit' => :'BOOLEAN',
+        :'auto_columns_fit' => :'BOOLEAN',
         :'region' => :'String',
         :'password' => :'String'
       }

@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="ConvertWorksheetToCsv_request.rb.cs">
+ <copyright company="Aspose" file="SmartMarkerTemplate_request.rb.cs">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -29,15 +29,8 @@
 require "uri"
 
 module AsposeCellsCloud
-  class ConvertWorksheetToCsvRequest
+  class SmartMarkerTemplateRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :worksheet  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :fonts_location  
-    attr_accessor :auto_rows_fit  
-    attr_accessor :auto_columns_fit  
     attr_accessor :region  
     attr_accessor :password  
 
@@ -46,34 +39,6 @@ module AsposeCellsCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
-
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'fontsLocation')
-          self.fonts_location = attributes[:'fontsLocation']
-      end
-
-      if attributes.has_key?(:'AutoRowsFit')
-          self.auto_rows_fit = attributes[:'AutoRowsFit']
-      end
-
-      if attributes.has_key?(:'AutoColumnsFit')
-          self.auto_columns_fit = attributes[:'AutoColumnsFit']
-      end
 
       if attributes.has_key?(:'region')
           self.region = attributes[:'region']
@@ -87,13 +52,6 @@ module AsposeCellsCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'worksheet' => :'worksheet',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'fonts_location' => :'fontsLocation',
-        :'auto_rows_fit' => :'AutoRowsFit',
-        :'auto_columns_fit' => :'AutoColumnsFit',
         :'region' => :'region',
         :'password' => :'password'
       }
@@ -102,13 +60,6 @@ module AsposeCellsCloud
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'spreadsheet' => :'String',
-        :'worksheet' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'fonts_location' => :'String',
-        :'auto_rows_fit' => :'BOOLEAN',
-        :'auto_columns_fit' => :'BOOLEAN',
         :'region' => :'String',
         :'password' => :'String'
       }
@@ -116,28 +67,14 @@ module AsposeCellsCloud
 
     def create_http_request(api_client,opts = {})
       if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.convert_worksheet_to_csv ..."
+        api_client.config.logger.debug "Calling API: CellsApi.smart_marker_template ..."
       end
       api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.convert_worksheet_to_csv "
-      end 
-      # verify the required parameter 'worksheet' is set
-      if api_client.config.client_side_validation && worksheet.nil?
-          fail ArgumentError, "Missing the required parameter 'worksheet' when calling CellsApi.convert_worksheet_to_csv "
-      end 
 
       # resource path
-      local_var_path = "v4.0/cells/convert/worksheet/csv"
+      local_var_path = "v4.0/cells/report/smart/template"
       # query parameters
       query_params = {}
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'fontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-      query_params[:'AutoRowsFit'] = self.auto_rows_fit if !self.auto_rows_fit.nil? 
-      query_params[:'AutoColumnsFit'] = self.auto_columns_fit if !self.auto_columns_fit.nil? 
       query_params[:'region'] = self.region if !self.region.nil? 
       query_params[:'password'] = self.password if !self.password.nil? 
 
@@ -152,11 +89,6 @@ module AsposeCellsCloud
       form_params = {}
       post_body = nil 
 
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
       #auth_names = []
       auth_names = ['JWT']
       data, status_code, headers = api_client.call_api(:PUT, local_var_path,
@@ -167,7 +99,7 @@ module AsposeCellsCloud
         :auth_names => auth_names,
         :return_type => 'File')
       if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.convert_worksheet_to_csv\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        api_client.config.logger.debug "API called: Specification.Name>Api.smart_marker_template\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

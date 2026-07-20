@@ -64,6 +64,7 @@ module AsposeCellsCloud
        return data
     end
 
+    # Intelligently analyzes spreadsheet data, identifies business scenarios, and generates professional data analysis reports.
 
     def report_ai_analysis( report_ai_analysis_request, opts = {})
 
@@ -91,6 +92,13 @@ module AsposeCellsCloud
     def math_calculate( math_calculate_request, opts = {})
 
        data, _status_code, _headers = math_calculate_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+
+    def calculation_formula( calculation_formula_request, opts = {})
+
+       data, _status_code, _headers = calculation_formula_request.create_http_request(@api_client,opts )
        return data
     end
 
@@ -561,6 +569,13 @@ module AsposeCellsCloud
     def spreadsheet_digitalsignature( spreadsheet_digitalsignature_request, opts = {})
 
        data, _status_code, _headers = spreadsheet_digitalsignature_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+
+    def smart_marker_template( smart_marker_template_request, opts = {})
+
+       data, _status_code, _headers = smart_marker_template_request.create_http_request(@api_client,opts )
        return data
     end
 
