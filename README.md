@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.7.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.7.0?style=for-the-badge)
+![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.8.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.8.0?style=for-the-badge)
 
 # Aspose.Cells Cloud SDK for Ruby
 
@@ -24,7 +24,7 @@ To get started with Aspose.Cells Cloud, here's what you need to do:
 - Execute the following command to get the latest Gem package.
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.7.0'
+gem 'aspose_cells_cloud', '~> 26.8.0'
 ```
 
 Or install directly:
@@ -157,16 +157,14 @@ graph TB
 - Import/Export: Facilitates importing data from various sources into spreadsheets and exporting spreadsheet data to other formats.
 - Security Management: Offers a range of security features like data encryption, access control, and permission management to safeguard the security and integrity of spreadsheet data.
 
-## Features & Enhancements in Version 26.7
+## Features & Enhancements in Version 26.8
 
 Full list of issues covering all changes in this release:
 
-| **Summary**                                                                                     | **Category** |
-| :---------------------------------------------------------------------------------------------- | :----------- |
-| Fix AutoFitsCanAutoFitsAttribute value data type.                                               | Bug          |
-| Support for the calculation formula in Aspose.Cells Cloud 4.0 Web APIs.                         | New Feature  |
-| Support for the smart template in Aspose.Cells Cloud 4.0 Web APIs.                              | New Feature  |
-| Fix calc error about MathCalculate Web API.                                                     | Bug          |
+| **Summary**                               | **Category** |
+| :---------------------------------------- | :----------- |
+| Enchent smart template feature.           | Improvement  |
+| A new AI data analysis API has been added.| New Feature  |
 
 ## Available SDKs
 
@@ -216,7 +214,7 @@ The Aspose.Cells Cloud SDK is available in multiple popular programming language
 - 执行以下命令获取最新的 Gem 包。
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.7.0'
+gem 'aspose_cells_cloud', '~> 26.8.0'
 ```
 
 或直接安装：
@@ -288,7 +286,7 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 | [GIF](https://docs.fileformat.com/image/gif/)                     | 图形交换格式                                                                                         |          | &radic;  |
 | [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | 表示 Markdown 文档。                                                                                 |          | &radic;  |
 | [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | OpenOffice 和 StarOffice 使用的基于 XML 的格式                                                       | &radic;  | &radic;  |
-| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | 以平面 XML 存储的 Open Document 格式。                                                               | &radic;  | &radic;  |
+| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | 以平面 XML 存储的 Open Document 格式                                                                   | &radic;  | &radic;  |
 | [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Microsoft Word 文档的知名格式，结合了 XML 和二进制文件。                                             |          | &radic;  |
 | [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML 演示文稿文件格式。                                                     |          | &radic;  |
 | [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS（OpenDocument 电子表格模板）。                                                                   | &radic;  | &radic;  |
@@ -343,22 +341,20 @@ graph TB
 - 数据处理：强大的数据处理功能，包括读取、写入、修改单元格数据，执行公式计算以及格式化数据。
 - 公式计算：内置公式引擎处理 Excel 中的复杂公式计算并返回准确结果。
 - 图表操作：用户可以创建、编辑和删除 Excel 文件中的图表，以满足数据分析和可视化需求。
-- 表格处理：为各种表单操作（如创建、编辑、格式化和转换）提供强大的处理能力，满足多样化的表单处理需求。
+- 表格处理：为各种表单操作（如创建、编辑、格式化、转换）提供强大的处理能力，满足多样化的表单处理需求。
 - 数据验证：包含数据验证功能，可设置单元格数据类型、范围和唯一性，确保数据的准确性和完整性。
 - 批量处理：支持批量处理多个 Excel 文档，如批量格式转换、数据提取和样式应用。
 - 导入/导出：支持从各种数据源导入数据到电子表格，以及将电子表格数据导出到其他格式。
-- 安全管理：提供数据加密、访问控制和权限管理等一系列安全功能，保护电子表格数据的安全性和完整性。
+- 安全管理：提供数据加密、访问控制、权限管理等一系列安全功能，保障电子表格数据的安全性和完整性。
 
-## 版本 26.7 的功能与增强
+## 版本 26.8 的功能与增强
 
 涵盖此版本所有更改的完整问题列表：
 
-| **摘要**                                                           | **类别**   |
-| :----------------------------------------------------------------- | :--------- |
-| 修复 AutoFitsCanAutoFitsAttribute 值数据类型。                      | Bug        |
-| 在 Aspose.Cells Cloud 4.0 Web API 中支持计算公式。                  | 新功能     |
-| 在 Aspose.Cells Cloud 4.0 Web API 中支持智能模板。                  | 新功能     |
-| 修复 MathCalculate Web API 的计算错误。                             | Bug        |
+| **摘要**                               | **类别** |
+| :------------------------------------- | :------- |
+| Enchent smart template feature.       | Improvement |
+| A new AI data analysis API has been added.| New Feature |
 
 ## 可用的 SDK
 
@@ -408,7 +404,7 @@ Aspose.Cells Cloud を始めるには、以下の手順に従ってください�
 - 以下のコマンドを実行して最新の Gem パッケージを取得します。
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.7.0'
+gem 'aspose_cells_cloud', '~> 26.8.0'
 ```
 
 または直接インストール：
@@ -462,16 +458,16 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 | [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Excel に新しい関数を追加するために使用される Excel マクロ有効アドインファイル。                             |              | &radic;  |
 | [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV（カンマ区切り値）ファイル。                                                                             | &radic;      | &radic;  |
 | [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV（タブ区切り値）ファイル。                                                                               | &radic;      | &radic;  |
-| [TXT](https://docs.fileformat.com/word-processing/txt/)           | 区切り付きプレーンテキストファイル。                                                                        | &radic;      | &radic;  |
+| [TXT](https://docs.fileformat.com/word-processing/txt/)           | 区切り付きプレーンテキストファイル。                                                                          | &radic;      | &radic;  |
 | [HTML](https://docs.fileformat.com/web/html/)                     | HTML 形式。                                                                                                 | &radic;      | &radic;  |
 | [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML ファイル。                                                                                            | &radic;      | &radic;  |
 | [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS（OpenDocument スプレッドシート）。                                                                      | &radic;      | &radic;  |
 | [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Apple の iWork オフィススイートの一部である「Numbers」アプリケーションで作成されたドキュメント（macOS および iOS で動作）。 | &radic;      |          |
 | [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                  | &radic;      | &radic;  |
 | [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format。                                                                                   |              | &radic;  |
-| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format。                                                                            |              | &radic;  |
-| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format。                                                                            |              | &radic;  |
-| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format。                                                                           |              | &radic;  |
+| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                            |              | &radic;  |
+| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                            |              | &radic;  |
+| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format.                                                                           |              | &radic;  |
 | [TIFF](https://docs.fileformat.com/image/tiff/)                   | Tagged Image File Format                                                                                    |              | &radic;  |
 | [PNG](https://docs.fileformat.com/image/png/)                     | Portable Network Graphics Format                                                                            |              | &radic;  |
 | [BMP](https://docs.fileformat.com/image/bmp/)                     | Bitmap Image Format                                                                                         |              | &radic;  |
@@ -481,7 +477,7 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 | [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | Markdown ドキュメントを表します。                                                                           |              | &radic;  |
 | [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | OpenOffice および StarOffice で使用される XML ベースの形式                                                  | &radic;      | &radic;  |
 | [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | フラット XML として保存された Open Document 形式。                                                          | &radic;      | &radic;  |
-| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | XML とバイナリファイルを組み合わせた Microsoft Word ドキュメントの有名な形式。                              |              | &radic;  |
+| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Microsoft Word ドキュメントの有名な形式，XML とバイナリファイルを組み合わせています。                        |              | &radic;  |
 | [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML プレゼンテーションファイル形式。                                              |              | &radic;  |
 | [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS（OpenDocument スプレッドシートテンプレート）。                                                          | &radic;      | &radic;  |
 | [XML](https://docs.fileformat.com/web/xml/)                       | XML ファイル。                                                                                              | &radic;      | &radic;  |
@@ -535,22 +531,20 @@ graph TB
 - データ処理：セルデータの読み取り、書き込み、変更、数式計算の実行、データの書式設定など、強力なデータ処理機能を提供します。
 - 数式計算：組み込みの数式エンジンが Excel の複雑な数式計算を処理し、正確な結果を返します。
 - グラフ操作：データ分析と可視化のニーズに応じて、Excel ファイルからグラフを作成、編集、削除できます。
-- テーブル処理：作成、編集、書式設定、変換などのさまざまなフォーム操作に対して堅牢な処理機能を提供し、多様なフォーム処理のニーズに対応します。
+- テーブル処理：作成、編集、書式設定、変換など、さまざまなフォーム操作に対して堅牢な処理機能を提供し、多様なフォーム処理のニーズに対応します。
 - データ検証：セルのデータ型、範囲、一意性を設定するデータ検証機能を含み、データの正確性と整合性を確保します。
 - バッチ処理：バッチ形式変換、データ抽出、スタイル適用など、複数の Excel ドキュメントのバッチ処理をサポートします。
 - インポート/エクスポート：さまざまなソースからスプレッドシートへのデータのインポート、およびスプレッドシートデータの他の形式へのエクスポートを容易にします。
 - セキュリティ管理：データ暗号化、アクセス制御、権限管理などのさまざまなセキュリティ機能を提供し、スプレッドシートデータのセキュリティと整合性を保護します。
 
-## バージョン 26.7 の機能と拡張
+## バージョン 26.8 の機能と拡張
 
 このリリースのすべての変更を含む問題の完全なリスト：
 
-| **概要**                                                      | **カテゴリ** |
-| :------------------------------------------------------------ | :----------- |
-| AutoFitsCanAutoFitsAttribute 値のデータ型を修正。              | Bug          |
-| Aspose.Cells Cloud 4.0 Web API での計算式のサポート。          | New Feature  |
-| Aspose.Cells Cloud 4.0 Web API でのスマートテンプレートのサポート。 | New Feature  |
-| MathCalculate Web API の計算エラーを修正。                     | Bug          |
+| **概要**                               | **カテゴリ** |
+| :------------------------------------- | :----------- |
+| Enchent smart template feature.       | Improvement |
+| A new AI data analysis API has been added.| New Feature |
 
 ## 利用可能な SDK
 
@@ -600,7 +594,7 @@ Um mit Aspose.Cells Cloud zu beginnen, müssen Sie Folgendes tun:
 - Führen Sie den folgenden Befehl aus, um das neueste Gem-Paket zu erhalten.
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.7.0'
+gem 'aspose_cells_cloud', '~> 26.8.0'
 ```
 
 Oder direkt installieren:
@@ -645,11 +639,11 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 | **Format**                                                        | **Beschreibung**                                                                                                                                          | **Laden** | **Speichern** |
 | :---------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- | :------------ |
 | [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 Arbeitsmappe.                                                                                                                         | &radic;   | &radic;       |
-| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML-Arbeitsmappe oder Vorlagendatei, mit oder ohne Makros.                                                                      | &radic;   | &radic;       |
+| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML Arbeitsmappe oder Vorlagendatei, mit oder ohne Makros.                                                                      | &radic;   | &radic;       |
 | [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel-Binärarbeitsmappe.                                                                                                                                  | &radic;   | &radic;       |
 | [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel-Arbeitsmappe mit Makros.                                                                                                                            | &radic;   | &radic;       |
 | [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 Vorlage.                                                                                                                            | &radic;   | &radic;       |
-| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel-Vorlage.                                                                                                                                            | &radic;   | &radic;       |
+| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel-Vorlage.                                                                                                                                           | &radic;   | &radic;       |
 | [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel-Vorlage mit Makros.                                                                                                                                 | &radic;   | &radic;       |
 | [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Eine Excel-Add-In-Datei mit Makros, die zum Hinzufügen neuer Funktionen zu Excel verwendet wird.                                                          |           | &radic;       |
 | [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV (durch Kommas getrennte Werte) Datei.                                                                                                                 | &radic;   | &radic;       |
@@ -658,7 +652,7 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 | [HTML](https://docs.fileformat.com/web/html/)                     | HTML-Format.                                                                                                                                              | &radic;   | &radic;       |
 | [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML-Datei.                                                                                                                                              | &radic;   | &radic;       |
 | [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS (OpenDocument Spreadsheet).                                                                                                                           | &radic;   | &radic;       |
-| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Dokument, das mit Apples „Numbers"-Anwendung erstellt wurde, Teil von Apples iWork-Bürosoftware, die unter macOS und iOS läuft.                           | &radic;   |               |
+| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Dokument, das mit Apples „Numbers“-Anwendung erstellt wurde, Teil von Apples iWork-Bürosoftware, die unter macOS und iOS läuft.                             | &radic;   |               |
 | [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                                                                | &radic;   | &radic;       |
 | [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format.                                                                                                                                  |           | &radic;       |
 | [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                                                                           |           | &radic;       |
@@ -674,7 +668,7 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 | [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | Ein XML-basiertes Format, das von OpenOffice und StarOffice verwendet wird                                                                                | &radic;   | &radic;       |
 | [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | Ein Open Document-Format, das als flaches XML gespeichert wird.                                                                                           | &radic;   | &radic;       |
 | [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Ein bekanntes Format für Microsoft Word-Dokumente, das XML und Binärdateien kombiniert.                                                                   |           | &radic;       |
-| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML-Präsentationsdateiformat.                                                                                                   |           | &radic;       |
+| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML Präsentationsdateiformat.                                                                                                   |           | &radic;       |
 | [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS (OpenDocument Spreadsheet-Vorlage).                                                                                                                   | &radic;   | &radic;       |
 | [XML](https://docs.fileformat.com/web/xml/)                       | XML-Datei.                                                                                                                                                | &radic;   | &radic;       |
 | [HTM](https://docs.fileformat.com/web/htm/)                       | HTM-Datei.                                                                                                                                                | &radic;   | &radic;       |
@@ -728,23 +722,21 @@ graph TB
 - Formelberechnung: Die integrierte Formel-Engine verarbeitet komplexe Formelberechnungen in Excel und liefert genaue Ergebnisse.
 - Diagrammbearbeitung: Benutzer können Diagramme aus Excel-Dateien erstellen, bearbeiten und löschen, um Datenanalyse- und Visualisierungsanforderungen zu erfüllen.
 - Tabellenverarbeitung: Bietet robuste Verarbeitungsfunktionen für verschiedene Formularoperationen wie Erstellung, Bearbeitung, Formatierung und Konvertierung, die unterschiedliche Anforderungen an die Formularverarbeitung erfüllen.
-- Datenvalidierung: Enthält Datenvalidierungsfunktionen zum Festlegen von Zellendatentyp, Bereich und Eindeutigkeit, um Datengenauigkeit und -integrität sicherzustellen.
-- Stapelverarbeitung: Unterstützt die Stapelverarbeitung mehrerer Excel-Dokumente, wie z. B. Stapelformatkonvertierung, Datenextraktion und Stilanwendung.
+- Datenvalidierung: Enthält Datenvalidierungsfunktionen zum Festlegen von Zellendatentyp, Bereich und Eindeutigkeit, um die Genauigkeit und Integrität der Daten sicherzustellen.
+- Stapelverarbeitung: Unterstützt die Stapelverarbeitung mehrerer Excel-Dokumente, z. B. Stapelformatkonvertierung, Datenextraktion und Stilanwendung.
 - Import/Export: Ermöglicht den Import von Daten aus verschiedenen Quellen in Tabellen und den Export von Tabellendaten in andere Formate.
 - Sicherheitsverwaltung: Bietet eine Reihe von Sicherheitsfunktionen wie Datenverschlüsselung, Zugriffskontrolle und Berechtigungsverwaltung zum Schutz der Sicherheit und Integrität von Tabellendaten.
 
-## Funktionen & Erweiterungen in Version 26.7
+## Funktionen & Erweiterungen in Version 26.8
 
 Vollständige Liste der Probleme, die alle Änderungen in dieser Version abdecken:
 
 | **Zusammenfassung**                                                          | **Kategorie** |
 | :--------------------------------------------------------------------------- | :------------ |
-| Datentyp des AutoFitsCanAutoFitsAttribute-Werts korrigiert.                  | Bug           |
-| Unterstützung für Berechnungsformeln in Aspose.Cells Cloud 4.0 Web-APIs.     | New Feature   |
-| Unterstützung für Smart Templates in Aspose.Cells Cloud 4.0 Web-APIs.        | New Feature   |
-| Berechnungsfehler der MathCalculate Web-API behoben.                         | Bug           |
+| Enchent smart template feature.                                             | Improvement   |
+| A new AI data analysis API has been added.                                   | New Feature   |
 
-## Verfügbare SDKs
+## Verfügbare SDK
 
 Das Aspose.Cells Cloud SDK ist in mehreren gängigen Programmiersprachen verfügbar und ermöglicht Entwicklern die Integration von Tabellenkalkulationsfunktionen in verschiedene Entwicklungsumgebungen.
 
