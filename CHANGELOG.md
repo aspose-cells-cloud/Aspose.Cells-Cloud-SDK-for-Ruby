@@ -1,5 +1,14 @@
 # Release History Version
 
+## Features & Enhancements in Version 26.8
+
+Full list of issues covering all changes in this release:
+
+| **Summary**                               | **Category** |
+| :---------------------------------------- | :----------- |
+| Enchent smart template feature.           | Improvement  |
+| A new AI data analysis API has been added.| New Feature |
+
 ## Features & Enhancements in Version 26.7
 
 Full list of issues covering all changes in this release:

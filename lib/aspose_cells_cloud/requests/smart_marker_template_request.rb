@@ -31,6 +31,8 @@ require "uri"
 module AsposeCellsCloud
   class SmartMarkerTemplateRequest
 
+    attr_accessor :datafile  
+    attr_accessor :templatefile  
     attr_accessor :region  
     attr_accessor :password  
 
@@ -39,6 +41,14 @@ module AsposeCellsCloud
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+
+      if attributes.has_key?(:'datafile')
+          self.datafile = attributes[:'datafile']
+      end
+
+      if attributes.has_key?(:'templatefile')
+          self.templatefile = attributes[:'templatefile']
+      end
 
       if attributes.has_key?(:'region')
           self.region = attributes[:'region']
@@ -52,6 +62,8 @@ module AsposeCellsCloud
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'datafile' => :'datafile',
+        :'templatefile' => :'templatefile',
         :'region' => :'region',
         :'password' => :'password'
       }
@@ -60,6 +72,8 @@ module AsposeCellsCloud
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'datafile' => :'String',
+        :'templatefile' => :'String',
         :'region' => :'String',
         :'password' => :'String'
       }
@@ -70,6 +84,14 @@ module AsposeCellsCloud
         api_client.config.logger.debug "Calling API: CellsApi.smart_marker_template ..."
       end
       api_client.request_token_if_needed
+      # verify the required parameter 'datafile' is set
+      if api_client.config.client_side_validation && datafile.nil?
+          fail ArgumentError, "Missing the required parameter 'datafile' when calling CellsApi.smart_marker_template "
+      end 
+      # verify the required parameter 'templatefile' is set
+      if api_client.config.client_side_validation && templatefile.nil?
+          fail ArgumentError, "Missing the required parameter 'templatefile' when calling CellsApi.smart_marker_template "
+      end 
 
       # resource path
       local_var_path = "v4.0/cells/report/smart/template"
@@ -88,6 +110,14 @@ module AsposeCellsCloud
       # form parameters
       form_params = {}
       post_body = nil 
+
+      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
+      if !datafile.empty? && File.exist?(datafile )
+          form_params[File.basename(datafile)] =  ::File.open(datafile,"r")   
+      end 
+      if !templatefile.empty? && File.exist?(templatefile )
+          form_params[File.basename(templatefile)] =  ::File.open(templatefile,"r")   
+      end 
 
       #auth_names = []
       auth_names = ['JWT']

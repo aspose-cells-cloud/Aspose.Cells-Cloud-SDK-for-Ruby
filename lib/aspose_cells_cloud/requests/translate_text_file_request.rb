@@ -33,6 +33,9 @@ module AsposeCellsCloud
 
     attr_accessor :spreadsheet  
     attr_accessor :target_language  
+    attr_accessor :custom_endpoint  
+    attr_accessor :custom_api_key  
+    attr_accessor :custom_model  
     attr_accessor :region  
     attr_accessor :password  
 
@@ -50,6 +53,18 @@ module AsposeCellsCloud
           self.target_language = attributes[:'targetLanguage']
       end
 
+      if attributes.has_key?(:'customEndpoint')
+          self.custom_endpoint = attributes[:'customEndpoint']
+      end
+
+      if attributes.has_key?(:'customApiKey')
+          self.custom_api_key = attributes[:'customApiKey']
+      end
+
+      if attributes.has_key?(:'customModel')
+          self.custom_model = attributes[:'customModel']
+      end
+
       if attributes.has_key?(:'region')
           self.region = attributes[:'region']
       end
@@ -64,6 +79,9 @@ module AsposeCellsCloud
       {
         :'spreadsheet' => :'Spreadsheet',
         :'target_language' => :'targetLanguage',
+        :'custom_endpoint' => :'customEndpoint',
+        :'custom_api_key' => :'customApiKey',
+        :'custom_model' => :'customModel',
         :'region' => :'region',
         :'password' => :'password'
       }
@@ -74,6 +92,9 @@ module AsposeCellsCloud
       {
         :'spreadsheet' => :'String',
         :'target_language' => :'String',
+        :'custom_endpoint' => :'String',
+        :'custom_api_key' => :'String',
+        :'custom_model' => :'String',
         :'region' => :'String',
         :'password' => :'String'
       }
@@ -98,6 +119,9 @@ module AsposeCellsCloud
       # query parameters
       query_params = {}
       query_params[:'targetLanguage'] = self.target_language if !self.target_language.nil? 
+      query_params[:'customEndpoint'] = self.custom_endpoint if !self.custom_endpoint.nil? 
+      query_params[:'customApiKey'] = self.custom_api_key if !self.custom_api_key.nil? 
+      query_params[:'customModel'] = self.custom_model if !self.custom_model.nil? 
       query_params[:'region'] = self.region if !self.region.nil? 
       query_params[:'password'] = self.password if !self.password.nil? 
 
