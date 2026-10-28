@@ -96,6 +96,16 @@ module AsposeCellsCloud
        return data
     end
 
+    # Deprecated: Use String) instead.
+    # This endpoint exists only for backward compatibility with clients that used the misspelled
+    # route calculate/aggergate/color. It will be removed in a future major version.
+
+    def aggregate_cells_by_color__deprecated( aggregate_cells_by_color__deprecated_request, opts = {})
+
+       data, _status_code, _headers = aggregate_cells_by_color__deprecated_request.create_http_request(@api_client,opts )
+       return data
+    end
+
 
     def math_calculate( math_calculate_request, opts = {})
 
@@ -103,6 +113,7 @@ module AsposeCellsCloud
        return data
     end
 
+    # Calculates a formula expression and returns the result.
 
     def calculation_formula( calculation_formula_request, opts = {})
 
@@ -519,7 +530,7 @@ module AsposeCellsCloud
        return data
     end
 
-    # Get all merged cell area form a local spreadsheet worksheet.
+    # Get all merged cell areas from a local spreadsheet worksheet.
 
     def get_merged_cells_in_worksheet( get_merged_cells_in_worksheet_request, opts = {})
 
@@ -527,6 +538,7 @@ module AsposeCellsCloud
        return data
     end
 
+    # Accepts all tracked changes (revisions) in the local spreadsheet.
 
     def accept_all_revisions( accept_all_revisions_request, opts = {})
 
@@ -534,6 +546,7 @@ module AsposeCellsCloud
        return data
     end
 
+    # Accepts all tracked changes (revisions) in a remote spreadsheet.
 
     def accept_all_revisions_in_remote_spreadsheet( accept_all_revisions_in_remote_spreadsheet_request, opts = {})
 
@@ -541,7 +554,7 @@ module AsposeCellsCloud
        return data
     end
 
-    # Structurally convert the core metadata, worksheets, tables, pivot tables, charts, shapes, and other information of an Excel workbook into a JObject type JSON object, for scenarios such as data export, API responses, and log recording.
+    # Extracts the structural information of a local spreadsheet as a JSON object.
 
     def get_spreadsheet_structure( get_spreadsheet_structure_request, opts = {})
 
@@ -549,7 +562,7 @@ module AsposeCellsCloud
        return data
     end
 
-    # Structurally convert the core metadata, worksheets, tables, pivot tables, charts, shapes, and other information of an Excel workbook into a JObject type JSON object, for scenarios such as data export, API responses, and log recording.
+    # Extracts the structural information of a remote spreadsheet as a JSON object.
 
     def get_structure_in_remote_spreadsheet( get_structure_in_remote_spreadsheet_request, opts = {})
 
@@ -573,6 +586,7 @@ module AsposeCellsCloud
        return data
     end
 
+    # Adds digital signatures to Excel spreadsheets using X.509 certificates (.pfx files) for document authentication and integrity verification.
 
     def spreadsheet_digitalsignature( spreadsheet_digitalsignature_request, opts = {})
 
@@ -580,6 +594,7 @@ module AsposeCellsCloud
        return data
     end
 
+    # Generates reports using Smart Marker template technology with JSON data.
 
     def smart_marker_template( smart_marker_template_request, opts = {})
 
@@ -592,6 +607,16 @@ module AsposeCellsCloud
     def search_all_text_items_in_remote_spreadsheet( search_all_text_items_in_remote_spreadsheet_request, opts = {})
 
        data, _status_code, _headers = search_all_text_items_in_remote_spreadsheet_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Deprecated PUT route for String).
+    # This endpoint exists only for backward compatibility with clients that used the PUT verb on this read-only route.
+    # It will be removed in a future major version.
+
+    def search_all_text_items_in_remote_spreadsheet__legacy_put( search_all_text_items_in_remote_spreadsheet__legacy_put_request, opts = {})
+
+       data, _status_code, _headers = search_all_text_items_in_remote_spreadsheet__legacy_put_request.create_http_request(@api_client,opts )
        return data
     end
 
@@ -619,6 +644,16 @@ module AsposeCellsCloud
        return data
     end
 
+    # Deprecated PUT route for String).
+    # This endpoint exists only for backward compatibility with clients that used the PUT verb on this read-only route.
+    # It will be removed in a future major version.
+
+    def search_content_in_remote_spreadsheet__legacy_put( search_content_in_remote_spreadsheet__legacy_put_request, opts = {})
+
+       data, _status_code, _headers = search_content_in_remote_spreadsheet__legacy_put_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Search text in the worksheet of remoted spreadsheet.
 
     def search_content_in_remote_worksheet( search_content_in_remote_worksheet_request, opts = {})
@@ -627,11 +662,31 @@ module AsposeCellsCloud
        return data
     end
 
+    # Deprecated PUT route for String).
+    # This endpoint exists only for backward compatibility with clients that used the PUT verb on this read-only route.
+    # It will be removed in a future major version.
+
+    def search_content_in_remote_worksheet__legacy_put( search_content_in_remote_worksheet__legacy_put_request, opts = {})
+
+       data, _status_code, _headers = search_content_in_remote_worksheet__legacy_put_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Search text in the range of remoted spreadsheet.
 
     def search_content_in_remote_range( search_content_in_remote_range_request, opts = {})
 
        data, _status_code, _headers = search_content_in_remote_range_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Deprecated PUT route for String).
+    # This endpoint exists only for backward compatibility with clients that used the PUT verb on this read-only route.
+    # It will be removed in a future major version.
+
+    def search_content_in_remote_range__legacy_put( search_content_in_remote_range__legacy_put_request, opts = {})
+
+       data, _status_code, _headers = search_content_in_remote_range__legacy_put_request.create_http_request(@api_client,opts )
        return data
     end
 
@@ -683,6 +738,16 @@ module AsposeCellsCloud
        return data
     end
 
+    # Deprecated PUT route for String).
+    # This endpoint exists only for backward compatibility with clients that used the PUT verb on this read-only route.
+    # It will be removed in a future major version.
+
+    def search_broken_links_in_remote_spreadsheet__legacy_put( search_broken_links_in_remote_spreadsheet__legacy_put_request, opts = {})
+
+       data, _status_code, _headers = search_broken_links_in_remote_spreadsheet__legacy_put_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Search broken links in the worksheet of remoted spreadsheet.
 
     def search_broken_links_in_remote_worksheet( search_broken_links_in_remote_worksheet_request, opts = {})
@@ -691,11 +756,31 @@ module AsposeCellsCloud
        return data
     end
 
+    # Deprecated PUT route for String).
+    # This endpoint exists only for backward compatibility with clients that used the PUT verb on this read-only route.
+    # It will be removed in a future major version.
+
+    def search_broken_links_in_remote_worksheet__legacy_put( search_broken_links_in_remote_worksheet__legacy_put_request, opts = {})
+
+       data, _status_code, _headers = search_broken_links_in_remote_worksheet__legacy_put_request.create_http_request(@api_client,opts )
+       return data
+    end
+
     # Search broken links in the range of remoted spreadsheet.
 
     def search_broken_links_in_remote_range( search_broken_links_in_remote_range_request, opts = {})
 
        data, _status_code, _headers = search_broken_links_in_remote_range_request.create_http_request(@api_client,opts )
+       return data
+    end
+
+    # Deprecated PUT route for String).
+    # This endpoint exists only for backward compatibility with clients that used the PUT verb on this read-only route.
+    # It will be removed in a future major version.
+
+    def search_broken_links_in_remote_range__legacy_put( search_broken_links_in_remote_range__legacy_put_request, opts = {})
+
+       data, _status_code, _headers = search_broken_links_in_remote_range__legacy_put_request.create_http_request(@api_client,opts )
        return data
     end
 
@@ -850,7 +935,7 @@ module AsposeCellsCloud
        return data
     end
 
-    # Delete all blank rows that do not contain any data or other objects.
+    # Delete all blank columns that do not contain any data or other objects.
 
     def remove_spreadsheet_blank_columns( remove_spreadsheet_blank_columns_request, opts = {})
 
@@ -890,7 +975,7 @@ module AsposeCellsCloud
        return data
     end
 
-    # Switch rows and columns in the spreadsheet.
+    # Transposes data in the specified range, switching rows and columns.
 
     def transpose_data( transpose_data_request, opts = {})
 
@@ -898,7 +983,7 @@ module AsposeCellsCloud
        return data
     end
 
-    # Switch rows and columns in the spreadsheet.
+    # Unpivots data from the specified range, converting columns to rows.
 
     def unpivot_range( unpivot_range_request, opts = {})
 
@@ -906,7 +991,7 @@ module AsposeCellsCloud
        return data
     end
 
-    # Switch rows and columns in the spreadsheet.
+    # Unpivots data from the specified table, converting columns to rows.
 
     def unpivot_table( unpivot_table_request, opts = {})
 

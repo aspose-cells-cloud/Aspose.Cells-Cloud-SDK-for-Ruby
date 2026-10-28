@@ -1,5 +1,50 @@
 # Release History Version
 
+## Feature & Enhancements in Version 26.9
+
+Full list of issues covering all changes in this release:
+
+| **Summary**                                                                                                   | **Category** |
+| :------------------------------------------------------------------------------------------------------------ | :----------- |
+| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement  |
+| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+
+
+-----------------------
+
+## 版本 26.9 的功能与增强
+
+涵盖此版本所有更改的完整问题列表：
+
+| **摘要**                                                                                                   | **类别** |
+| :-------------------------------------------------------------------------------------------------------- | :------- |
+| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
+| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+
+
+-----------------------
+
+## バージョン 26.9 の機能と拡張
+
+このリリースのすべての変更を含む問題の完全なリスト：
+
+| **概要**                                                                                                   | **カテゴリ** |
+| :-------------------------------------------------------------------------------------------------------- | :----------- |
+| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
+| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+
+
+-----------------------
+
+## Funktionen & Erweiterungen in Version 26.9
+
+Vollständige Liste der Probleme, die alle Änderungen in dieser Version abdecken:
+
+| **Zusammenfassung**                                                          | **Kategorie** |
+| :--------------------------------------------------------------------------- | :------------ |
+| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
+| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug |
+
 ## Features & Enhancements in Version 26.8
 
 Full list of issues covering all changes in this release:

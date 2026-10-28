@@ -111,7 +111,7 @@ module AsposeCellsCloud
       end 
 
       # resource path
-      local_var_path = "v4.0/cells/calculate/aggergate/color"
+      local_var_path = "v4.0/cells/calculate/aggregate/color"
       # query parameters
       query_params = {}
       query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 

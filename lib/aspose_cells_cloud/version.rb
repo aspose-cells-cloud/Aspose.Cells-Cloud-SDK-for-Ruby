@@ -27,5 +27,5 @@
 
 
 module AsposeCellsCloud
-  VERSION = "26.9"
+  VERSION = "26.10.5"
 end

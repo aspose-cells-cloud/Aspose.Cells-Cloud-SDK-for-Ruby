@@ -122,7 +122,7 @@ module AsposeCellsCloud
 
       #auth_names = []
       auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
+      data, status_code, headers = api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,

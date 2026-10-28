@@ -1,4 +1,5 @@
-![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.9.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.9.0?style=for-the-badge)
+```markdown
+![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.10.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.10.0?style=for-the-badge)
 
 # Aspose.Cells Cloud SDK for Ruby
 
@@ -24,7 +25,7 @@ To get started with Aspose.Cells Cloud, here's what you need to do:
 - Execute the following command to get the latest Gem package.
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.9.0'
+gem 'aspose_cells_cloud', '~> 26.10.0'
 ```
 
 Or install directly:
@@ -157,14 +158,18 @@ graph TB
 - Import/Export: Facilitates importing data from various sources into spreadsheets and exporting spreadsheet data to other formats.
 - Security Management: Offers a range of security features like data encryption, access control, and permission management to safeguard the security and integrity of spreadsheet data.
 
-## Features & Enhancements in Version 26.9
+## Features & Enhancements in Version 26.10
 
 Full list of issues covering all changes in this release:
 
 | **Summary**                                                                                                   | **Category** |
 | :------------------------------------------------------------------------------------------------------------ | :----------- |
-| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement  |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+| Refactor SearchController.cs: replace 7 remote read endpoints with [HttpGet] and remove deprecated forwarder | Improvement  |
+| Fix typo in CalculateController.cs: correct route 'aggergate' to 'aggregate' | Bug  |
+| Fix operationName copy-paste errors in ManagementController.cs | Bug  |
+| Mark StatisticalController.cs as obsolete | Improvement  |
+| Security & Stability Fixes for Aspose.Cells Cloud API | Improvement  |
+| Add Exception Chain Support to CellsApiException and HttpWebException | New Feature  |
 
 ## Available SDKs
 
@@ -214,7 +219,7 @@ The Aspose.Cells Cloud SDK is available in multiple popular programming language
 - 执行以下命令获取最新的 Gem 包。
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.9.0'
+gem 'aspose_cells_cloud', '~> 26.10.0'
 ```
 
 或直接安装：
@@ -231,7 +236,7 @@ require 'bundler'
 require 'aspose_cells_cloud'
 
 CellsCloudClientId = "..."  # 从 https://dashboard.aspose.cloud/#/applications 获取 -> 设置 ENV['CellsCloudClientId']
-CellsCloudClientSecret = "..."   # 从 https://dashboard.aspose.cloud/#/applications 获取 -> 设置 ENV['CellsCloudClientSecret']
+CellsCloudClientSecret = "..."   # 从 https://dashboard.aspose.cloud/#/applications 获取 ->设置 ENV['CellsCloudClientSecret']
 
 @instance = AsposeCellsCloud::CellsApi.new(CellsCloudClientId, CellsCloudClientSecret)
 request = AsposeCellsCloud::ConvertSpreadsheetRequest.new(:Spreadsheet => 'EmployeeSalesSummary.xlsx', :format => format)
@@ -347,14 +352,18 @@ graph TB
 - 导入/导出：支持从各种数据源导入数据到电子表格，并将电子表格数据导出到其他格式。
 - 安全管理：提供数据加密、访问控制、权限管理等一系列安全功能，保障电子表格数据的安全性和完整性。
 
-## 版本 26.9 的功能与增强
+## 版本 26.10 的功能与增强
 
 涵盖此版本所有更改的完整问题列表：
 
 | **摘要**                                                                                                   | **类别** |
 | :-------------------------------------------------------------------------------------------------------- | :------- |
-| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+| 重构 SearchController.cs：用 [HttpGet] 替换 7 个远程读取端点并移除已弃用的转发器 | 改进     |
+| 修复 CalculateController.cs 中的拼写错误：将路由 'aggergate' 更正为 'aggregate' | Bug     |
+| 修复 ManagementController.cs 中的 operationName 复制粘贴错误 | Bug     |
+| 将 StatisticalController.cs 标记为已过时 | 改进     |
+| Aspose.Cells Cloud API 的安全与稳定性修复 | 改进     |
+| 为 CellsApiException 和 HttpWebException 添加异常链支持 | 新功能   |
 
 ## 可用的 SDK
 
@@ -404,7 +413,7 @@ Aspose.Cells Cloud を始めるには、以下の手順に従ってください�
 - 以下のコマンドを実行して最新の Gem パッケージを取得します。
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.9.0'
+gem 'aspose_cells_cloud', '~> 26.10.0'
 ```
 
 または直接インストール：
@@ -537,14 +546,18 @@ graph TB
 - インポート/エクスポート：さまざまなデータソースからスプレッドシートへのデータのインポート、およびスプレッドシートデータの他の形式へのエクスポートを容易にします。
 - セキュリティ管理：データ暗号化、アクセス制御、権限管理などのさまざまなセキュリティ機能を提供し、スプレッドシートデータのセキュリティと整合性を保護します。
 
-## バージョン 26.9 の機能と拡張
+## バージョン 26.10 の機能と拡張
 
 このリリースのすべての変更を含む問題の完全なリスト：
 
 | **概要**                                                                                                   | **カテゴリ** |
 | :-------------------------------------------------------------------------------------------------------- | :----------- |
-| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+| SearchController.cs のリファクタリング：7 つのリモート読み取りエンドポイントを [HttpGet] に置き換え、非推奨のフォワーダーを削除 | 改善         |
+| CalculateController.cs のタイプミスの修正：ルート 'aggergate' を 'aggregate' に修正 | バグ         |
+| ManagementController.cs の operationName のコピペエラーの修正 | バグ         |
+| StatisticalController.cs を非推奨としてマーク | 改善         |
+| Aspose.Cells Cloud API のセキュリティと安定性の修正 | 改善         |
+| CellsApiException および HttpWebException への例外チェーンサポートの追加 | 新機能       |
 
 ## 利用可能な SDK
 
@@ -594,7 +607,7 @@ Um mit Aspose.Cells Cloud zu beginnen, müssen Sie Folgendes tun:
 - Führen Sie den folgenden Befehl aus, um das neueste Gem-Paket zu erhalten.
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.9.0'
+gem 'aspose_cells_cloud', '~> 26.10.0'
 ```
 
 Oder direkt installieren:
@@ -620,16 +633,6 @@ FileUtils.cp(response.path, 'EmployeeSalesSummary.csv')
 ```
 
 4. So laden Sie eine Datei in den Cloud-Speicher hoch.
-
-```console
-gem 'aspose_cells_cloud', '~> 26.9.0'
-```
-
-oder direkt:
-
-```console
-gem install aspose_cells_cloud
-```
 
 ```ruby
 require 'openssl'
@@ -737,14 +740,18 @@ graph TB
 - Import/Export: Ermöglicht den Import von Daten aus verschiedenen Quellen in Tabellen und den Export von Tabellendaten in andere Formate.
 - Sicherheitsverwaltung: Bietet eine Reihe von Sicherheitsfunktionen wie Datenverschlüsselung, Zugriffskontrolle und Berechtigungsverwaltung zum Schutz der Sicherheit und Integrität von Tabellendaten.
 
-## Funktionen & Erweiterungen in Version 26.9
+## Funktionen & Erweiterungen in Version 26.10
 
 Vollständige Liste der Probleme, die alle Änderungen in dieser Version abdecken:
 
-| **Zusammenfassung**                                                          | **Kategorie** |
-| :--------------------------------------------------------------------------- | :------------ |
-| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug |
+| **Zusammenfassung**                                                                                                   | **Kategorie** |
+| :------------------------------------------------------------------------------------------------------------ | :----------- |
+| Refactor SearchController.cs: replace 7 remote read endpoints with [HttpGet] and remove deprecated forwarder | Improvement  |
+| Fix typo in CalculateController.cs: correct route 'aggergate' to 'aggregate' | Bug  |
+| Fix operationName copy-paste errors in ManagementController.cs | Bug  |
+| Mark StatisticalController.cs as obsolete | Improvement  |
+| Security & Stability Fixes for Aspose.Cells Cloud API | Improvement  |
+| Add Exception Chain Support to CellsApiException and HttpWebException | New Feature  |
 
 ## Verfügbare SDK
 
@@ -767,3 +774,4 @@ Das Aspose.Cells Cloud SDK ist in mehreren gängigen Programmiersprachen verfüg
 [![Ruby](https://img.shields.io/badge/Ruby-CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby) [![Ruby](https://img.shields.io/badge/Gem-aspose__cells__cloud-red?logo=ruby&style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud)
 
 ## [Versionsverlauf](CHANGELOG.md)
+```
