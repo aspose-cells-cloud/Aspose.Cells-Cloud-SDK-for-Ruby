@@ -1,0 +1,22 @@
+name: Publish Aspose.Cells Cloud SDK to RubyGems
+
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: release   
+    permissions:
+      contents: write      
+      id-token: write      
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby
+          bundler-cache: true
+
+      - uses: rubygems/release-gem@v1      

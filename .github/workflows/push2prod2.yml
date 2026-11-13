@@ -1,0 +1,57 @@
+name: Publish Aspose.Cells Cloud SDK to RubyGems
+
+on:
+  push:
+    tags:
+      - 'v*'         
+  workflow_dispatch:  
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'      
+          bundler-cache: true     
+
+      - name: Verify version matches tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          GEMSPEC_FILE=$(ls *.gemspec | head -n 1)
+          GEMSPEC_VERSION=$(ruby -e "require './${GEMSPEC_FILE}'; puts eval(File.read('${GEMSPEC_FILE}')).version" 2>/dev/null || \
+                            ruby -e "spec = Gem::Specification.load('${GEMSPEC_FILE}'); puts spec.version")
+          echo "Tag version:    $TAG_VERSION"
+          echo "Gemspec version: $GEMSPEC_VERSION"
+          if [ "$TAG_VERSION" != "$GEMSPEC_VERSION" ]; then
+            echo "::error::Tag version ($TAG_VERSION) does not match gemspec version ($GEMSPEC_VERSION)"
+            exit 1
+          fi
+
+      - name: Build and push gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: |
+          set -euo pipefail
+          GEMSPEC_FILE=$(ls *.gemspec | head -n 1)
+          echo "Using gemspec: $GEMSPEC_FILE"
+
+          gem build "$GEMSPEC_FILE"
+
+          GEM_FILE=$(ls *.gem | head -n 1)
+          echo "Built: $GEM_FILE"
+
+          gem push "$GEM_FILE"
+
+      - name: Clean up built gem
+        if: always()
+        run: rm -f *.gem
