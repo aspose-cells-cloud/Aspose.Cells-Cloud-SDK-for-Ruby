@@ -1,17 +1,11 @@
 name: Publish Aspose.Cells Cloud SDK to RubyGems
 
-on:
-  push:
-    tags:
-      - 'v*'         
-  workflow_dispatch:  
-
 jobs:
   release:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write   
+      contents: write
 
     steps:
       - name: Checkout code
@@ -20,8 +14,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'      
-          bundler-cache: true     
+          ruby-version: "3.2"
+          bundler-cache: true
 
       - name: Verify version matches tag
         if: startsWith(github.ref, 'refs/tags/v')
