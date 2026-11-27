@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="ExtractTextOptionsrb.cs">
+ <copyright company="Aspose" file="ExtractTextOptions.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,34 +25,38 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
+require_relative 'base_operate_options'
 
 module AsposeCellsCloud
 
-  class ExtractTextOptions
-        #This class has a public property for storing and retrieving a name value.            
-        attr_accessor :name
-        #Represents data source.  There are three types of data, they are CloudFileSystem, RequestFiles, HttpUri.            
-        attr_accessor :data_source
-        #Represents file information. Include of filename, filesize, and file content(base64String).            
-        attr_accessor :file_info
-        #            
-        attr_accessor :worksheet
-        #            
-        attr_accessor :range
-        #            
-        attr_accessor :extract_text_type
-        #            
-        attr_accessor :before_text
-        #            
-        attr_accessor :after_text
-        #            
-        attr_accessor :before_position
-        #            
-        attr_accessor :after_position
-        #            
-        attr_accessor :out_position_range
+  # I'm happy to help! Could you please provide me with the features you would like me to summarize for you?
+  class ExtractTextOptions < BaseOperateOptions
+    # This class has a public property for storing and retrieving a name value.
+    # @return [String]
+    attr_accessor :name
+    # Represents data source.  There are three types of data, they are CloudFileSystem, RequestFiles, HttpUri.
+    # @return [DataSource]
+    attr_accessor :data_source
+    # Represents file information. Include of filename, filesize, and file content(base64String).
+    # @return [FileInfo]
+    attr_accessor :file_info
+    # @return [String]
+    attr_accessor :worksheet
+    # @return [String]
+    attr_accessor :range
+    # @return [String]
+    attr_accessor :extract_text_type
+    # @return [String]
+    attr_accessor :before_text
+    # @return [String]
+    attr_accessor :after_text
+    # @return [Integer]
+    attr_accessor :before_position
+    # @return [Integer]
+    attr_accessor :after_position
+    # @return [String]
+    attr_accessor :out_position_range
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -67,7 +71,7 @@ module AsposeCellsCloud
         :'after_text' => :'AfterText',
         :'before_position' => :'BeforePosition',
         :'after_position' => :'AfterPosition',
-        :'out_position_range' => :'OutPositionRange'
+        :'out_position_range' => :'OutPositionRange',
       }
     end
 
@@ -84,7 +88,7 @@ module AsposeCellsCloud
         :'after_text' => :'String',
         :'before_position' => :'Integer',
         :'after_position' => :'Integer',
-        :'out_position_range' => :'String'
+        :'out_position_range' => :'String',
       }
     end
 
@@ -92,237 +96,66 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'Name')
-          self.name = attributes[:'Name']
-      end
-      if attributes.has_key?(:'DataSource')
-          self.data_source = attributes[:'DataSource']
-      end
-      if attributes.has_key?(:'FileInfo')
-          self.file_info = attributes[:'FileInfo']
-      end
-      if attributes.has_key?(:'Worksheet')
-          self.worksheet = attributes[:'Worksheet']
-      end
-      if attributes.has_key?(:'Range')
-          self.range = attributes[:'Range']
-      end
-      if attributes.has_key?(:'ExtractTextType')
-          self.extract_text_type = attributes[:'ExtractTextType']
-      end
-      if attributes.has_key?(:'BeforeText')
-          self.before_text = attributes[:'BeforeText']
-      end
-      if attributes.has_key?(:'AfterText')
-          self.after_text = attributes[:'AfterText']
-      end
-      if attributes.has_key?(:'BeforePosition')
-          self.before_position = attributes[:'BeforePosition']
-      end
-      if attributes.has_key?(:'AfterPosition')
-          self.after_position = attributes[:'AfterPosition']
-      end
-      if attributes.has_key?(:'OutPositionRange')
-          self.out_position_range = attributes[:'OutPositionRange']
-      end
-
+      super(attributes)
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.name = attributes[:name] if attributes.key?(:name)
+      self.data_source = attributes[:data_source] if attributes.key?(:data_source)
+      self.file_info = attributes[:file_info] if attributes.key?(:file_info)
+      self.worksheet = attributes[:worksheet] if attributes.key?(:worksheet)
+      self.range = attributes[:range] if attributes.key?(:range)
+      self.extract_text_type = attributes[:extract_text_type] if attributes.key?(:extract_text_type)
+      self.before_text = attributes[:before_text] if attributes.key?(:before_text)
+      self.after_text = attributes[:after_text] if attributes.key?(:after_text)
+      self.before_position = attributes[:before_position] if attributes.key?(:before_position)
+      self.after_position = attributes[:after_position] if attributes.key?(:after_position)
+      self.out_position_range = attributes[:out_position_range] if attributes.key?(:out_position_range)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @name.nil?
-          invalid_properties.push("invalid value for 'name', name cannot be nil.")
-      end
-      if @data_source.nil?
-          invalid_properties.push("invalid value for 'data_source', data_source cannot be nil.")
-      end
-      if @file_info.nil?
-          invalid_properties.push("invalid value for 'file_info', file_info cannot be nil.")
-      end
-      if @worksheet.nil?
-          invalid_properties.push("invalid value for 'worksheet', worksheet cannot be nil.")
-      end
-      if @range.nil?
-          invalid_properties.push("invalid value for 'range', range cannot be nil.")
-      end
-      if @extract_text_type.nil?
-          invalid_properties.push("invalid value for 'extract_text_type', extract_text_type cannot be nil.")
-      end
-      if @before_text.nil?
-          invalid_properties.push("invalid value for 'before_text', before_text cannot be nil.")
-      end
-      if @after_text.nil?
-          invalid_properties.push("invalid value for 'after_text', after_text cannot be nil.")
-      end
-      if @before_position.nil?
-          invalid_properties.push("invalid value for 'before_position', before_position cannot be nil.")
-      end
-      if @after_position.nil?
-          invalid_properties.push("invalid value for 'after_position', after_position cannot be nil.")
-      end
-      if @out_position_range.nil?
-          invalid_properties.push("invalid value for 'out_position_range', out_position_range cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @name.nil?
-      return false if @data_source.nil?
-      return false if @file_info.nil?
-      return false if @worksheet.nil?
-      return false if @range.nil?
-      return false if @extract_text_type.nil?
-      return false if @before_text.nil?
-      return false if @after_text.nil?
-      return false if @before_position.nil?
-      return false if @after_position.nil?
-      return false if @out_position_range.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          name == o.name &&
-          data_source == o.data_source &&
-          file_info == o.file_info &&
-          worksheet == o.worksheet &&
-          range == o.range &&
-          extract_text_type == o.extract_text_type &&
-          before_text == o.before_text &&
-          after_text == o.after_text &&
-          before_position == o.before_position &&
-          after_position == o.after_position &&
-          out_position_range == o.out_position_range 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ name , data_source , file_info , worksheet , range , extract_text_type , before_text , after_text , before_position , after_position , out_position_range ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

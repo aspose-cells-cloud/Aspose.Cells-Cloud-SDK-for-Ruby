@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostWorkbookGetSmartMarkerResult_request.rb.cs">
+ <copyright company="Aspose" file="PostWorkbookGetSmartMarkerResultRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,118 +25,67 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostWorkbookGetSmartMarkerResultRequest
 
-    attr_accessor :name  
-    attr_accessor :xml_file  
-    attr_accessor :folder  
-    attr_accessor :out_path  
-    attr_accessor :storage_name  
-    attr_accessor :out_storage_name  
+  class PostWorkbookGetSmartMarkerResultRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :xml_file
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, folder: nil, out_path: nil, out_storage_name: nil, storage_name: nil, xml_file: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostWorkbookGetSmartMarkerResultRequest.new`' if name.nil?
+      @name = name
+      @folder = folder
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @storage_name = storage_name
+      @xml_file = xml_file
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/smartmarker'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'xmlFile')
-          self.xml_file = attributes[:'xmlFile']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['xmlFile'] = @xml_file unless @xml_file.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'xml_file' => :'xmlFile',
-        :'folder' => :'folder',
-        :'out_path' => :'outPath',
-        :'storage_name' => :'storageName',
-        :'out_storage_name' => :'outStorageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'xml_file' => :'String',
-        :'folder' => :'String',
-        :'out_path' => :'String',
-        :'storage_name' => :'String',
-        :'out_storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_workbook_get_smart_marker_result ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_workbook_get_smart_marker_result "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/smartmarker".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'xmlFile'] = self.xml_file if !self.xml_file.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_workbook_get_smart_marker_result\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

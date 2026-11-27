@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="versionrb.cs">
+ <copyright company="Aspose" file="version.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,7 +26,11 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-module AsposeCellsCloud
-  VERSION = "26.10.5"
+module Aspose
+  module Cells
+    module Cloud
+      # SDK version. Mirrors the version declared in aspose.cells.cloud.specification.json.
+      VERSION = '26.11.0'
+    end
+  end
 end

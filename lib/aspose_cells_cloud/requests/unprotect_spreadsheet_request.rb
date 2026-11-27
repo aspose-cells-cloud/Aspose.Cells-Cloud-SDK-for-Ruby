@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="UnprotectSpreadsheet_request.rb.cs">
+ <copyright company="Aspose" file="UnprotectSpreadsheetRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,131 +25,75 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class UnprotectSpreadsheetRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :password  
-    attr_accessor :modify_password  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :region  
+  class UnprotectSpreadsheetRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :modify_password
+    # @return [String]
+    attr_accessor :password
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(modify_password:, password:, spreadsheet:, out_path: nil, out_storage_name: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `modify_password` when calling `UnprotectSpreadsheetRequest.new`' if modify_password.nil?
+      raise ArgumentError, 'Missing the required parameter `password` when calling `UnprotectSpreadsheetRequest.new`' if password.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `UnprotectSpreadsheetRequest.new`' if spreadsheet.nil?
+      @modify_password = modify_password
+      @password = password
+      @spreadsheet = spreadsheet
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/unprotection/spreadsheet'
+      path
+    end
 
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['password'] = @password
+      query['modifyPassword'] = @modify_password
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['region'] = @region unless @region.nil?
+      query
+    end
 
-      if attributes.has_key?(:'modifyPassword')
-          self.modify_password = attributes[:'modifyPassword']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'password' => :'password',
-        :'modify_password' => :'modifyPassword',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'region' => :'region'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'spreadsheet' => :'String',
-        :'password' => :'String',
-        :'modify_password' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'region' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.unprotect_spreadsheet ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.unprotect_spreadsheet "
-      end 
-      # verify the required parameter 'password' is set
-      if api_client.config.client_side_validation && password.nil?
-          fail ArgumentError, "Missing the required parameter 'password' when calling CellsApi.unprotect_spreadsheet "
-      end 
-      # verify the required parameter 'modify_password' is set
-      if api_client.config.client_side_validation && modify_password.nil?
-          fail ArgumentError, "Missing the required parameter 'modify_password' when calling CellsApi.unprotect_spreadsheet "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/unprotection/spreadsheet"
-      # query parameters
-      query_params = {}
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'modifyPassword'] = self.modify_password if !self.modify_password.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.unprotect_spreadsheet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

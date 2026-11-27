@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostSplit_request.rb.cs">
+ <copyright company="Aspose" file="PostSplitRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,137 +25,78 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostSplitRequest
 
-    attr_accessor :file  
-    attr_accessor :out_format  
-    attr_accessor :password  
-    attr_accessor :from  
-    attr_accessor :to  
-    attr_accessor :check_excel_restriction  
-    attr_accessor :region  
+  class PostSplitRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :file
+    # @return [String]
+    attr_accessor :out_format
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [Integer, nil when omitted]
+    attr_accessor :from
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [Integer, nil when omitted]
+    attr_accessor :to
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(file:, out_format:, check_excel_restriction: nil, from: nil, password: nil, region: nil, to: nil)
+      raise ArgumentError, 'Missing the required parameter `file` when calling `PostSplitRequest.new`' if file.nil?
+      raise ArgumentError, 'Missing the required parameter `out_format` when calling `PostSplitRequest.new`' if out_format.nil?
+      @file = file
+      @out_format = out_format
+      @check_excel_restriction = check_excel_restriction
+      @from = from
+      @password = password
+      @region = region
+      @to = to
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'File')
-          self.file = attributes[:'File']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/split'
+      path
+    end
 
-      if attributes.has_key?(:'outFormat')
-          self.out_format = attributes[:'outFormat']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['outFormat'] = @out_format
+      query['password'] = @password unless @password.nil?
+      query['from'] = @from unless @from.nil?
+      query['to'] = @to unless @to.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query['region'] = @region unless @region.nil?
+      query
+    end
 
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-      if attributes.has_key?(:'from')
-          self.from = attributes[:'from']
-      end
-
-      if attributes.has_key?(:'to')
-          self.to = attributes[:'to']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'file' => :'File',
-        :'out_format' => :'outFormat',
-        :'password' => :'password',
-        :'from' => :'from',
-        :'to' => :'to',
-        :'check_excel_restriction' => :'checkExcelRestriction',
-        :'region' => :'region'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'file' => :'Hash',
-        :'out_format' => :'String',
-        :'password' => :'String',
-        :'from' => :'Integer',
-        :'to' => :'Integer',
-        :'check_excel_restriction' => :'BOOLEAN',
-        :'region' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['File'] = @file
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_split ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'file' is set
-      if api_client.config.client_side_validation && file.nil?
-          fail ArgumentError, "Missing the required parameter 'file' when calling CellsApi.post_split "
-      end 
-      # verify the required parameter 'out_format' is set
-      if api_client.config.client_side_validation && out_format.nil?
-          fail ArgumentError, "Missing the required parameter 'out_format' when calling CellsApi.post_split "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/split"
-      # query parameters
-      query_params = {}
-      query_params[:'outFormat'] = self.out_format if !self.out_format.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'from'] = self.from if !self.from.nil? 
-      query_params[:'to'] = self.to if !self.to.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !file.nil?
-          file.each do |filename , context|
-          form_params[File.basename(filename)]  = context
-          end
-      end
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FilesResult')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_split\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

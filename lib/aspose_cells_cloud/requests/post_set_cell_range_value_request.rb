@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostSetCellRangeValue_request.rb.cs">
+ <copyright company="Aspose" file="PostSetCellRangeValueRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,141 +25,75 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostSetCellRangeValueRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :cellarea  
-    attr_accessor :value  
-    attr_accessor :type  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PostSetCellRangeValueRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :cellarea
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String]
+    attr_accessor :type
+    # @return [String]
+    attr_accessor :value
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(cellarea:, name:, sheet_name:, type:, value:, folder: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `cellarea` when calling `PostSetCellRangeValueRequest.new`' if cellarea.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostSetCellRangeValueRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PostSetCellRangeValueRequest.new`' if sheet_name.nil?
+      raise ArgumentError, 'Missing the required parameter `type` when calling `PostSetCellRangeValueRequest.new`' if type.nil?
+      raise ArgumentError, 'Missing the required parameter `value` when calling `PostSetCellRangeValueRequest.new`' if value.nil?
+      @cellarea = cellarea
+      @name = name
+      @sheet_name = sheet_name
+      @type = type
+      @value = value
+      @folder = folder
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/cells'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['cellarea'] = @cellarea
+      query['value'] = @value
+      query['type'] = @type
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'cellarea')
-          self.cellarea = attributes[:'cellarea']
-      end
-
-      if attributes.has_key?(:'value')
-          self.value = attributes[:'value']
-      end
-
-      if attributes.has_key?(:'type')
-          self.type = attributes[:'type']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'cellarea' => :'cellarea',
-        :'value' => :'value',
-        :'type' => :'type',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'cellarea' => :'String',
-        :'value' => :'String',
-        :'type' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_set_cell_range_value ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_set_cell_range_value "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.post_set_cell_range_value "
-      end 
-      # verify the required parameter 'cellarea' is set
-      if api_client.config.client_side_validation && cellarea.nil?
-          fail ArgumentError, "Missing the required parameter 'cellarea' when calling CellsApi.post_set_cell_range_value "
-      end 
-      # verify the required parameter 'value' is set
-      if api_client.config.client_side_validation && value.nil?
-          fail ArgumentError, "Missing the required parameter 'value' when calling CellsApi.post_set_cell_range_value "
-      end 
-      # verify the required parameter 'type' is set
-      if api_client.config.client_side_validation && type.nil?
-          fail ArgumentError, "Missing the required parameter 'type' when calling CellsApi.post_set_cell_range_value "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/cells".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'cellarea'] = self.cellarea if !self.cellarea.nil? 
-      query_params[:'value'] = self.value if !self.value.nil? 
-      query_params[:'type'] = self.type if !self.type.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_set_cell_range_value\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

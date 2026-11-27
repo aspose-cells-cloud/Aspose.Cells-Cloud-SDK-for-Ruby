@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="SparklineGrouprb.cs">
+ <copyright company="Aspose" file="SparklineGroup.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,66 +25,93 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
 
 module AsposeCellsCloud
 
+  # is organized into sparkline group. A SparklineGroup contains a variable number of sparkline items.             A sparkline group specifies the type, display settings and axis settings for the sparklines.
   class SparklineGroup
-        #Indicates whether to show data in hidden rows and columns.             
-        attr_accessor :display_hidden
-        #Gets and sets the color of the first point of data in the sparkline group.             
-        attr_accessor :first_point_color
-        #Gets and sets the color of the highest points of data in the sparkline group.             
-        attr_accessor :high_point_color
-        #Gets and sets the color of the horizontal axis in the sparkline group.             
-        attr_accessor :horizontal_axis_color
-        #Represents the range that contains the date values for the sparkline data.             
-        attr_accessor :horizontal_axis_date_range
-        #Gets and sets the color of the last point of data in the sparkline group.             
-        attr_accessor :last_point_color
-        #Gets and sets the line weight in each line sparkline in the sparkline group, in the unit of points.             
-        attr_accessor :line_weight
-        #Gets and sets the color of the lowest points of data in the sparkline group.             
-        attr_accessor :low_point_color
-        #Gets and sets the color of points in each line sparkline in the sparkline group.             
-        attr_accessor :markers_color
-        #Gets and sets the color of the negative values on the sparkline group.             
-        attr_accessor :negative_points_color
-        #Indicates how to plot empty cells.             
-        attr_accessor :plot_empty_cells_type
-        #Indicates whether the plot data is right to left.             
-        attr_accessor :plot_right_to_left
-        #Gets and sets the preset style type of the sparkline group.             
-        attr_accessor :preset_style
-        #Gets and sets the color of the sparklines in the sparkline group.             
-        attr_accessor :series_color
-        #Indicates whether to highlight the first point of data in the sparkline group.             
-        attr_accessor :show_first_point
-        #Indicates whether to highlight the highest points of data in the sparkline group.             
-        attr_accessor :show_high_point
-        #Indicates whether to show the sparkline horizontal axis.            The horizontal axis appears if the sparkline has data that crosses the zero axis.             
-        attr_accessor :show_horizontal_axis
-        #Indicates whether to highlight the last point of data in the sparkline group.             
-        attr_accessor :show_last_point
-        #Indicates whether to highlight the lowest points of data in the sparkline group.             
-        attr_accessor :show_low_point
-        #Indicates whether to highlight each point in each line sparkline in the sparkline group.             
-        attr_accessor :show_markers
-        #Indicates whether to highlight the negative values on the sparkline group with a different color or marker.             
-        attr_accessor :show_negative_points
-        #Gets the collection of  object.             
-        attr_accessor :sparkline_collection
-        #Indicates the sparkline type of the sparkline group.             
-        attr_accessor :type
-        #Gets and sets the custom maximum value for the vertical axis.             
-        attr_accessor :vertical_axis_max_value
-        #Represents the vertical axis maximum value type.             
-        attr_accessor :vertical_axis_max_value_type
-        #Gets and sets the custom minimum value for the vertical axis.             
-        attr_accessor :vertical_axis_min_value
-        #Represents the vertical axis minimum value type.             
-        attr_accessor :vertical_axis_min_value_type
+    # Indicates whether to show data in hidden rows and columns.
+    # @return [BOOLEAN]
+    attr_accessor :display_hidden
+    # Gets and sets the color of the first point of data in the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :first_point_color
+    # Gets and sets the color of the highest points of data in the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :high_point_color
+    # Gets and sets the color of the horizontal axis in the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :horizontal_axis_color
+    # Represents the range that contains the date values for the sparkline data.
+    # @return [String]
+    attr_accessor :horizontal_axis_date_range
+    # Gets and sets the color of the last point of data in the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :last_point_color
+    # Gets and sets the line weight in each line sparkline in the sparkline group, in the unit of points.
+    # @return [Float]
+    attr_accessor :line_weight
+    # Gets and sets the color of the lowest points of data in the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :low_point_color
+    # Gets and sets the color of points in each line sparkline in the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :markers_color
+    # Gets and sets the color of the negative values on the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :negative_points_color
+    # Indicates how to plot empty cells.
+    # @return [String]
+    attr_accessor :plot_empty_cells_type
+    # Indicates whether the plot data is right to left.
+    # @return [BOOLEAN]
+    attr_accessor :plot_right_to_left
+    # Gets and sets the preset style type of the sparkline group.
+    # @return [String]
+    attr_accessor :preset_style
+    # Gets and sets the color of the sparklines in the sparkline group.
+    # @return [CellsColor]
+    attr_accessor :series_color
+    # Indicates whether to highlight the first point of data in the sparkline group.
+    # @return [BOOLEAN]
+    attr_accessor :show_first_point
+    # Indicates whether to highlight the highest points of data in the sparkline group.
+    # @return [BOOLEAN]
+    attr_accessor :show_high_point
+    # Indicates whether to show the sparkline horizontal axis.             The horizontal axis appears if the sparkline has data that crosses the zero axis.
+    # @return [BOOLEAN]
+    attr_accessor :show_horizontal_axis
+    # Indicates whether to highlight the last point of data in the sparkline group.
+    # @return [BOOLEAN]
+    attr_accessor :show_last_point
+    # Indicates whether to highlight the lowest points of data in the sparkline group.
+    # @return [BOOLEAN]
+    attr_accessor :show_low_point
+    # Indicates whether to highlight each point in each line sparkline in the sparkline group.
+    # @return [BOOLEAN]
+    attr_accessor :show_markers
+    # Indicates whether to highlight the negative values on the sparkline group with a different color or marker.
+    # @return [BOOLEAN]
+    attr_accessor :show_negative_points
+    # Gets the collection of  object.
+    # @return [Array<Sparkline>]
+    attr_accessor :sparkline_collection
+    # Indicates the sparkline type of the sparkline group.
+    # @return [String]
+    attr_accessor :type
+    # Gets and sets the custom maximum value for the vertical axis.
+    # @return [Float]
+    attr_accessor :vertical_axis_max_value
+    # Represents the vertical axis maximum value type.
+    # @return [String]
+    attr_accessor :vertical_axis_max_value_type
+    # Gets and sets the custom minimum value for the vertical axis.
+    # @return [Float]
+    attr_accessor :vertical_axis_min_value
+    # Represents the vertical axis minimum value type.
+    # @return [String]
+    attr_accessor :vertical_axis_min_value_type
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -115,7 +142,7 @@ module AsposeCellsCloud
         :'vertical_axis_max_value' => :'VerticalAxisMaxValue',
         :'vertical_axis_max_value_type' => :'VerticalAxisMaxValueType',
         :'vertical_axis_min_value' => :'VerticalAxisMinValue',
-        :'vertical_axis_min_value_type' => :'VerticalAxisMinValueType'
+        :'vertical_axis_min_value_type' => :'VerticalAxisMinValueType',
       }
     end
 
@@ -148,7 +175,7 @@ module AsposeCellsCloud
         :'vertical_axis_max_value' => :'Float',
         :'vertical_axis_max_value_type' => :'String',
         :'vertical_axis_min_value' => :'Float',
-        :'vertical_axis_min_value_type' => :'String'
+        :'vertical_axis_min_value_type' => :'String',
       }
     end
 
@@ -156,365 +183,81 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'DisplayHidden')
-          self.display_hidden = attributes[:'DisplayHidden']
-      end
-      if attributes.has_key?(:'FirstPointColor')
-          self.first_point_color = attributes[:'FirstPointColor']
-      end
-      if attributes.has_key?(:'HighPointColor')
-          self.high_point_color = attributes[:'HighPointColor']
-      end
-      if attributes.has_key?(:'HorizontalAxisColor')
-          self.horizontal_axis_color = attributes[:'HorizontalAxisColor']
-      end
-      if attributes.has_key?(:'HorizontalAxisDateRange')
-          self.horizontal_axis_date_range = attributes[:'HorizontalAxisDateRange']
-      end
-      if attributes.has_key?(:'LastPointColor')
-          self.last_point_color = attributes[:'LastPointColor']
-      end
-      if attributes.has_key?(:'LineWeight')
-          self.line_weight = attributes[:'LineWeight']
-      end
-      if attributes.has_key?(:'LowPointColor')
-          self.low_point_color = attributes[:'LowPointColor']
-      end
-      if attributes.has_key?(:'MarkersColor')
-          self.markers_color = attributes[:'MarkersColor']
-      end
-      if attributes.has_key?(:'NegativePointsColor')
-          self.negative_points_color = attributes[:'NegativePointsColor']
-      end
-      if attributes.has_key?(:'PlotEmptyCellsType')
-          self.plot_empty_cells_type = attributes[:'PlotEmptyCellsType']
-      end
-      if attributes.has_key?(:'PlotRightToLeft')
-          self.plot_right_to_left = attributes[:'PlotRightToLeft']
-      end
-      if attributes.has_key?(:'PresetStyle')
-          self.preset_style = attributes[:'PresetStyle']
-      end
-      if attributes.has_key?(:'SeriesColor')
-          self.series_color = attributes[:'SeriesColor']
-      end
-      if attributes.has_key?(:'ShowFirstPoint')
-          self.show_first_point = attributes[:'ShowFirstPoint']
-      end
-      if attributes.has_key?(:'ShowHighPoint')
-          self.show_high_point = attributes[:'ShowHighPoint']
-      end
-      if attributes.has_key?(:'ShowHorizontalAxis')
-          self.show_horizontal_axis = attributes[:'ShowHorizontalAxis']
-      end
-      if attributes.has_key?(:'ShowLastPoint')
-          self.show_last_point = attributes[:'ShowLastPoint']
-      end
-      if attributes.has_key?(:'ShowLowPoint')
-          self.show_low_point = attributes[:'ShowLowPoint']
-      end
-      if attributes.has_key?(:'ShowMarkers')
-          self.show_markers = attributes[:'ShowMarkers']
-      end
-      if attributes.has_key?(:'ShowNegativePoints')
-          self.show_negative_points = attributes[:'ShowNegativePoints']
-      end
-      if attributes.has_key?(:'SparklineCollection')
-          self.sparkline_collection = attributes[:'SparklineCollection']
-      end
-      if attributes.has_key?(:'Type')
-          self.type = attributes[:'Type']
-      end
-      if attributes.has_key?(:'VerticalAxisMaxValue')
-          self.vertical_axis_max_value = attributes[:'VerticalAxisMaxValue']
-      end
-      if attributes.has_key?(:'VerticalAxisMaxValueType')
-          self.vertical_axis_max_value_type = attributes[:'VerticalAxisMaxValueType']
-      end
-      if attributes.has_key?(:'VerticalAxisMinValue')
-          self.vertical_axis_min_value = attributes[:'VerticalAxisMinValue']
-      end
-      if attributes.has_key?(:'VerticalAxisMinValueType')
-          self.vertical_axis_min_value_type = attributes[:'VerticalAxisMinValueType']
-      end
-
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.display_hidden = attributes[:display_hidden] if attributes.key?(:display_hidden)
+      self.first_point_color = attributes[:first_point_color] if attributes.key?(:first_point_color)
+      self.high_point_color = attributes[:high_point_color] if attributes.key?(:high_point_color)
+      self.horizontal_axis_color = attributes[:horizontal_axis_color] if attributes.key?(:horizontal_axis_color)
+      self.horizontal_axis_date_range = attributes[:horizontal_axis_date_range] if attributes.key?(:horizontal_axis_date_range)
+      self.last_point_color = attributes[:last_point_color] if attributes.key?(:last_point_color)
+      self.line_weight = attributes[:line_weight] if attributes.key?(:line_weight)
+      self.low_point_color = attributes[:low_point_color] if attributes.key?(:low_point_color)
+      self.markers_color = attributes[:markers_color] if attributes.key?(:markers_color)
+      self.negative_points_color = attributes[:negative_points_color] if attributes.key?(:negative_points_color)
+      self.plot_empty_cells_type = attributes[:plot_empty_cells_type] if attributes.key?(:plot_empty_cells_type)
+      self.plot_right_to_left = attributes[:plot_right_to_left] if attributes.key?(:plot_right_to_left)
+      self.preset_style = attributes[:preset_style] if attributes.key?(:preset_style)
+      self.series_color = attributes[:series_color] if attributes.key?(:series_color)
+      self.show_first_point = attributes[:show_first_point] if attributes.key?(:show_first_point)
+      self.show_high_point = attributes[:show_high_point] if attributes.key?(:show_high_point)
+      self.show_horizontal_axis = attributes[:show_horizontal_axis] if attributes.key?(:show_horizontal_axis)
+      self.show_last_point = attributes[:show_last_point] if attributes.key?(:show_last_point)
+      self.show_low_point = attributes[:show_low_point] if attributes.key?(:show_low_point)
+      self.show_markers = attributes[:show_markers] if attributes.key?(:show_markers)
+      self.show_negative_points = attributes[:show_negative_points] if attributes.key?(:show_negative_points)
+      self.sparkline_collection = attributes[:sparkline_collection] if attributes.key?(:sparkline_collection)
+      self.type = attributes[:type] if attributes.key?(:type)
+      self.vertical_axis_max_value = attributes[:vertical_axis_max_value] if attributes.key?(:vertical_axis_max_value)
+      self.vertical_axis_max_value_type = attributes[:vertical_axis_max_value_type] if attributes.key?(:vertical_axis_max_value_type)
+      self.vertical_axis_min_value = attributes[:vertical_axis_min_value] if attributes.key?(:vertical_axis_min_value)
+      self.vertical_axis_min_value_type = attributes[:vertical_axis_min_value_type] if attributes.key?(:vertical_axis_min_value_type)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @display_hidden.nil?
-          invalid_properties.push("invalid value for 'display_hidden', display_hidden cannot be nil.")
-      end
-      if @first_point_color.nil?
-          invalid_properties.push("invalid value for 'first_point_color', first_point_color cannot be nil.")
-      end
-      if @high_point_color.nil?
-          invalid_properties.push("invalid value for 'high_point_color', high_point_color cannot be nil.")
-      end
-      if @horizontal_axis_color.nil?
-          invalid_properties.push("invalid value for 'horizontal_axis_color', horizontal_axis_color cannot be nil.")
-      end
-      if @horizontal_axis_date_range.nil?
-          invalid_properties.push("invalid value for 'horizontal_axis_date_range', horizontal_axis_date_range cannot be nil.")
-      end
-      if @last_point_color.nil?
-          invalid_properties.push("invalid value for 'last_point_color', last_point_color cannot be nil.")
-      end
-      if @line_weight.nil?
-          invalid_properties.push("invalid value for 'line_weight', line_weight cannot be nil.")
-      end
-      if @low_point_color.nil?
-          invalid_properties.push("invalid value for 'low_point_color', low_point_color cannot be nil.")
-      end
-      if @markers_color.nil?
-          invalid_properties.push("invalid value for 'markers_color', markers_color cannot be nil.")
-      end
-      if @negative_points_color.nil?
-          invalid_properties.push("invalid value for 'negative_points_color', negative_points_color cannot be nil.")
-      end
-      if @plot_empty_cells_type.nil?
-          invalid_properties.push("invalid value for 'plot_empty_cells_type', plot_empty_cells_type cannot be nil.")
-      end
-      if @plot_right_to_left.nil?
-          invalid_properties.push("invalid value for 'plot_right_to_left', plot_right_to_left cannot be nil.")
-      end
-      if @preset_style.nil?
-          invalid_properties.push("invalid value for 'preset_style', preset_style cannot be nil.")
-      end
-      if @series_color.nil?
-          invalid_properties.push("invalid value for 'series_color', series_color cannot be nil.")
-      end
-      if @show_first_point.nil?
-          invalid_properties.push("invalid value for 'show_first_point', show_first_point cannot be nil.")
-      end
-      if @show_high_point.nil?
-          invalid_properties.push("invalid value for 'show_high_point', show_high_point cannot be nil.")
-      end
-      if @show_horizontal_axis.nil?
-          invalid_properties.push("invalid value for 'show_horizontal_axis', show_horizontal_axis cannot be nil.")
-      end
-      if @show_last_point.nil?
-          invalid_properties.push("invalid value for 'show_last_point', show_last_point cannot be nil.")
-      end
-      if @show_low_point.nil?
-          invalid_properties.push("invalid value for 'show_low_point', show_low_point cannot be nil.")
-      end
-      if @show_markers.nil?
-          invalid_properties.push("invalid value for 'show_markers', show_markers cannot be nil.")
-      end
-      if @show_negative_points.nil?
-          invalid_properties.push("invalid value for 'show_negative_points', show_negative_points cannot be nil.")
-      end
-      if @sparkline_collection.nil?
-          invalid_properties.push("invalid value for 'sparkline_collection', sparkline_collection cannot be nil.")
-      end
-      if @type.nil?
-          invalid_properties.push("invalid value for 'type', type cannot be nil.")
-      end
-      if @vertical_axis_max_value.nil?
-          invalid_properties.push("invalid value for 'vertical_axis_max_value', vertical_axis_max_value cannot be nil.")
-      end
-      if @vertical_axis_max_value_type.nil?
-          invalid_properties.push("invalid value for 'vertical_axis_max_value_type', vertical_axis_max_value_type cannot be nil.")
-      end
-      if @vertical_axis_min_value.nil?
-          invalid_properties.push("invalid value for 'vertical_axis_min_value', vertical_axis_min_value cannot be nil.")
-      end
-      if @vertical_axis_min_value_type.nil?
-          invalid_properties.push("invalid value for 'vertical_axis_min_value_type', vertical_axis_min_value_type cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @display_hidden.nil?
-      return false if @first_point_color.nil?
-      return false if @high_point_color.nil?
-      return false if @horizontal_axis_color.nil?
-      return false if @horizontal_axis_date_range.nil?
-      return false if @last_point_color.nil?
-      return false if @line_weight.nil?
-      return false if @low_point_color.nil?
-      return false if @markers_color.nil?
-      return false if @negative_points_color.nil?
-      return false if @plot_empty_cells_type.nil?
-      return false if @plot_right_to_left.nil?
-      return false if @preset_style.nil?
-      return false if @series_color.nil?
-      return false if @show_first_point.nil?
-      return false if @show_high_point.nil?
-      return false if @show_horizontal_axis.nil?
-      return false if @show_last_point.nil?
-      return false if @show_low_point.nil?
-      return false if @show_markers.nil?
-      return false if @show_negative_points.nil?
-      return false if @sparkline_collection.nil?
-      return false if @type.nil?
-      return false if @vertical_axis_max_value.nil?
-      return false if @vertical_axis_max_value_type.nil?
-      return false if @vertical_axis_min_value.nil?
-      return false if @vertical_axis_min_value_type.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          display_hidden == o.display_hidden &&
-          first_point_color == o.first_point_color &&
-          high_point_color == o.high_point_color &&
-          horizontal_axis_color == o.horizontal_axis_color &&
-          horizontal_axis_date_range == o.horizontal_axis_date_range &&
-          last_point_color == o.last_point_color &&
-          line_weight == o.line_weight &&
-          low_point_color == o.low_point_color &&
-          markers_color == o.markers_color &&
-          negative_points_color == o.negative_points_color &&
-          plot_empty_cells_type == o.plot_empty_cells_type &&
-          plot_right_to_left == o.plot_right_to_left &&
-          preset_style == o.preset_style &&
-          series_color == o.series_color &&
-          show_first_point == o.show_first_point &&
-          show_high_point == o.show_high_point &&
-          show_horizontal_axis == o.show_horizontal_axis &&
-          show_last_point == o.show_last_point &&
-          show_low_point == o.show_low_point &&
-          show_markers == o.show_markers &&
-          show_negative_points == o.show_negative_points &&
-          sparkline_collection == o.sparkline_collection &&
-          type == o.type &&
-          vertical_axis_max_value == o.vertical_axis_max_value &&
-          vertical_axis_max_value_type == o.vertical_axis_max_value_type &&
-          vertical_axis_min_value == o.vertical_axis_min_value &&
-          vertical_axis_min_value_type == o.vertical_axis_min_value_type 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ display_hidden , first_point_color , high_point_color , horizontal_axis_color , horizontal_axis_date_range , last_point_color , line_weight , low_point_color , markers_color , negative_points_color , plot_empty_cells_type , plot_right_to_left , preset_style , series_color , show_first_point , show_high_point , show_horizontal_axis , show_last_point , show_low_point , show_markers , show_negative_points , sparkline_collection , type , vertical_axis_max_value , vertical_axis_max_value_type , vertical_axis_min_value , vertical_axis_min_value_type ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

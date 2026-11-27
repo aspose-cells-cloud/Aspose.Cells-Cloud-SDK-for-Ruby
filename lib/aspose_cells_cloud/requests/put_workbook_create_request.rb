@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PutWorkbookCreate_request.rb.cs">
+ <copyright company="Aspose" file="PutWorkbookCreateRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,126 +25,71 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PutWorkbookCreateRequest
 
-    attr_accessor :name  
-    attr_accessor :template_file  
-    attr_accessor :data_file  
-    attr_accessor :is_write_over  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
-    attr_accessor :check_excel_restriction  
+  class PutWorkbookCreateRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [String, nil when omitted]
+    attr_accessor :data_file
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :is_write_over
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :template_file
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, check_excel_restriction: nil, data_file: nil, folder: nil, is_write_over: nil, storage_name: nil, template_file: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PutWorkbookCreateRequest.new`' if name.nil?
+      @name = name
+      @check_excel_restriction = check_excel_restriction
+      @data_file = data_file
+      @folder = folder
+      @is_write_over = is_write_over
+      @storage_name = storage_name
+      @template_file = template_file
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'templateFile')
-          self.template_file = attributes[:'templateFile']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['templateFile'] = @template_file unless @template_file.nil?
+      query['dataFile'] = @data_file unless @data_file.nil?
+      query['isWriteOver'] = @is_write_over unless @is_write_over.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query
+    end
 
-      if attributes.has_key?(:'dataFile')
-          self.data_file = attributes[:'dataFile']
-      end
-
-      if attributes.has_key?(:'isWriteOver')
-          self.is_write_over = attributes[:'isWriteOver']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'template_file' => :'templateFile',
-        :'data_file' => :'dataFile',
-        :'is_write_over' => :'isWriteOver',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName',
-        :'check_excel_restriction' => :'checkExcelRestriction'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'template_file' => :'String',
-        :'data_file' => :'String',
-        :'is_write_over' => :'BOOLEAN',
-        :'folder' => :'String',
-        :'storage_name' => :'String',
-        :'check_excel_restriction' => :'BOOLEAN'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.put_workbook_create ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.put_workbook_create "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'templateFile'] = self.template_file if !self.template_file.nil? 
-      query_params[:'dataFile'] = self.data_file if !self.data_file.nil? 
-      query_params[:'isWriteOver'] = self.is_write_over if !self.is_write_over.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.put_workbook_create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

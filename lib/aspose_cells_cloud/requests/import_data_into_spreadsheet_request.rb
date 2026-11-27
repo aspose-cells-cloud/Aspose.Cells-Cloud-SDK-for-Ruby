@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="ImportDataIntoSpreadsheet_request.rb.cs">
+ <copyright company="Aspose" file="ImportDataIntoSpreadsheetRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,185 +25,100 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class ImportDataIntoSpreadsheetRequest
 
-    attr_accessor :datafile  
-    attr_accessor :spreadsheet  
-    attr_accessor :worksheet  
-    attr_accessor :startcell  
-    attr_accessor :insert  
-    attr_accessor :convert_numeric_data  
-    attr_accessor :splitter  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :fonts_location  
-    attr_accessor :region  
-    attr_accessor :password  
+  class ImportDataIntoSpreadsheetRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :datafile
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [String]
+    attr_accessor :startcell
+    # @return [String]
+    attr_accessor :worksheet
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :convert_numeric_data
+    # @return [String, nil when omitted]
+    attr_accessor :fonts_location
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :insert
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :splitter
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(datafile:, spreadsheet:, startcell:, worksheet:, convert_numeric_data: nil, fonts_location: nil, insert: nil, out_path: nil, out_storage_name: nil, password: nil, region: nil, splitter: nil)
+      raise ArgumentError, 'Missing the required parameter `datafile` when calling `ImportDataIntoSpreadsheetRequest.new`' if datafile.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `ImportDataIntoSpreadsheetRequest.new`' if spreadsheet.nil?
+      raise ArgumentError, 'Missing the required parameter `startcell` when calling `ImportDataIntoSpreadsheetRequest.new`' if startcell.nil?
+      raise ArgumentError, 'Missing the required parameter `worksheet` when calling `ImportDataIntoSpreadsheetRequest.new`' if worksheet.nil?
+      @datafile = datafile
+      @spreadsheet = spreadsheet
+      @startcell = startcell
+      @worksheet = worksheet
+      @convert_numeric_data = convert_numeric_data
+      @fonts_location = fonts_location
+      @insert = insert
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @password = password
+      @region = region
+      @splitter = splitter
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'datafile')
-          self.datafile = attributes[:'datafile']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/import/data'
+      path
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['worksheet'] = @worksheet
+      query['startcell'] = @startcell
+      query['insert'] = @insert unless @insert.nil?
+      query['convertNumericData'] = @convert_numeric_data unless @convert_numeric_data.nil?
+      query['splitter'] = @splitter unless @splitter.nil?
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['fontsLocation'] = @fonts_location unless @fonts_location.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
-
-      if attributes.has_key?(:'startcell')
-          self.startcell = attributes[:'startcell']
-      end
-
-      if attributes.has_key?(:'insert')
-          self.insert = attributes[:'insert']
-      end
-
-      if attributes.has_key?(:'convertNumericData')
-          self.convert_numeric_data = attributes[:'convertNumericData']
-      end
-
-      if attributes.has_key?(:'splitter')
-          self.splitter = attributes[:'splitter']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'fontsLocation')
-          self.fonts_location = attributes[:'fontsLocation']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'datafile' => :'datafile',
-        :'spreadsheet' => :'Spreadsheet',
-        :'worksheet' => :'worksheet',
-        :'startcell' => :'startcell',
-        :'insert' => :'insert',
-        :'convert_numeric_data' => :'convertNumericData',
-        :'splitter' => :'splitter',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'fonts_location' => :'fontsLocation',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'datafile' => :'String',
-        :'spreadsheet' => :'String',
-        :'worksheet' => :'String',
-        :'startcell' => :'String',
-        :'insert' => :'BOOLEAN',
-        :'convert_numeric_data' => :'BOOLEAN',
-        :'splitter' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'fonts_location' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @datafile
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.import_data_into_spreadsheet ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'datafile' is set
-      if api_client.config.client_side_validation && datafile.nil?
-          fail ArgumentError, "Missing the required parameter 'datafile' when calling CellsApi.import_data_into_spreadsheet "
-      end 
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.import_data_into_spreadsheet "
-      end 
-      # verify the required parameter 'worksheet' is set
-      if api_client.config.client_side_validation && worksheet.nil?
-          fail ArgumentError, "Missing the required parameter 'worksheet' when calling CellsApi.import_data_into_spreadsheet "
-      end 
-      # verify the required parameter 'startcell' is set
-      if api_client.config.client_side_validation && startcell.nil?
-          fail ArgumentError, "Missing the required parameter 'startcell' when calling CellsApi.import_data_into_spreadsheet "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/import/data"
-      # query parameters
-      query_params = {}
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'startcell'] = self.startcell if !self.startcell.nil? 
-      query_params[:'insert'] = self.insert if !self.insert.nil? 
-      query_params[:'convertNumericData'] = self.convert_numeric_data if !self.convert_numeric_data.nil? 
-      query_params[:'splitter'] = self.splitter if !self.splitter.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'fontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !datafile.empty? && File.exist?(datafile )
-          form_params[File.basename(datafile)] =  ::File.open(datafile,"r")   
-      end 
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.import_data_into_spreadsheet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

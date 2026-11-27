@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostReplace_request.rb.cs">
+ <copyright company="Aspose" file="PostReplaceRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,133 +25,75 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostReplaceRequest
 
-    attr_accessor :file  
-    attr_accessor :text  
-    attr_accessor :newtext  
-    attr_accessor :password  
-    attr_accessor :sheetname  
-    attr_accessor :check_excel_restriction  
+  class PostReplaceRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :file
+    # @return [String]
+    attr_accessor :newtext
+    # @return [String]
+    attr_accessor :text
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :sheetname
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(file:, newtext:, text:, check_excel_restriction: nil, password: nil, sheetname: nil)
+      raise ArgumentError, 'Missing the required parameter `file` when calling `PostReplaceRequest.new`' if file.nil?
+      raise ArgumentError, 'Missing the required parameter `newtext` when calling `PostReplaceRequest.new`' if newtext.nil?
+      raise ArgumentError, 'Missing the required parameter `text` when calling `PostReplaceRequest.new`' if text.nil?
+      @file = file
+      @newtext = newtext
+      @text = text
+      @check_excel_restriction = check_excel_restriction
+      @password = password
+      @sheetname = sheetname
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'File')
-          self.file = attributes[:'File']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/replace'
+      path
+    end
 
-      if attributes.has_key?(:'text')
-          self.text = attributes[:'text']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['text'] = @text
+      query['newtext'] = @newtext
+      query['password'] = @password unless @password.nil?
+      query['sheetname'] = @sheetname unless @sheetname.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query
+    end
 
-      if attributes.has_key?(:'newtext')
-          self.newtext = attributes[:'newtext']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-      if attributes.has_key?(:'sheetname')
-          self.sheetname = attributes[:'sheetname']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'file' => :'File',
-        :'text' => :'text',
-        :'newtext' => :'newtext',
-        :'password' => :'password',
-        :'sheetname' => :'sheetname',
-        :'check_excel_restriction' => :'checkExcelRestriction'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'file' => :'Hash',
-        :'text' => :'String',
-        :'newtext' => :'String',
-        :'password' => :'String',
-        :'sheetname' => :'String',
-        :'check_excel_restriction' => :'BOOLEAN'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['File'] = @file
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_replace ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'file' is set
-      if api_client.config.client_side_validation && file.nil?
-          fail ArgumentError, "Missing the required parameter 'file' when calling CellsApi.post_replace "
-      end 
-      # verify the required parameter 'text' is set
-      if api_client.config.client_side_validation && text.nil?
-          fail ArgumentError, "Missing the required parameter 'text' when calling CellsApi.post_replace "
-      end 
-      # verify the required parameter 'newtext' is set
-      if api_client.config.client_side_validation && newtext.nil?
-          fail ArgumentError, "Missing the required parameter 'newtext' when calling CellsApi.post_replace "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/replace"
-      # query parameters
-      query_params = {}
-      query_params[:'text'] = self.text if !self.text.nil? 
-      query_params[:'newtext'] = self.newtext if !self.newtext.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'sheetname'] = self.sheetname if !self.sheetname.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !file.nil?
-          file.each do |filename , context|
-          form_params[File.basename(filename)]  = context
-          end
-      end
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FilesResult')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_replace\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

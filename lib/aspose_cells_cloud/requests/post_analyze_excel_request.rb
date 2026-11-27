@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostAnalyzeExcel_request.rb.cs">
+ <copyright company="Aspose" file="PostAnalyzeExcelRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,78 +25,52 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostAnalyzeExcelRequest
 
-    attr_accessor :analyze_excel_request  
+  class PostAnalyzeExcelRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [AnalyzeExcelRequest]
+    attr_accessor :analyze_excel_request
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(analyze_excel_request:)
+      raise ArgumentError, 'Missing the required parameter `analyze_excel_request` when calling `PostAnalyzeExcelRequest.new`' if analyze_excel_request.nil?
+      @analyze_excel_request = analyze_excel_request
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'analyzeExcelRequest')
-          self.analyze_excel_request = attributes[:'analyzeExcelRequest']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/analyze'
+      path
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'analyze_excel_request' => :'analyzeExcelRequest'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'analyze_excel_request' => :'AnalyzeExcelRequest'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @analyze_excel_request.nil?
+      if @analyze_excel_request.is_a?(Array)
+        @analyze_excel_request.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @analyze_excel_request.respond_to?(:to_hash)
+        @analyze_excel_request.to_hash
+      else
+        @analyze_excel_request
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_analyze_excel ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'analyze_excel_request' is set
-      if api_client.config.client_side_validation && analyze_excel_request.nil?
-          fail ArgumentError, "Missing the required parameter 'analyze_excel_request' when calling CellsApi.post_analyze_excel "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/analyze"
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(analyze_excel_request) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Array<AnalyzedResult>')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_analyze_excel\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

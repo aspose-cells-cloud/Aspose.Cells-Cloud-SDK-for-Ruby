@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="SearchSpreadsheetContent_request.rb.cs">
+ <copyright company="Aspose" file="SearchSpreadsheetContentRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,135 +25,78 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class SearchSpreadsheetContentRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :search_text  
-    attr_accessor :ignoring_case  
-    attr_accessor :worksheet  
-    attr_accessor :cell_area  
-    attr_accessor :region  
-    attr_accessor :password  
+  class SearchSpreadsheetContentRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :search_text
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [String, nil when omitted]
+    attr_accessor :cell_area
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :ignoring_case
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :worksheet
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(search_text:, spreadsheet:, cell_area: nil, ignoring_case: nil, password: nil, region: nil, worksheet: nil)
+      raise ArgumentError, 'Missing the required parameter `search_text` when calling `SearchSpreadsheetContentRequest.new`' if search_text.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `SearchSpreadsheetContentRequest.new`' if spreadsheet.nil?
+      @search_text = search_text
+      @spreadsheet = spreadsheet
+      @cell_area = cell_area
+      @ignoring_case = ignoring_case
+      @password = password
+      @region = region
+      @worksheet = worksheet
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/search/content'
+      path
+    end
 
-      if attributes.has_key?(:'searchText')
-          self.search_text = attributes[:'searchText']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['searchText'] = @search_text
+      query['ignoringCase'] = @ignoring_case unless @ignoring_case.nil?
+      query['worksheet'] = @worksheet unless @worksheet.nil?
+      query['cellArea'] = @cell_area unless @cell_area.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'ignoringCase')
-          self.ignoring_case = attributes[:'ignoringCase']
-      end
-
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
-
-      if attributes.has_key?(:'cellArea')
-          self.cell_area = attributes[:'cellArea']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'search_text' => :'searchText',
-        :'ignoring_case' => :'ignoringCase',
-        :'worksheet' => :'worksheet',
-        :'cell_area' => :'cellArea',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'spreadsheet' => :'String',
-        :'search_text' => :'String',
-        :'ignoring_case' => :'BOOLEAN',
-        :'worksheet' => :'String',
-        :'cell_area' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.search_spreadsheet_content ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.search_spreadsheet_content "
-      end 
-      # verify the required parameter 'search_text' is set
-      if api_client.config.client_side_validation && search_text.nil?
-          fail ArgumentError, "Missing the required parameter 'search_text' when calling CellsApi.search_spreadsheet_content "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/search/content"
-      # query parameters
-      query_params = {}
-      query_params[:'searchText'] = self.search_text if !self.search_text.nil? 
-      query_params[:'ignoringCase'] = self.ignoring_case if !self.ignoring_case.nil? 
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'cellArea'] = self.cell_area if !self.cell_area.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'SearchResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.search_spreadsheet_content\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

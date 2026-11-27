@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="Configurationrb.cs">
+ <copyright company="Aspose" file="configuration.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,162 +26,61 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
+module Aspose
+  module Cells
+    module Cloud
+      # Runtime configuration for the Aspose.Cells Cloud SDK.
+      #
+      # Every tunable value lives here and is reachable from AsposeCellsCloudClient, mirroring the
+      # Go SDK's Configuration struct + functional-option behavior. Optional/defaulted values
+      # default to sensible values; credentials have no default.
+      class Configuration
+        attr_accessor :client_id, :client_secret, :base_url, :timeout, :retries
+        attr_accessor :auth_url, :api_version, :proxy
+        attr_reader :header_parameters
 
-require 'uri'
+        # @param client_id [String, nil] Aspose Cloud Client ID (no default).
+        # @param client_secret [String, nil] Aspose Cloud Client Secret (no default).
+        # @param base_url [String] base endpoint (without trailing slash, no version).
+        # @param auth_url [String, nil] OAuth2 token endpoint; when set, overrides the
+        #   version-derived `{base_url}/{api_version}/cells/connect/token`.
+        # @param timeout [Integer] connection/read timeout in seconds.
+        # @param retries [Integer] number of retries on transient failures.
+        # @param api_version [String] API version (e.g. `v4.0` / `v3.0`); drives both the
+        #   request paths and the OAuth2 token endpoint.
+        def initialize(client_id: nil, client_secret: nil,
+                       base_url: 'https://api.aspose.cloud',
+                       auth_url: nil, timeout: 30, retries: 0,
+                       api_version: 'v4.0', proxy: nil)
+          @client_id = client_id
+          @client_secret = client_secret
+          @base_url = base_url
+          @auth_url = auth_url
+          @timeout = timeout
+          @retries = retries
+          @api_version = api_version
+          @proxy = proxy
+          @header_parameters = {}
+        end
 
-module AsposeCellsCloud
-  class Configuration
+        # Adds or replaces a default header applied to every request.
+        #
+        # @param key [String] header name.
+        # @param value [String] header value.
+        def add_default_header(key, value)
+          @header_parameters[key] = value
+        end
 
-    # Client Secret
-    attr_accessor :client_secret
-
-    # Client ID
-    attr_accessor :client_id
-
-    # Defines url scheme
-    attr_accessor :scheme
-
-    # Defines url host
-    attr_accessor :host
-
-    # Defines api version
-    attr_accessor :api_version
-
-    # Defines the access token (Bearer) used with OAuth2.
-    attr_accessor :access_token
-
-    # Set this to enable/disable debugging. When enabled (set to true), HTTP request/response
-    # details will be logged with `logger.debug` (see the `logger` attribute).
-    # Default to false.
-    #
-    # @return [true, false]
-    attr_accessor :debugging
-
-    # Defines the logger used for debugging.
-    # Default to `Rails.logger` (when in Rails) or logging to STDOUT.
-    #
-    # @return [#debug]
-    attr_accessor :logger
-
-    # Defines the temporary folder to store downloaded files
-    # (for API endpoints that have file response).
-    # Default to use `Tempfile`.
-    #
-    # @return [String]
-    attr_accessor :temp_folder_path
-
-    # The time limit for HTTP request in seconds.
-    # Default to 0 (never times out).
-    attr_accessor :timeout
-
-    # Set this to false to skip client side validation in the operation.
-    # Default to true.
-    # @return [true, false]
-    attr_accessor :client_side_validation
-
-    ### TLS/SSL setting
-    # Set this to false to skip verifying SSL certificate when calling API from https server.
-    # Default to true.
-    #
-    # @note Do NOT set it to false in production code, otherwise you would face multiple types of cryptographic attacks.
-    #
-    # @return [true, false]
-    attr_accessor :verify_ssl
-
-    ### TLS/SSL setting
-    # Set this to false to skip verifying SSL host name
-    # Default to true.
-    #
-    # @note Do NOT set it to false in production code, otherwise you would face multiple types of cryptographic attacks.
-    #
-    # @return [true, false]
-    attr_accessor :verify_ssl_host
-
-    ### TLS/SSL setting
-    # Set this to customize the certificate file to verify the peer.
-    #
-    # @return [String] the path to the certificate file
-    #
-    # @see The `cainfo` option of Typhoeus, `--cert` option of libcurl. Related source code:
-    # https://github.com/typhoeus/typhoeus/blob/master/lib/typhoeus/easy_factory.rb#L145
-    attr_accessor :ssl_ca_cert
-
-    ### TLS/SSL setting
-    # Client certificate file (for client certificate)
-    attr_accessor :cert_file
-
-    ### TLS/SSL setting
-    # Client private key file (for client certificate)
-    attr_accessor :key_file
-
-    # Set this to customize parameters encoding of array parameter with multi collectionFormat.
-    # Default to nil.
-    #
-    # @see The params_encoding option of Ethon. Related source code:
-    # https://github.com/typhoeus/ethon/blob/master/lib/ethon/easy/queryable.rb#L96
-    attr_accessor :params_encoding
-
-    attr_accessor :inject_format
-
-    attr_accessor :force_ending_format
-
-    def initialize
-      @scheme = 'https'
-      @host = 'api.aspose.cloud'
-      @api_version = 'v3.0'
-      @timeout = 5 * 60
-      @client_side_validation = true
-      @verify_ssl = true
-      @verify_ssl_host = true
-      @params_encoding = nil
-      @cert_file = nil
-      @key_file = nil
-      @debugging = false
-      @inject_format = false
-      @force_ending_format = false
-      @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
-
-      yield(self) if block_given?
-    end
-
-    # The default Configuration object.
-    def self.default
-      @@default ||= Configuration.new
-    end
-
-    def configure
-      yield(self) if block_given?
-    end
-
-    def scheme=(scheme)
-      # remove :// from scheme
-      @scheme = scheme.sub(/:\/\//, '')
-    end
-
-    def host=(host)
-      # remove http(s):// and anything after a slash
-      @host = host.sub(/https?:\/\//, '').split('/').first
-    end
-
-    def base_url
-      #url = "#{scheme}://#{[host, '/v3.0'].join('/').gsub(/\/+/, '/')}".sub(/\/+\z/, '')
-      url = "#{scheme}://#{[host, '/' ].join('/').gsub(/\/+/, '/')}".sub(/\/+\z/, '')
-      # URI.encode(url)
-      # URI.encode_www_form_component(url)
-      url
-    end
-
-    # Returns Auth Settings hash for api client.
-    def auth_settings
-      {
-        'JWT' =>
-          {
-            type: 'oauth2',
-            in: 'header',
-            key: 'Authorization',
-            value: "Bearer #{access_token}"
-          },
-      }
+        # Resolves the OAuth2 token endpoint from the API version (the v1.1-style `/oauth2/token`
+        # flow is no longer supported). `api_version` `v4.0` → `{base_url}/v4.0/cells/connect/token`,
+        # `v3.0` → `{base_url}/v3.0/cells/connect/token`. An explicit `auth_url` overrides this.
+        #
+        # @return [String] absolute token URL.
+        def token_url
+          return @auth_url if @auth_url
+          "#{@base_url.sub(%r{/+\z}, '')}/#{@api_version}/cells/connect/token"
+        end
+      end
     end
   end
 end

@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostRepair_request.rb.cs">
+ <copyright company="Aspose" file="PostRepairRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,93 +25,57 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostRepairRequest
 
-    attr_accessor :file  
-    attr_accessor :out_format  
+  class PostRepairRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :file
+    # @return [String, nil when omitted]
+    attr_accessor :out_format
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(file:, out_format: nil)
+      raise ArgumentError, 'Missing the required parameter `file` when calling `PostRepairRequest.new`' if file.nil?
+      @file = file
+      @out_format = out_format
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'File')
-          self.file = attributes[:'File']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/repair'
+      path
+    end
 
-      if attributes.has_key?(:'outFormat')
-          self.out_format = attributes[:'outFormat']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['outFormat'] = @out_format unless @out_format.nil?
+      query
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'file' => :'File',
-        :'out_format' => :'outFormat'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'file' => :'Hash',
-        :'out_format' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['File'] = @file
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_repair ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'file' is set
-      if api_client.config.client_side_validation && file.nil?
-          fail ArgumentError, "Missing the required parameter 'file' when calling CellsApi.post_repair "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/repair"
-      # query parameters
-      query_params = {}
-      query_params[:'outFormat'] = self.out_format if !self.out_format.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !file.nil?
-          file.each do |filename , context|
-          form_params[File.basename(filename)]  = context
-          end
-      end
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FilesResult')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_repair\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

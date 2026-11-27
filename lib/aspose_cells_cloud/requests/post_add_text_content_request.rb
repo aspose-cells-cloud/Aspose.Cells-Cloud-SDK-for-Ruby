@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostAddTextContent_request.rb.cs">
+ <copyright company="Aspose" file="PostAddTextContentRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,78 +25,52 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostAddTextContentRequest
 
-    attr_accessor :add_text_options  
+  class PostAddTextContentRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [AddTextOptions]
+    attr_accessor :add_text_options
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(add_text_options:)
+      raise ArgumentError, 'Missing the required parameter `add_text_options` when calling `PostAddTextContentRequest.new`' if add_text_options.nil?
+      @add_text_options = add_text_options
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'addTextOptions')
-          self.add_text_options = attributes[:'addTextOptions']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/addtext'
+      path
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'add_text_options' => :'addTextOptions'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'add_text_options' => :'AddTextOptions'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @add_text_options.nil?
+      if @add_text_options.is_a?(Array)
+        @add_text_options.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @add_text_options.respond_to?(:to_hash)
+        @add_text_options.to_hash
+      else
+        @add_text_options
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_add_text_content ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'add_text_options' is set
-      if api_client.config.client_side_validation && add_text_options.nil?
-          fail ArgumentError, "Missing the required parameter 'add_text_options' when calling CellsApi.post_add_text_content "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/addtext"
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(add_text_options) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FileInfo')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_add_text_content\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

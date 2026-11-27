@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PdfSecurityOptionsrb.cs">
+ <copyright company="Aspose" file="PdfSecurityOptions.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,30 +25,29 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
 
 module AsposeCellsCloud
 
   class PdfSecurityOptions
-        #            
-        attr_accessor :annotations_permission
-        #            
-        attr_accessor :assemble_document_permission
-        #            
-        attr_accessor :extract_content_permission
-        #            
-        attr_accessor :fill_forms_permission
-        #            
-        attr_accessor :full_quality_print_permission
-        #            
-        attr_accessor :modify_document_permission
-        #            
-        attr_accessor :owner_password
-        #            
-        attr_accessor :print_permission
-        #            
-        attr_accessor :user_password
+    # @return [BOOLEAN]
+    attr_accessor :annotations_permission
+    # @return [BOOLEAN]
+    attr_accessor :assemble_document_permission
+    # @return [BOOLEAN]
+    attr_accessor :extract_content_permission
+    # @return [BOOLEAN]
+    attr_accessor :fill_forms_permission
+    # @return [BOOLEAN]
+    attr_accessor :full_quality_print_permission
+    # @return [BOOLEAN]
+    attr_accessor :modify_document_permission
+    # @return [String]
+    attr_accessor :owner_password
+    # @return [BOOLEAN]
+    attr_accessor :print_permission
+    # @return [String]
+    attr_accessor :user_password
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -61,7 +60,7 @@ module AsposeCellsCloud
         :'modify_document_permission' => :'ModifyDocumentPermission',
         :'owner_password' => :'OwnerPassword',
         :'print_permission' => :'PrintPermission',
-        :'user_password' => :'UserPassword'
+        :'user_password' => :'UserPassword',
       }
     end
 
@@ -76,7 +75,7 @@ module AsposeCellsCloud
         :'modify_document_permission' => :'BOOLEAN',
         :'owner_password' => :'String',
         :'print_permission' => :'BOOLEAN',
-        :'user_password' => :'String'
+        :'user_password' => :'String',
       }
     end
 
@@ -84,221 +83,63 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'AnnotationsPermission')
-          self.annotations_permission = attributes[:'AnnotationsPermission']
-      end
-      if attributes.has_key?(:'AssembleDocumentPermission')
-          self.assemble_document_permission = attributes[:'AssembleDocumentPermission']
-      end
-      if attributes.has_key?(:'ExtractContentPermission')
-          self.extract_content_permission = attributes[:'ExtractContentPermission']
-      end
-      if attributes.has_key?(:'FillFormsPermission')
-          self.fill_forms_permission = attributes[:'FillFormsPermission']
-      end
-      if attributes.has_key?(:'FullQualityPrintPermission')
-          self.full_quality_print_permission = attributes[:'FullQualityPrintPermission']
-      end
-      if attributes.has_key?(:'ModifyDocumentPermission')
-          self.modify_document_permission = attributes[:'ModifyDocumentPermission']
-      end
-      if attributes.has_key?(:'OwnerPassword')
-          self.owner_password = attributes[:'OwnerPassword']
-      end
-      if attributes.has_key?(:'PrintPermission')
-          self.print_permission = attributes[:'PrintPermission']
-      end
-      if attributes.has_key?(:'UserPassword')
-          self.user_password = attributes[:'UserPassword']
-      end
-
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.annotations_permission = attributes[:annotations_permission] if attributes.key?(:annotations_permission)
+      self.assemble_document_permission = attributes[:assemble_document_permission] if attributes.key?(:assemble_document_permission)
+      self.extract_content_permission = attributes[:extract_content_permission] if attributes.key?(:extract_content_permission)
+      self.fill_forms_permission = attributes[:fill_forms_permission] if attributes.key?(:fill_forms_permission)
+      self.full_quality_print_permission = attributes[:full_quality_print_permission] if attributes.key?(:full_quality_print_permission)
+      self.modify_document_permission = attributes[:modify_document_permission] if attributes.key?(:modify_document_permission)
+      self.owner_password = attributes[:owner_password] if attributes.key?(:owner_password)
+      self.print_permission = attributes[:print_permission] if attributes.key?(:print_permission)
+      self.user_password = attributes[:user_password] if attributes.key?(:user_password)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @annotations_permission.nil?
-          invalid_properties.push("invalid value for 'annotations_permission', annotations_permission cannot be nil.")
-      end
-      if @assemble_document_permission.nil?
-          invalid_properties.push("invalid value for 'assemble_document_permission', assemble_document_permission cannot be nil.")
-      end
-      if @extract_content_permission.nil?
-          invalid_properties.push("invalid value for 'extract_content_permission', extract_content_permission cannot be nil.")
-      end
-      if @fill_forms_permission.nil?
-          invalid_properties.push("invalid value for 'fill_forms_permission', fill_forms_permission cannot be nil.")
-      end
-      if @full_quality_print_permission.nil?
-          invalid_properties.push("invalid value for 'full_quality_print_permission', full_quality_print_permission cannot be nil.")
-      end
-      if @modify_document_permission.nil?
-          invalid_properties.push("invalid value for 'modify_document_permission', modify_document_permission cannot be nil.")
-      end
-      if @owner_password.nil?
-          invalid_properties.push("invalid value for 'owner_password', owner_password cannot be nil.")
-      end
-      if @print_permission.nil?
-          invalid_properties.push("invalid value for 'print_permission', print_permission cannot be nil.")
-      end
-      if @user_password.nil?
-          invalid_properties.push("invalid value for 'user_password', user_password cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @annotations_permission.nil?
-      return false if @assemble_document_permission.nil?
-      return false if @extract_content_permission.nil?
-      return false if @fill_forms_permission.nil?
-      return false if @full_quality_print_permission.nil?
-      return false if @modify_document_permission.nil?
-      return false if @owner_password.nil?
-      return false if @print_permission.nil?
-      return false if @user_password.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          annotations_permission == o.annotations_permission &&
-          assemble_document_permission == o.assemble_document_permission &&
-          extract_content_permission == o.extract_content_permission &&
-          fill_forms_permission == o.fill_forms_permission &&
-          full_quality_print_permission == o.full_quality_print_permission &&
-          modify_document_permission == o.modify_document_permission &&
-          owner_password == o.owner_password &&
-          print_permission == o.print_permission &&
-          user_password == o.user_password 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ annotations_permission , assemble_document_permission , extract_content_permission , fill_forms_permission , full_quality_print_permission , modify_document_permission , owner_password , print_permission , user_password ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

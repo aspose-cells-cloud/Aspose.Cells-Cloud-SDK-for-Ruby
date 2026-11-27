@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="SplitTable_request.rb.cs">
+ <copyright company="Aspose" file="SplitTableRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,207 +25,108 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class SplitTableRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :worksheet  
-    attr_accessor :table_name  
-    attr_accessor :split_column_name  
-    attr_accessor :save_split_column  
-    attr_accessor :split_row_number  
-    attr_accessor :to_new_workbook  
-    attr_accessor :to_multiple_files  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :fonts_location  
-    attr_accessor :region  
-    attr_accessor :password  
+  class SplitTableRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [BOOLEAN]
+    attr_accessor :save_split_column
+    # @return [String]
+    attr_accessor :split_column_name
+    # @return [Integer]
+    attr_accessor :split_row_number
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [String]
+    attr_accessor :table_name
+    # @return [BOOLEAN]
+    attr_accessor :to_multiple_files
+    # @return [BOOLEAN]
+    attr_accessor :to_new_workbook
+    # @return [String]
+    attr_accessor :worksheet
+    # @return [String, nil when omitted]
+    attr_accessor :fonts_location
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(save_split_column:, split_column_name:, split_row_number:, spreadsheet:, table_name:, to_multiple_files:, to_new_workbook:, worksheet:, fonts_location: nil, out_path: nil, out_storage_name: nil, password: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `save_split_column` when calling `SplitTableRequest.new`' if save_split_column.nil?
+      raise ArgumentError, 'Missing the required parameter `split_column_name` when calling `SplitTableRequest.new`' if split_column_name.nil?
+      raise ArgumentError, 'Missing the required parameter `split_row_number` when calling `SplitTableRequest.new`' if split_row_number.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `SplitTableRequest.new`' if spreadsheet.nil?
+      raise ArgumentError, 'Missing the required parameter `table_name` when calling `SplitTableRequest.new`' if table_name.nil?
+      raise ArgumentError, 'Missing the required parameter `to_multiple_files` when calling `SplitTableRequest.new`' if to_multiple_files.nil?
+      raise ArgumentError, 'Missing the required parameter `to_new_workbook` when calling `SplitTableRequest.new`' if to_new_workbook.nil?
+      raise ArgumentError, 'Missing the required parameter `worksheet` when calling `SplitTableRequest.new`' if worksheet.nil?
+      @save_split_column = save_split_column
+      @split_column_name = split_column_name
+      @split_row_number = split_row_number
+      @spreadsheet = spreadsheet
+      @table_name = table_name
+      @to_multiple_files = to_multiple_files
+      @to_new_workbook = to_new_workbook
+      @worksheet = worksheet
+      @fonts_location = fonts_location
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @password = password
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/split/table'
+      path
+    end
 
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['worksheet'] = @worksheet
+      query['tableName'] = @table_name
+      query['splitColumnName'] = @split_column_name
+      query['saveSplitColumn'] = @save_split_column
+      query['splitRowNumber'] = @split_row_number
+      query['toNewWorkbook'] = @to_new_workbook
+      query['toMultipleFiles'] = @to_multiple_files
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['fontsLocation'] = @fonts_location unless @fonts_location.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'tableName')
-          self.table_name = attributes[:'tableName']
-      end
-
-      if attributes.has_key?(:'splitColumnName')
-          self.split_column_name = attributes[:'splitColumnName']
-      end
-
-      if attributes.has_key?(:'saveSplitColumn')
-          self.save_split_column = attributes[:'saveSplitColumn']
-      end
-
-      if attributes.has_key?(:'splitRowNumber')
-          self.split_row_number = attributes[:'splitRowNumber']
-      end
-
-      if attributes.has_key?(:'toNewWorkbook')
-          self.to_new_workbook = attributes[:'toNewWorkbook']
-      end
-
-      if attributes.has_key?(:'toMultipleFiles')
-          self.to_multiple_files = attributes[:'toMultipleFiles']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'fontsLocation')
-          self.fonts_location = attributes[:'fontsLocation']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'worksheet' => :'worksheet',
-        :'table_name' => :'tableName',
-        :'split_column_name' => :'splitColumnName',
-        :'save_split_column' => :'saveSplitColumn',
-        :'split_row_number' => :'splitRowNumber',
-        :'to_new_workbook' => :'toNewWorkbook',
-        :'to_multiple_files' => :'toMultipleFiles',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'fonts_location' => :'fontsLocation',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'spreadsheet' => :'String',
-        :'worksheet' => :'String',
-        :'table_name' => :'String',
-        :'split_column_name' => :'String',
-        :'save_split_column' => :'BOOLEAN',
-        :'split_row_number' => :'Integer',
-        :'to_new_workbook' => :'BOOLEAN',
-        :'to_multiple_files' => :'BOOLEAN',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'fonts_location' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.split_table ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'worksheet' is set
-      if api_client.config.client_side_validation && worksheet.nil?
-          fail ArgumentError, "Missing the required parameter 'worksheet' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'table_name' is set
-      if api_client.config.client_side_validation && table_name.nil?
-          fail ArgumentError, "Missing the required parameter 'table_name' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'split_column_name' is set
-      if api_client.config.client_side_validation && split_column_name.nil?
-          fail ArgumentError, "Missing the required parameter 'split_column_name' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'save_split_column' is set
-      if api_client.config.client_side_validation && save_split_column.nil?
-          fail ArgumentError, "Missing the required parameter 'save_split_column' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'split_row_number' is set
-      if api_client.config.client_side_validation && split_row_number.nil?
-          fail ArgumentError, "Missing the required parameter 'split_row_number' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'to_new_workbook' is set
-      if api_client.config.client_side_validation && to_new_workbook.nil?
-          fail ArgumentError, "Missing the required parameter 'to_new_workbook' when calling CellsApi.split_table "
-      end 
-      # verify the required parameter 'to_multiple_files' is set
-      if api_client.config.client_side_validation && to_multiple_files.nil?
-          fail ArgumentError, "Missing the required parameter 'to_multiple_files' when calling CellsApi.split_table "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/split/table"
-      # query parameters
-      query_params = {}
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'tableName'] = self.table_name if !self.table_name.nil? 
-      query_params[:'splitColumnName'] = self.split_column_name if !self.split_column_name.nil? 
-      query_params[:'saveSplitColumn'] = self.save_split_column if !self.save_split_column.nil? 
-      query_params[:'splitRowNumber'] = self.split_row_number if !self.split_row_number.nil? 
-      query_params[:'toNewWorkbook'] = self.to_new_workbook if !self.to_new_workbook.nil? 
-      query_params[:'toMultipleFiles'] = self.to_multiple_files if !self.to_multiple_files.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'fontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.split_table\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="GetWorksheetWithFormat_request.rb.cs">
+ <copyright company="Aspose" file="GetWorksheetWithFormatRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,161 +25,88 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class GetWorksheetWithFormatRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :format  
-    attr_accessor :vertical_resolution  
-    attr_accessor :horizontal_resolution  
-    attr_accessor :area  
-    attr_accessor :page_index  
-    attr_accessor :one_page_per_sheet  
-    attr_accessor :print_headings  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class GetWorksheetWithFormatRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :area
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :format
+    # @return [Integer, nil when omitted]
+    attr_accessor :horizontal_resolution
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :one_page_per_sheet
+    # @return [Integer, nil when omitted]
+    attr_accessor :page_index
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :print_headings
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [Integer, nil when omitted]
+    attr_accessor :vertical_resolution
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, sheet_name:, area: nil, folder: nil, format: nil, horizontal_resolution: nil, one_page_per_sheet: nil, page_index: nil, print_headings: nil, storage_name: nil, vertical_resolution: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `GetWorksheetWithFormatRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `GetWorksheetWithFormatRequest.new`' if sheet_name.nil?
+      @name = name
+      @sheet_name = sheet_name
+      @area = area
+      @folder = folder
+      @format = format
+      @horizontal_resolution = horizontal_resolution
+      @one_page_per_sheet = one_page_per_sheet
+      @page_index = page_index
+      @print_headings = print_headings
+      @storage_name = storage_name
+      @vertical_resolution = vertical_resolution
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'GET'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['format'] = @format unless @format.nil?
+      query['verticalResolution'] = @vertical_resolution unless @vertical_resolution.nil?
+      query['horizontalResolution'] = @horizontal_resolution unless @horizontal_resolution.nil?
+      query['area'] = @area unless @area.nil?
+      query['pageIndex'] = @page_index unless @page_index.nil?
+      query['onePagePerSheet'] = @one_page_per_sheet unless @one_page_per_sheet.nil?
+      query['printHeadings'] = @print_headings unless @print_headings.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'format')
-          self.format = attributes[:'format']
-      end
-
-      if attributes.has_key?(:'verticalResolution')
-          self.vertical_resolution = attributes[:'verticalResolution']
-      end
-
-      if attributes.has_key?(:'horizontalResolution')
-          self.horizontal_resolution = attributes[:'horizontalResolution']
-      end
-
-      if attributes.has_key?(:'area')
-          self.area = attributes[:'area']
-      end
-
-      if attributes.has_key?(:'pageIndex')
-          self.page_index = attributes[:'pageIndex']
-      end
-
-      if attributes.has_key?(:'onePagePerSheet')
-          self.one_page_per_sheet = attributes[:'onePagePerSheet']
-      end
-
-      if attributes.has_key?(:'printHeadings')
-          self.print_headings = attributes[:'printHeadings']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'format' => :'format',
-        :'vertical_resolution' => :'verticalResolution',
-        :'horizontal_resolution' => :'horizontalResolution',
-        :'area' => :'area',
-        :'page_index' => :'pageIndex',
-        :'one_page_per_sheet' => :'onePagePerSheet',
-        :'print_headings' => :'printHeadings',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'format' => :'String',
-        :'vertical_resolution' => :'Integer',
-        :'horizontal_resolution' => :'Integer',
-        :'area' => :'String',
-        :'page_index' => :'Integer',
-        :'one_page_per_sheet' => :'BOOLEAN',
-        :'print_headings' => :'BOOLEAN',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.get_worksheet_with_format ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.get_worksheet_with_format "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.get_worksheet_with_format "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'format'] = self.format if !self.format.nil? 
-      query_params[:'verticalResolution'] = self.vertical_resolution if !self.vertical_resolution.nil? 
-      query_params[:'horizontalResolution'] = self.horizontal_resolution if !self.horizontal_resolution.nil? 
-      query_params[:'area'] = self.area if !self.area.nil? 
-      query_params[:'pageIndex'] = self.page_index if !self.page_index.nil? 
-      query_params[:'onePagePerSheet'] = self.one_page_per_sheet if !self.one_page_per_sheet.nil? 
-      query_params[:'printHeadings'] = self.print_headings if !self.print_headings.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.get_worksheet_with_format\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

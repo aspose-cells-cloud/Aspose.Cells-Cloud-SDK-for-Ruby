@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="ExportSpreadsheetAsFormat_request.rb.cs">
+ <copyright company="Aspose" file="ExportSpreadsheetAsFormatRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,162 +25,88 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class ExportSpreadsheetAsFormatRequest
 
-    attr_accessor :name  
-    attr_accessor :format  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :fonts_location  
-    attr_accessor :auto_rows_fit  
-    attr_accessor :auto_columns_fit  
-    attr_accessor :region  
-    attr_accessor :password  
+  class ExportSpreadsheetAsFormatRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :format
+    # @return [String]
+    attr_accessor :name
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :auto_columns_fit
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :auto_rows_fit
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :fonts_location
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(format:, name:, auto_columns_fit: nil, auto_rows_fit: nil, folder: nil, fonts_location: nil, out_path: nil, out_storage_name: nil, password: nil, region: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `format` when calling `ExportSpreadsheetAsFormatRequest.new`' if format.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `ExportSpreadsheetAsFormatRequest.new`' if name.nil?
+      @format = format
+      @name = name
+      @auto_columns_fit = auto_columns_fit
+      @auto_rows_fit = auto_rows_fit
+      @folder = folder
+      @fonts_location = fonts_location
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @password = password
+      @region = region
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'GET'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/{name}'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'format')
-          self.format = attributes[:'format']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['format'] = @format
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['fontsLocation'] = @fonts_location unless @fonts_location.nil?
+      query['AutoRowsFit'] = @auto_rows_fit unless @auto_rows_fit.nil?
+      query['AutoColumnsFit'] = @auto_columns_fit unless @auto_columns_fit.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'fontsLocation')
-          self.fonts_location = attributes[:'fontsLocation']
-      end
-
-      if attributes.has_key?(:'AutoRowsFit')
-          self.auto_rows_fit = attributes[:'AutoRowsFit']
-      end
-
-      if attributes.has_key?(:'AutoColumnsFit')
-          self.auto_columns_fit = attributes[:'AutoColumnsFit']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'format' => :'format',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'fonts_location' => :'fontsLocation',
-        :'auto_rows_fit' => :'AutoRowsFit',
-        :'auto_columns_fit' => :'AutoColumnsFit',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'format' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'fonts_location' => :'String',
-        :'auto_rows_fit' => :'BOOLEAN',
-        :'auto_columns_fit' => :'BOOLEAN',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.export_spreadsheet_as_format ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.export_spreadsheet_as_format "
-      end 
-      # verify the required parameter 'format' is set
-      if api_client.config.client_side_validation && format.nil?
-          fail ArgumentError, "Missing the required parameter 'format' when calling CellsApi.export_spreadsheet_as_format "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/{name}".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'format'] = self.format if !self.format.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'fontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-      query_params[:'AutoRowsFit'] = self.auto_rows_fit if !self.auto_rows_fit.nil? 
-      query_params[:'AutoColumnsFit'] = self.auto_columns_fit if !self.auto_columns_fit.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.export_spreadsheet_as_format\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

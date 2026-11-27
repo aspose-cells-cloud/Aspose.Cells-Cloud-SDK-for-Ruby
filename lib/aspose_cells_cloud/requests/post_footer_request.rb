@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostFooter_request.rb.cs">
+ <copyright company="Aspose" file="PostFooterRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,141 +25,75 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostFooterRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :section  
-    attr_accessor :script  
-    attr_accessor :is_first_page  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PostFooterRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [BOOLEAN]
+    attr_accessor :is_first_page
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :script
+    # @return [Integer]
+    attr_accessor :section
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(is_first_page:, name:, script:, section:, sheet_name:, folder: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `is_first_page` when calling `PostFooterRequest.new`' if is_first_page.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostFooterRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `script` when calling `PostFooterRequest.new`' if script.nil?
+      raise ArgumentError, 'Missing the required parameter `section` when calling `PostFooterRequest.new`' if section.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PostFooterRequest.new`' if sheet_name.nil?
+      @is_first_page = is_first_page
+      @name = name
+      @script = script
+      @section = section
+      @sheet_name = sheet_name
+      @folder = folder
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/pagesetup/footer'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['section'] = @section
+      query['script'] = @script
+      query['isFirstPage'] = @is_first_page
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'section')
-          self.section = attributes[:'section']
-      end
-
-      if attributes.has_key?(:'script')
-          self.script = attributes[:'script']
-      end
-
-      if attributes.has_key?(:'isFirstPage')
-          self.is_first_page = attributes[:'isFirstPage']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'section' => :'section',
-        :'script' => :'script',
-        :'is_first_page' => :'isFirstPage',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'section' => :'Integer',
-        :'script' => :'String',
-        :'is_first_page' => :'BOOLEAN',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_footer ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_footer "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.post_footer "
-      end 
-      # verify the required parameter 'section' is set
-      if api_client.config.client_side_validation && section.nil?
-          fail ArgumentError, "Missing the required parameter 'section' when calling CellsApi.post_footer "
-      end 
-      # verify the required parameter 'script' is set
-      if api_client.config.client_side_validation && script.nil?
-          fail ArgumentError, "Missing the required parameter 'script' when calling CellsApi.post_footer "
-      end 
-      # verify the required parameter 'is_first_page' is set
-      if api_client.config.client_side_validation && is_first_page.nil?
-          fail ArgumentError, "Missing the required parameter 'is_first_page' when calling CellsApi.post_footer "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/pagesetup/footer".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'section'] = self.section if !self.section.nil? 
-      query_params[:'script'] = self.script if !self.script.nil? 
-      query_params[:'isFirstPage'] = self.is_first_page if !self.is_first_page.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_footer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

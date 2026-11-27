@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostRotate_request.rb.cs">
+ <copyright company="Aspose" file="PostRotateRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,129 +25,74 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostRotateRequest
 
-    attr_accessor :file  
-    attr_accessor :rotate_type  
-    attr_accessor :out_format  
-    attr_accessor :password  
-    attr_accessor :check_excel_restriction  
-    attr_accessor :region  
+  class PostRotateRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :file
+    # @return [String]
+    attr_accessor :rotate_type
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [String, nil when omitted]
+    attr_accessor :out_format
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(file:, rotate_type:, check_excel_restriction: nil, out_format: nil, password: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `file` when calling `PostRotateRequest.new`' if file.nil?
+      raise ArgumentError, 'Missing the required parameter `rotate_type` when calling `PostRotateRequest.new`' if rotate_type.nil?
+      @file = file
+      @rotate_type = rotate_type
+      @check_excel_restriction = check_excel_restriction
+      @out_format = out_format
+      @password = password
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'File')
-          self.file = attributes[:'File']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/rotate'
+      path
+    end
 
-      if attributes.has_key?(:'rotateType')
-          self.rotate_type = attributes[:'rotateType']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['rotateType'] = @rotate_type
+      query['outFormat'] = @out_format unless @out_format.nil?
+      query['password'] = @password unless @password.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query['region'] = @region unless @region.nil?
+      query
+    end
 
-      if attributes.has_key?(:'outFormat')
-          self.out_format = attributes[:'outFormat']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'file' => :'File',
-        :'rotate_type' => :'rotateType',
-        :'out_format' => :'outFormat',
-        :'password' => :'password',
-        :'check_excel_restriction' => :'checkExcelRestriction',
-        :'region' => :'region'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'file' => :'Hash',
-        :'rotate_type' => :'String',
-        :'out_format' => :'String',
-        :'password' => :'String',
-        :'check_excel_restriction' => :'BOOLEAN',
-        :'region' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['File'] = @file
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_rotate ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'file' is set
-      if api_client.config.client_side_validation && file.nil?
-          fail ArgumentError, "Missing the required parameter 'file' when calling CellsApi.post_rotate "
-      end 
-      # verify the required parameter 'rotate_type' is set
-      if api_client.config.client_side_validation && rotate_type.nil?
-          fail ArgumentError, "Missing the required parameter 'rotate_type' when calling CellsApi.post_rotate "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/rotate"
-      # query parameters
-      query_params = {}
-      query_params[:'rotateType'] = self.rotate_type if !self.rotate_type.nil? 
-      query_params[:'outFormat'] = self.out_format if !self.out_format.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !file.nil?
-          file.each do |filename , context|
-          form_params[File.basename(filename)]  = context
-          end
-      end
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FilesResult')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_rotate\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

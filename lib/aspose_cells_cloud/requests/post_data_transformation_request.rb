@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostDataTransformation_request.rb.cs">
+ <copyright company="Aspose" file="PostDataTransformationRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,78 +25,52 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostDataTransformationRequest
 
-    attr_accessor :data_transformation_request  
+  class PostDataTransformationRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [DataTransformationRequest]
+    attr_accessor :data_transformation_request
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(data_transformation_request:)
+      raise ArgumentError, 'Missing the required parameter `data_transformation_request` when calling `PostDataTransformationRequest.new`' if data_transformation_request.nil?
+      @data_transformation_request = data_transformation_request
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'dataTransformationRequest')
-          self.data_transformation_request = attributes[:'dataTransformationRequest']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/datatransformation'
+      path
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'data_transformation_request' => :'dataTransformationRequest'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'data_transformation_request' => :'DataTransformationRequest'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @data_transformation_request.nil?
+      if @data_transformation_request.is_a?(Array)
+        @data_transformation_request.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @data_transformation_request.respond_to?(:to_hash)
+        @data_transformation_request.to_hash
+      else
+        @data_transformation_request
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_data_transformation ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'data_transformation_request' is set
-      if api_client.config.client_side_validation && data_transformation_request.nil?
-          fail ArgumentError, "Missing the required parameter 'data_transformation_request' when calling CellsApi.post_data_transformation "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/datatransformation"
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(data_transformation_request) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FileInfo')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_data_transformation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

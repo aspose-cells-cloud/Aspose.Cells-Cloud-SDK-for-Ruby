@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="StorageExists_request.rb.cs">
+ <copyright company="Aspose" file="StorageExistsRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,77 +25,41 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class StorageExistsRequest
 
-    attr_accessor :storage_name  
+  class StorageExistsRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(storage_name:)
+      raise ArgumentError, 'Missing the required parameter `storage_name` when calling `StorageExistsRequest.new`' if storage_name.nil?
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'GET'
+    end
 
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/storage/{storageName}/exist'
+      path = path.gsub('{storageName}', encode_path_segment(@storage_name))
+      path
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.storage_exists ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'storage_name' is set
-      if api_client.config.client_side_validation && storage_name.nil?
-          fail ArgumentError, "Missing the required parameter 'storage_name' when calling CellsApi.storage_exists "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/storage/{storageName}/exist".sub('{' + 'storageName' + '}', storage_name.to_s)
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'StorageExist')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.storage_exists\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

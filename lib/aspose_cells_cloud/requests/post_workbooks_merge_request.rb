@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostWorkbooksMerge_request.rb.cs">
+ <copyright company="Aspose" file="PostWorkbooksMergeRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,114 +25,64 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostWorkbooksMergeRequest
 
-    attr_accessor :name  
-    attr_accessor :merge_with  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
-    attr_accessor :merged_storage_name  
+  class PostWorkbooksMergeRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :merge_with
+    # @return [String]
+    attr_accessor :name
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :merged_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(merge_with:, name:, folder: nil, merged_storage_name: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `merge_with` when calling `PostWorkbooksMergeRequest.new`' if merge_with.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostWorkbooksMergeRequest.new`' if name.nil?
+      @merge_with = merge_with
+      @name = name
+      @folder = folder
+      @merged_storage_name = merged_storage_name
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/merge'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'mergeWith')
-          self.merge_with = attributes[:'mergeWith']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['mergeWith'] = @merge_with
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['mergedStorageName'] = @merged_storage_name unless @merged_storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'mergedStorageName')
-          self.merged_storage_name = attributes[:'mergedStorageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'merge_with' => :'mergeWith',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName',
-        :'merged_storage_name' => :'mergedStorageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'merge_with' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String',
-        :'merged_storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_workbooks_merge ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_workbooks_merge "
-      end 
-      # verify the required parameter 'merge_with' is set
-      if api_client.config.client_side_validation && merge_with.nil?
-          fail ArgumentError, "Missing the required parameter 'merge_with' when calling CellsApi.post_workbooks_merge "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/merge".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'mergeWith'] = self.merge_with if !self.merge_with.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'mergedStorageName'] = self.merged_storage_name if !self.merged_storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'WorkbookResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_workbooks_merge\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

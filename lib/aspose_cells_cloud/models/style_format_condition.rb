@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="StyleFormatConditionrb.cs">
+ <copyright company="Aspose" file="StyleFormatCondition.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,42 +25,43 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
+require_relative 'format_condition'
 
 module AsposeCellsCloud
 
-  class StyleFormatCondition
-        #            
-        attr_accessor :priority
-        #            
-        attr_accessor :type
-        #            
-        attr_accessor :stop_if_true
-        #            
-        attr_accessor :above_average
-        #            
-        attr_accessor :color_scale
-        #            
-        attr_accessor :data_bar
-        #            
-        attr_accessor :formula1
-        #            
-        attr_accessor :formula2
-        #            
-        attr_accessor :icon_set
-        #            
-        attr_accessor :operator
-        #            
-        attr_accessor :style
-        #            
-        attr_accessor :text
-        #            
-        attr_accessor :time_period
-        #            
-        attr_accessor :top10
-        #            
-        attr_accessor :link
+  # Represents style format condition.
+  class StyleFormatCondition < FormatCondition
+    # @return [Integer]
+    attr_accessor :priority
+    # @return [String]
+    attr_accessor :type
+    # @return [BOOLEAN]
+    attr_accessor :stop_if_true
+    # @return [AboveAverage]
+    attr_accessor :above_average
+    # @return [ColorScale]
+    attr_accessor :color_scale
+    # @return [DataBar]
+    attr_accessor :data_bar
+    # @return [String]
+    attr_accessor :formula1
+    # @return [String]
+    attr_accessor :formula2
+    # @return [IconSet]
+    attr_accessor :icon_set
+    # @return [String]
+    attr_accessor :operator
+    # @return [Style]
+    attr_accessor :style
+    # @return [String]
+    attr_accessor :text
+    # @return [String]
+    attr_accessor :time_period
+    # @return [Top10]
+    attr_accessor :top10
+    # @return [Link]
+    attr_accessor :link
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -79,7 +80,7 @@ module AsposeCellsCloud
         :'text' => :'Text',
         :'time_period' => :'TimePeriod',
         :'top10' => :'Top10',
-        :'link' => :'link'
+        :'link' => :'link',
       }
     end
 
@@ -100,7 +101,7 @@ module AsposeCellsCloud
         :'text' => :'String',
         :'time_period' => :'String',
         :'top10' => :'Top10',
-        :'link' => :'Link'
+        :'link' => :'Link',
       }
     end
 
@@ -108,269 +109,70 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'Priority')
-          self.priority = attributes[:'Priority']
-      end
-      if attributes.has_key?(:'Type')
-          self.type = attributes[:'Type']
-      end
-      if attributes.has_key?(:'StopIfTrue')
-          self.stop_if_true = attributes[:'StopIfTrue']
-      end
-      if attributes.has_key?(:'AboveAverage')
-          self.above_average = attributes[:'AboveAverage']
-      end
-      if attributes.has_key?(:'ColorScale')
-          self.color_scale = attributes[:'ColorScale']
-      end
-      if attributes.has_key?(:'DataBar')
-          self.data_bar = attributes[:'DataBar']
-      end
-      if attributes.has_key?(:'Formula1')
-          self.formula1 = attributes[:'Formula1']
-      end
-      if attributes.has_key?(:'Formula2')
-          self.formula2 = attributes[:'Formula2']
-      end
-      if attributes.has_key?(:'IconSet')
-          self.icon_set = attributes[:'IconSet']
-      end
-      if attributes.has_key?(:'Operator')
-          self.operator = attributes[:'Operator']
-      end
-      if attributes.has_key?(:'Style')
-          self.style = attributes[:'Style']
-      end
-      if attributes.has_key?(:'Text')
-          self.text = attributes[:'Text']
-      end
-      if attributes.has_key?(:'TimePeriod')
-          self.time_period = attributes[:'TimePeriod']
-      end
-      if attributes.has_key?(:'Top10')
-          self.top10 = attributes[:'Top10']
-      end
-      if attributes.has_key?(:'link')
-          self.link = attributes[:'link']
-      end
-
+      super(attributes)
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.priority = attributes[:priority] if attributes.key?(:priority)
+      self.type = attributes[:type] if attributes.key?(:type)
+      self.stop_if_true = attributes[:stop_if_true] if attributes.key?(:stop_if_true)
+      self.above_average = attributes[:above_average] if attributes.key?(:above_average)
+      self.color_scale = attributes[:color_scale] if attributes.key?(:color_scale)
+      self.data_bar = attributes[:data_bar] if attributes.key?(:data_bar)
+      self.formula1 = attributes[:formula1] if attributes.key?(:formula1)
+      self.formula2 = attributes[:formula2] if attributes.key?(:formula2)
+      self.icon_set = attributes[:icon_set] if attributes.key?(:icon_set)
+      self.operator = attributes[:operator] if attributes.key?(:operator)
+      self.style = attributes[:style] if attributes.key?(:style)
+      self.text = attributes[:text] if attributes.key?(:text)
+      self.time_period = attributes[:time_period] if attributes.key?(:time_period)
+      self.top10 = attributes[:top10] if attributes.key?(:top10)
+      self.link = attributes[:link] if attributes.key?(:link)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @priority.nil?
-          invalid_properties.push("invalid value for 'priority', priority cannot be nil.")
-      end
-      if @type.nil?
-          invalid_properties.push("invalid value for 'type', type cannot be nil.")
-      end
-      if @stop_if_true.nil?
-          invalid_properties.push("invalid value for 'stop_if_true', stop_if_true cannot be nil.")
-      end
-      if @above_average.nil?
-          invalid_properties.push("invalid value for 'above_average', above_average cannot be nil.")
-      end
-      if @color_scale.nil?
-          invalid_properties.push("invalid value for 'color_scale', color_scale cannot be nil.")
-      end
-      if @data_bar.nil?
-          invalid_properties.push("invalid value for 'data_bar', data_bar cannot be nil.")
-      end
-      if @formula1.nil?
-          invalid_properties.push("invalid value for 'formula1', formula1 cannot be nil.")
-      end
-      if @formula2.nil?
-          invalid_properties.push("invalid value for 'formula2', formula2 cannot be nil.")
-      end
-      if @icon_set.nil?
-          invalid_properties.push("invalid value for 'icon_set', icon_set cannot be nil.")
-      end
-      if @operator.nil?
-          invalid_properties.push("invalid value for 'operator', operator cannot be nil.")
-      end
-      if @style.nil?
-          invalid_properties.push("invalid value for 'style', style cannot be nil.")
-      end
-      if @text.nil?
-          invalid_properties.push("invalid value for 'text', text cannot be nil.")
-      end
-      if @time_period.nil?
-          invalid_properties.push("invalid value for 'time_period', time_period cannot be nil.")
-      end
-      if @top10.nil?
-          invalid_properties.push("invalid value for 'top10', top10 cannot be nil.")
-      end
-      if @link.nil?
-          invalid_properties.push("invalid value for 'link', link cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @priority.nil?
-      return false if @type.nil?
-      return false if @stop_if_true.nil?
-      return false if @above_average.nil?
-      return false if @color_scale.nil?
-      return false if @data_bar.nil?
-      return false if @formula1.nil?
-      return false if @formula2.nil?
-      return false if @icon_set.nil?
-      return false if @operator.nil?
-      return false if @style.nil?
-      return false if @text.nil?
-      return false if @time_period.nil?
-      return false if @top10.nil?
-      return false if @link.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          priority == o.priority &&
-          type == o.type &&
-          stop_if_true == o.stop_if_true &&
-          above_average == o.above_average &&
-          color_scale == o.color_scale &&
-          data_bar == o.data_bar &&
-          formula1 == o.formula1 &&
-          formula2 == o.formula2 &&
-          icon_set == o.icon_set &&
-          operator == o.operator &&
-          style == o.style &&
-          text == o.text &&
-          time_period == o.time_period &&
-          top10 == o.top10 &&
-          link == o.link 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ priority , type , stop_if_true , above_average , color_scale , data_bar , formula1 , formula2 , icon_set , operator , style , text , time_period , top10 , link ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

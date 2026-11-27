@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="CheckWorkbookFormulaErrors_request.rb.cs">
+ <copyright company="Aspose" file="CheckWorkbookFormulaErrorsRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,78 +25,52 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class CheckWorkbookFormulaErrorsRequest
 
-    attr_accessor :formula_error_options  
+  class CheckWorkbookFormulaErrorsRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [CheckFormulaErrorOptions]
+    attr_accessor :formula_error_options
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(formula_error_options:)
+      raise ArgumentError, 'Missing the required parameter `formula_error_options` when calling `CheckWorkbookFormulaErrorsRequest.new`' if formula_error_options.nil?
+      @formula_error_options = formula_error_options
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'formulaErrorOptions')
-          self.formula_error_options = attributes[:'formulaErrorOptions']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/checkformulaerrors'
+      path
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'formula_error_options' => :'formulaErrorOptions'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'formula_error_options' => :'CheckFormulaErrorOptions'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @formula_error_options.nil?
+      if @formula_error_options.is_a?(Array)
+        @formula_error_options.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @formula_error_options.respond_to?(:to_hash)
+        @formula_error_options.to_hash
+      else
+        @formula_error_options
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.check_workbook_formula_errors ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'formula_error_options' is set
-      if api_client.config.client_side_validation && formula_error_options.nil?
-          fail ArgumentError, "Missing the required parameter 'formula_error_options' when calling CellsApi.check_workbook_formula_errors "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/checkformulaerrors"
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(formula_error_options) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CheckedFormulaErrorsResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.check_workbook_formula_errors\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

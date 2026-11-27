@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostWorkbookDataCleansing_request.rb.cs">
+ <copyright company="Aspose" file="PostWorkbookDataCleansingRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,130 +25,83 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostWorkbookDataCleansingRequest
 
-    attr_accessor :name  
-    attr_accessor :data_cleansing  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
-    attr_accessor :password  
-    attr_accessor :region  
-    attr_accessor :check_excel_restriction  
+  class PostWorkbookDataCleansingRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [DataCleansing]
+    attr_accessor :data_cleansing
+    # @return [String]
+    attr_accessor :name
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(data_cleansing:, name:, check_excel_restriction: nil, folder: nil, password: nil, region: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `data_cleansing` when calling `PostWorkbookDataCleansingRequest.new`' if data_cleansing.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostWorkbookDataCleansingRequest.new`' if name.nil?
+      @data_cleansing = data_cleansing
+      @name = name
+      @check_excel_restriction = check_excel_restriction
+      @folder = folder
+      @password = password
+      @region = region
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/datacleansing'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'dataCleansing')
-          self.data_cleansing = attributes[:'dataCleansing']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['password'] = @password unless @password.nil?
+      query['region'] = @region unless @region.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query
+    end
 
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'data_cleansing' => :'dataCleansing',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName',
-        :'password' => :'password',
-        :'region' => :'region',
-        :'check_excel_restriction' => :'checkExcelRestriction'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'data_cleansing' => :'DataCleansing',
-        :'folder' => :'String',
-        :'storage_name' => :'String',
-        :'password' => :'String',
-        :'region' => :'String',
-        :'check_excel_restriction' => :'BOOLEAN'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @data_cleansing.nil?
+      if @data_cleansing.is_a?(Array)
+        @data_cleansing.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @data_cleansing.respond_to?(:to_hash)
+        @data_cleansing.to_hash
+      else
+        @data_cleansing
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_workbook_data_cleansing ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_workbook_data_cleansing "
-      end 
-      # verify the required parameter 'data_cleansing' is set
-      if api_client.config.client_side_validation && data_cleansing.nil?
-          fail ArgumentError, "Missing the required parameter 'data_cleansing' when calling CellsApi.post_workbook_data_cleansing "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/datacleansing".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(data_cleansing) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FileInfo')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_workbook_data_cleansing\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

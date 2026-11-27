@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostWorksheetListObjectInsertSlicer_request.rb.cs">
+ <copyright company="Aspose" file="PostWorksheetListObjectInsertSlicerRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,140 +25,75 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostWorksheetListObjectInsertSlicerRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :list_object_index  
-    attr_accessor :column_index  
-    attr_accessor :dest_cell_name  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PostWorksheetListObjectInsertSlicerRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [Integer]
+    attr_accessor :column_index
+    # @return [String]
+    attr_accessor :dest_cell_name
+    # @return [Integer]
+    attr_accessor :list_object_index
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(column_index:, dest_cell_name:, list_object_index:, name:, sheet_name:, folder: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `column_index` when calling `PostWorksheetListObjectInsertSlicerRequest.new`' if column_index.nil?
+      raise ArgumentError, 'Missing the required parameter `dest_cell_name` when calling `PostWorksheetListObjectInsertSlicerRequest.new`' if dest_cell_name.nil?
+      raise ArgumentError, 'Missing the required parameter `list_object_index` when calling `PostWorksheetListObjectInsertSlicerRequest.new`' if list_object_index.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostWorksheetListObjectInsertSlicerRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PostWorksheetListObjectInsertSlicerRequest.new`' if sheet_name.nil?
+      @column_index = column_index
+      @dest_cell_name = dest_cell_name
+      @list_object_index = list_object_index
+      @name = name
+      @sheet_name = sheet_name
+      @folder = folder
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/listobjects/{listObjectIndex}/InsertSlicer'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path = path.gsub('{listObjectIndex}', encode_path_segment(@list_object_index))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['columnIndex'] = @column_index
+      query['destCellName'] = @dest_cell_name
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'listObjectIndex')
-          self.list_object_index = attributes[:'listObjectIndex']
-      end
-
-      if attributes.has_key?(:'columnIndex')
-          self.column_index = attributes[:'columnIndex']
-      end
-
-      if attributes.has_key?(:'destCellName')
-          self.dest_cell_name = attributes[:'destCellName']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'list_object_index' => :'listObjectIndex',
-        :'column_index' => :'columnIndex',
-        :'dest_cell_name' => :'destCellName',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'list_object_index' => :'Integer',
-        :'column_index' => :'Integer',
-        :'dest_cell_name' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_worksheet_list_object_insert_slicer ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_worksheet_list_object_insert_slicer "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.post_worksheet_list_object_insert_slicer "
-      end 
-      # verify the required parameter 'list_object_index' is set
-      if api_client.config.client_side_validation && list_object_index.nil?
-          fail ArgumentError, "Missing the required parameter 'list_object_index' when calling CellsApi.post_worksheet_list_object_insert_slicer "
-      end 
-      # verify the required parameter 'column_index' is set
-      if api_client.config.client_side_validation && column_index.nil?
-          fail ArgumentError, "Missing the required parameter 'column_index' when calling CellsApi.post_worksheet_list_object_insert_slicer "
-      end 
-      # verify the required parameter 'dest_cell_name' is set
-      if api_client.config.client_side_validation && dest_cell_name.nil?
-          fail ArgumentError, "Missing the required parameter 'dest_cell_name' when calling CellsApi.post_worksheet_list_object_insert_slicer "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/listobjects/{listObjectIndex}/InsertSlicer".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s).sub('{' + 'listObjectIndex' + '}', list_object_index.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'columnIndex'] = self.column_index if !self.column_index.nil? 
-      query_params[:'destCellName'] = self.dest_cell_name if !self.dest_cell_name.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_worksheet_list_object_insert_slicer\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

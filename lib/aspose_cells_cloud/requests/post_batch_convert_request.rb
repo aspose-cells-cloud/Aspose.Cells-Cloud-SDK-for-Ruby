@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostBatchConvert_request.rb.cs">
+ <copyright company="Aspose" file="PostBatchConvertRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,78 +25,52 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostBatchConvertRequest
 
-    attr_accessor :batch_convert_request  
+  class PostBatchConvertRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [BatchConvertRequest]
+    attr_accessor :batch_convert_request
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(batch_convert_request:)
+      raise ArgumentError, 'Missing the required parameter `batch_convert_request` when calling `PostBatchConvertRequest.new`' if batch_convert_request.nil?
+      @batch_convert_request = batch_convert_request
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'batchConvertRequest')
-          self.batch_convert_request = attributes[:'batchConvertRequest']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/batch/convert'
+      path
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'batch_convert_request' => :'batchConvertRequest'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'batch_convert_request' => :'BatchConvertRequest'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @batch_convert_request.nil?
+      if @batch_convert_request.is_a?(Array)
+        @batch_convert_request.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @batch_convert_request.respond_to?(:to_hash)
+        @batch_convert_request.to_hash
+      else
+        @batch_convert_request
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_batch_convert ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'batch_convert_request' is set
-      if api_client.config.client_side_validation && batch_convert_request.nil?
-          fail ArgumentError, "Missing the required parameter 'batch_convert_request' when calling CellsApi.post_batch_convert "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/batch/convert"
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(batch_convert_request) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_batch_convert\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PutInsertWorksheetRows_request.rb.cs">
+ <copyright company="Aspose" file="PutInsertWorksheetRowsRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,133 +25,73 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PutInsertWorksheetRowsRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :startrow  
-    attr_accessor :total_rows  
-    attr_accessor :update_reference  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PutInsertWorksheetRowsRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [Integer]
+    attr_accessor :startrow
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [Integer, nil when omitted]
+    attr_accessor :total_rows
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :update_reference
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, sheet_name:, startrow:, folder: nil, storage_name: nil, total_rows: nil, update_reference: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PutInsertWorksheetRowsRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PutInsertWorksheetRowsRequest.new`' if sheet_name.nil?
+      raise ArgumentError, 'Missing the required parameter `startrow` when calling `PutInsertWorksheetRowsRequest.new`' if startrow.nil?
+      @name = name
+      @sheet_name = sheet_name
+      @startrow = startrow
+      @folder = folder
+      @storage_name = storage_name
+      @total_rows = total_rows
+      @update_reference = update_reference
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/cells/rows/'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['startrow'] = @startrow
+      query['totalRows'] = @total_rows unless @total_rows.nil?
+      query['updateReference'] = @update_reference unless @update_reference.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'startrow')
-          self.startrow = attributes[:'startrow']
-      end
-
-      if attributes.has_key?(:'totalRows')
-          self.total_rows = attributes[:'totalRows']
-      end
-
-      if attributes.has_key?(:'updateReference')
-          self.update_reference = attributes[:'updateReference']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'startrow' => :'startrow',
-        :'total_rows' => :'totalRows',
-        :'update_reference' => :'updateReference',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'startrow' => :'Integer',
-        :'total_rows' => :'Integer',
-        :'update_reference' => :'BOOLEAN',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.put_insert_worksheet_rows ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.put_insert_worksheet_rows "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.put_insert_worksheet_rows "
-      end 
-      # verify the required parameter 'startrow' is set
-      if api_client.config.client_side_validation && startrow.nil?
-          fail ArgumentError, "Missing the required parameter 'startrow' when calling CellsApi.put_insert_worksheet_rows "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/cells/rows/".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'startrow'] = self.startrow if !self.startrow.nil? 
-      query_params[:'totalRows'] = self.total_rows if !self.total_rows.nil? 
-      query_params[:'updateReference'] = self.update_reference if !self.update_reference.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.put_insert_worksheet_rows\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

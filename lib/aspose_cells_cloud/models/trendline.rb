@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="Trendlinerb.cs">
+ <copyright company="Aspose" file="Trendline.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,76 +25,90 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
+require_relative 'line'
 
 module AsposeCellsCloud
 
-  class Trendline
-        #The class has a property named "link" of type "Link" that can be accessed and modified.            
-        attr_accessor :link
-        #Returns or sets the number of periods (or units on a scatter chart) that the trendline extends backward.                         The number of periods must be greater than or equal to zero.                        If the chart type is column ,the number of periods must be between 0 and 0.5            
-        attr_accessor :backward
-        #Represents the DataLabels object for the specified series.            
-        attr_accessor :data_labels
-        #Represents if the equation for the trendline is displayed on the chart (in the same data label as the R-squared value). Setting this property to True automatically turns on data labels.            
-        attr_accessor :display_equation
-        #Represents if the R-squared value of the trendline is displayed on the chart (in the same data label as the equation). Setting this property to True automatically turns on data labels.            
-        attr_accessor :display_r_squared
-        #Returns or sets the number of periods (or units on a scatter chart) that the trendline extends forward.                        The number of periods must be greater than or equal to zero.            
-        attr_accessor :forward
-        #Returns or sets the point where the trendline crosses the value axis.            
-        attr_accessor :intercept
-        #Returns if Microsoft Excel automatically determines the name of the trendline.            
-        attr_accessor :is_name_auto
-        #Gets the legend entry according to this trendline            
-        attr_accessor :legend_entry
-        #Returns the name of the trendline.            
-        attr_accessor :name
-        #Returns or sets the trendline order (an integer greater than 1) when the trendline type is Polynomial.                         The order must be between 2 and 6.            
-        attr_accessor :order
-        #Returns or sets the period for the moving-average trendline.            
-        attr_accessor :period
-        #Returns the trendline type.            
-        attr_accessor :type
-        #            
-        attr_accessor :begin_arrow_length
-        #            
-        attr_accessor :begin_arrow_width
-        #            
-        attr_accessor :begin_type
-        #            
-        attr_accessor :cap_type
-        #            
-        attr_accessor :color
-        #            
-        attr_accessor :compound_type
-        #            
-        attr_accessor :dash_type
-        #            
-        attr_accessor :end_arrow_length
-        #            
-        attr_accessor :end_arrow_width
-        #            
-        attr_accessor :end_type
-        #            
-        attr_accessor :gradient_fill
-        #            
-        attr_accessor :is_auto
-        #            
-        attr_accessor :is_automatic_color
-        #            
-        attr_accessor :is_visible
-        #            
-        attr_accessor :join_type
-        #            
-        attr_accessor :style
-        #            
-        attr_accessor :transparency
-        #            
-        attr_accessor :weight
-        #            
-        attr_accessor :weight_pt
+  # Represents a trendline in a chart.
+  class Trendline < Line
+    # The class has a property named "link" of type "Link" that can be accessed and modified.
+    # @return [Link]
+    attr_accessor :link
+    # Returns or sets the number of periods (or units on a scatter chart) that the trendline extends backward.                          The number of periods must be greater than or equal to zero.                         If the chart type is column ,the number of periods must be between 0 and 0.5
+    # @return [Float]
+    attr_accessor :backward
+    # Represents the DataLabels object for the specified series.
+    # @return [DataLabels]
+    attr_accessor :data_labels
+    # Represents if the equation for the trendline is displayed on the chart (in the same data label as the R-squared value). Setting this property to True automatically turns on data labels.
+    # @return [BOOLEAN]
+    attr_accessor :display_equation
+    # Represents if the R-squared value of the trendline is displayed on the chart (in the same data label as the equation). Setting this property to True automatically turns on data labels.
+    # @return [BOOLEAN]
+    attr_accessor :display_r_squared
+    # Returns or sets the number of periods (or units on a scatter chart) that the trendline extends forward.                         The number of periods must be greater than or equal to zero.
+    # @return [Float]
+    attr_accessor :forward
+    # Returns or sets the point where the trendline crosses the value axis.
+    # @return [Float]
+    attr_accessor :intercept
+    # Returns if Microsoft Excel automatically determines the name of the trendline.
+    # @return [BOOLEAN]
+    attr_accessor :is_name_auto
+    # Gets the legend entry according to this trendline
+    # @return [LegendEntry]
+    attr_accessor :legend_entry
+    # Returns the name of the trendline.
+    # @return [String]
+    attr_accessor :name
+    # Returns or sets the trendline order (an integer greater than 1) when the trendline type is Polynomial.                          The order must be between 2 and 6.
+    # @return [Integer]
+    attr_accessor :order
+    # Returns or sets the period for the moving-average trendline.
+    # @return [Integer]
+    attr_accessor :period
+    # Returns the trendline type.
+    # @return [String]
+    attr_accessor :type
+    # @return [String]
+    attr_accessor :begin_arrow_length
+    # @return [String]
+    attr_accessor :begin_arrow_width
+    # @return [String]
+    attr_accessor :begin_type
+    # @return [String]
+    attr_accessor :cap_type
+    # @return [Color]
+    attr_accessor :color
+    # @return [String]
+    attr_accessor :compound_type
+    # @return [String]
+    attr_accessor :dash_type
+    # @return [String]
+    attr_accessor :end_arrow_length
+    # @return [String]
+    attr_accessor :end_arrow_width
+    # @return [String]
+    attr_accessor :end_type
+    # @return [GradientFill]
+    attr_accessor :gradient_fill
+    # @return [BOOLEAN]
+    attr_accessor :is_auto
+    # @return [BOOLEAN]
+    attr_accessor :is_automatic_color
+    # @return [BOOLEAN]
+    attr_accessor :is_visible
+    # @return [String]
+    attr_accessor :join_type
+    # @return [String]
+    attr_accessor :style
+    # @return [Float]
+    attr_accessor :transparency
+    # @return [String]
+    attr_accessor :weight
+    # @return [Float]
+    attr_accessor :weight_pt
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -130,7 +144,7 @@ module AsposeCellsCloud
         :'style' => :'Style',
         :'transparency' => :'Transparency',
         :'weight' => :'Weight',
-        :'weight_pt' => :'WeightPt'
+        :'weight_pt' => :'WeightPt',
       }
     end
 
@@ -168,7 +182,7 @@ module AsposeCellsCloud
         :'style' => :'String',
         :'transparency' => :'Float',
         :'weight' => :'String',
-        :'weight_pt' => :'Float'
+        :'weight_pt' => :'Float',
       }
     end
 
@@ -176,405 +190,87 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'link')
-          self.link = attributes[:'link']
-      end
-      if attributes.has_key?(:'Backward')
-          self.backward = attributes[:'Backward']
-      end
-      if attributes.has_key?(:'DataLabels')
-          self.data_labels = attributes[:'DataLabels']
-      end
-      if attributes.has_key?(:'DisplayEquation')
-          self.display_equation = attributes[:'DisplayEquation']
-      end
-      if attributes.has_key?(:'DisplayRSquared')
-          self.display_r_squared = attributes[:'DisplayRSquared']
-      end
-      if attributes.has_key?(:'Forward')
-          self.forward = attributes[:'Forward']
-      end
-      if attributes.has_key?(:'Intercept')
-          self.intercept = attributes[:'Intercept']
-      end
-      if attributes.has_key?(:'IsNameAuto')
-          self.is_name_auto = attributes[:'IsNameAuto']
-      end
-      if attributes.has_key?(:'LegendEntry')
-          self.legend_entry = attributes[:'LegendEntry']
-      end
-      if attributes.has_key?(:'Name')
-          self.name = attributes[:'Name']
-      end
-      if attributes.has_key?(:'Order')
-          self.order = attributes[:'Order']
-      end
-      if attributes.has_key?(:'Period')
-          self.period = attributes[:'Period']
-      end
-      if attributes.has_key?(:'Type')
-          self.type = attributes[:'Type']
-      end
-      if attributes.has_key?(:'BeginArrowLength')
-          self.begin_arrow_length = attributes[:'BeginArrowLength']
-      end
-      if attributes.has_key?(:'BeginArrowWidth')
-          self.begin_arrow_width = attributes[:'BeginArrowWidth']
-      end
-      if attributes.has_key?(:'BeginType')
-          self.begin_type = attributes[:'BeginType']
-      end
-      if attributes.has_key?(:'CapType')
-          self.cap_type = attributes[:'CapType']
-      end
-      if attributes.has_key?(:'Color')
-          self.color = attributes[:'Color']
-      end
-      if attributes.has_key?(:'CompoundType')
-          self.compound_type = attributes[:'CompoundType']
-      end
-      if attributes.has_key?(:'DashType')
-          self.dash_type = attributes[:'DashType']
-      end
-      if attributes.has_key?(:'EndArrowLength')
-          self.end_arrow_length = attributes[:'EndArrowLength']
-      end
-      if attributes.has_key?(:'EndArrowWidth')
-          self.end_arrow_width = attributes[:'EndArrowWidth']
-      end
-      if attributes.has_key?(:'EndType')
-          self.end_type = attributes[:'EndType']
-      end
-      if attributes.has_key?(:'GradientFill')
-          self.gradient_fill = attributes[:'GradientFill']
-      end
-      if attributes.has_key?(:'IsAuto')
-          self.is_auto = attributes[:'IsAuto']
-      end
-      if attributes.has_key?(:'IsAutomaticColor')
-          self.is_automatic_color = attributes[:'IsAutomaticColor']
-      end
-      if attributes.has_key?(:'IsVisible')
-          self.is_visible = attributes[:'IsVisible']
-      end
-      if attributes.has_key?(:'JoinType')
-          self.join_type = attributes[:'JoinType']
-      end
-      if attributes.has_key?(:'Style')
-          self.style = attributes[:'Style']
-      end
-      if attributes.has_key?(:'Transparency')
-          self.transparency = attributes[:'Transparency']
-      end
-      if attributes.has_key?(:'Weight')
-          self.weight = attributes[:'Weight']
-      end
-      if attributes.has_key?(:'WeightPt')
-          self.weight_pt = attributes[:'WeightPt']
-      end
-
+      super(attributes)
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.link = attributes[:link] if attributes.key?(:link)
+      self.backward = attributes[:backward] if attributes.key?(:backward)
+      self.data_labels = attributes[:data_labels] if attributes.key?(:data_labels)
+      self.display_equation = attributes[:display_equation] if attributes.key?(:display_equation)
+      self.display_r_squared = attributes[:display_r_squared] if attributes.key?(:display_r_squared)
+      self.forward = attributes[:forward] if attributes.key?(:forward)
+      self.intercept = attributes[:intercept] if attributes.key?(:intercept)
+      self.is_name_auto = attributes[:is_name_auto] if attributes.key?(:is_name_auto)
+      self.legend_entry = attributes[:legend_entry] if attributes.key?(:legend_entry)
+      self.name = attributes[:name] if attributes.key?(:name)
+      self.order = attributes[:order] if attributes.key?(:order)
+      self.period = attributes[:period] if attributes.key?(:period)
+      self.type = attributes[:type] if attributes.key?(:type)
+      self.begin_arrow_length = attributes[:begin_arrow_length] if attributes.key?(:begin_arrow_length)
+      self.begin_arrow_width = attributes[:begin_arrow_width] if attributes.key?(:begin_arrow_width)
+      self.begin_type = attributes[:begin_type] if attributes.key?(:begin_type)
+      self.cap_type = attributes[:cap_type] if attributes.key?(:cap_type)
+      self.color = attributes[:color] if attributes.key?(:color)
+      self.compound_type = attributes[:compound_type] if attributes.key?(:compound_type)
+      self.dash_type = attributes[:dash_type] if attributes.key?(:dash_type)
+      self.end_arrow_length = attributes[:end_arrow_length] if attributes.key?(:end_arrow_length)
+      self.end_arrow_width = attributes[:end_arrow_width] if attributes.key?(:end_arrow_width)
+      self.end_type = attributes[:end_type] if attributes.key?(:end_type)
+      self.gradient_fill = attributes[:gradient_fill] if attributes.key?(:gradient_fill)
+      self.is_auto = attributes[:is_auto] if attributes.key?(:is_auto)
+      self.is_automatic_color = attributes[:is_automatic_color] if attributes.key?(:is_automatic_color)
+      self.is_visible = attributes[:is_visible] if attributes.key?(:is_visible)
+      self.join_type = attributes[:join_type] if attributes.key?(:join_type)
+      self.style = attributes[:style] if attributes.key?(:style)
+      self.transparency = attributes[:transparency] if attributes.key?(:transparency)
+      self.weight = attributes[:weight] if attributes.key?(:weight)
+      self.weight_pt = attributes[:weight_pt] if attributes.key?(:weight_pt)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @link.nil?
-          invalid_properties.push("invalid value for 'link', link cannot be nil.")
-      end
-      if @backward.nil?
-          invalid_properties.push("invalid value for 'backward', backward cannot be nil.")
-      end
-      if @data_labels.nil?
-          invalid_properties.push("invalid value for 'data_labels', data_labels cannot be nil.")
-      end
-      if @display_equation.nil?
-          invalid_properties.push("invalid value for 'display_equation', display_equation cannot be nil.")
-      end
-      if @display_r_squared.nil?
-          invalid_properties.push("invalid value for 'display_r_squared', display_r_squared cannot be nil.")
-      end
-      if @forward.nil?
-          invalid_properties.push("invalid value for 'forward', forward cannot be nil.")
-      end
-      if @intercept.nil?
-          invalid_properties.push("invalid value for 'intercept', intercept cannot be nil.")
-      end
-      if @is_name_auto.nil?
-          invalid_properties.push("invalid value for 'is_name_auto', is_name_auto cannot be nil.")
-      end
-      if @legend_entry.nil?
-          invalid_properties.push("invalid value for 'legend_entry', legend_entry cannot be nil.")
-      end
-      if @name.nil?
-          invalid_properties.push("invalid value for 'name', name cannot be nil.")
-      end
-      if @order.nil?
-          invalid_properties.push("invalid value for 'order', order cannot be nil.")
-      end
-      if @period.nil?
-          invalid_properties.push("invalid value for 'period', period cannot be nil.")
-      end
-      if @type.nil?
-          invalid_properties.push("invalid value for 'type', type cannot be nil.")
-      end
-      if @begin_arrow_length.nil?
-          invalid_properties.push("invalid value for 'begin_arrow_length', begin_arrow_length cannot be nil.")
-      end
-      if @begin_arrow_width.nil?
-          invalid_properties.push("invalid value for 'begin_arrow_width', begin_arrow_width cannot be nil.")
-      end
-      if @begin_type.nil?
-          invalid_properties.push("invalid value for 'begin_type', begin_type cannot be nil.")
-      end
-      if @cap_type.nil?
-          invalid_properties.push("invalid value for 'cap_type', cap_type cannot be nil.")
-      end
-      if @color.nil?
-          invalid_properties.push("invalid value for 'color', color cannot be nil.")
-      end
-      if @compound_type.nil?
-          invalid_properties.push("invalid value for 'compound_type', compound_type cannot be nil.")
-      end
-      if @dash_type.nil?
-          invalid_properties.push("invalid value for 'dash_type', dash_type cannot be nil.")
-      end
-      if @end_arrow_length.nil?
-          invalid_properties.push("invalid value for 'end_arrow_length', end_arrow_length cannot be nil.")
-      end
-      if @end_arrow_width.nil?
-          invalid_properties.push("invalid value for 'end_arrow_width', end_arrow_width cannot be nil.")
-      end
-      if @end_type.nil?
-          invalid_properties.push("invalid value for 'end_type', end_type cannot be nil.")
-      end
-      if @gradient_fill.nil?
-          invalid_properties.push("invalid value for 'gradient_fill', gradient_fill cannot be nil.")
-      end
-      if @is_auto.nil?
-          invalid_properties.push("invalid value for 'is_auto', is_auto cannot be nil.")
-      end
-      if @is_automatic_color.nil?
-          invalid_properties.push("invalid value for 'is_automatic_color', is_automatic_color cannot be nil.")
-      end
-      if @is_visible.nil?
-          invalid_properties.push("invalid value for 'is_visible', is_visible cannot be nil.")
-      end
-      if @join_type.nil?
-          invalid_properties.push("invalid value for 'join_type', join_type cannot be nil.")
-      end
-      if @style.nil?
-          invalid_properties.push("invalid value for 'style', style cannot be nil.")
-      end
-      if @transparency.nil?
-          invalid_properties.push("invalid value for 'transparency', transparency cannot be nil.")
-      end
-      if @weight.nil?
-          invalid_properties.push("invalid value for 'weight', weight cannot be nil.")
-      end
-      if @weight_pt.nil?
-          invalid_properties.push("invalid value for 'weight_pt', weight_pt cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @link.nil?
-      return false if @backward.nil?
-      return false if @data_labels.nil?
-      return false if @display_equation.nil?
-      return false if @display_r_squared.nil?
-      return false if @forward.nil?
-      return false if @intercept.nil?
-      return false if @is_name_auto.nil?
-      return false if @legend_entry.nil?
-      return false if @name.nil?
-      return false if @order.nil?
-      return false if @period.nil?
-      return false if @type.nil?
-      return false if @begin_arrow_length.nil?
-      return false if @begin_arrow_width.nil?
-      return false if @begin_type.nil?
-      return false if @cap_type.nil?
-      return false if @color.nil?
-      return false if @compound_type.nil?
-      return false if @dash_type.nil?
-      return false if @end_arrow_length.nil?
-      return false if @end_arrow_width.nil?
-      return false if @end_type.nil?
-      return false if @gradient_fill.nil?
-      return false if @is_auto.nil?
-      return false if @is_automatic_color.nil?
-      return false if @is_visible.nil?
-      return false if @join_type.nil?
-      return false if @style.nil?
-      return false if @transparency.nil?
-      return false if @weight.nil?
-      return false if @weight_pt.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          link == o.link &&
-          backward == o.backward &&
-          data_labels == o.data_labels &&
-          display_equation == o.display_equation &&
-          display_r_squared == o.display_r_squared &&
-          forward == o.forward &&
-          intercept == o.intercept &&
-          is_name_auto == o.is_name_auto &&
-          legend_entry == o.legend_entry &&
-          name == o.name &&
-          order == o.order &&
-          period == o.period &&
-          type == o.type &&
-          begin_arrow_length == o.begin_arrow_length &&
-          begin_arrow_width == o.begin_arrow_width &&
-          begin_type == o.begin_type &&
-          cap_type == o.cap_type &&
-          color == o.color &&
-          compound_type == o.compound_type &&
-          dash_type == o.dash_type &&
-          end_arrow_length == o.end_arrow_length &&
-          end_arrow_width == o.end_arrow_width &&
-          end_type == o.end_type &&
-          gradient_fill == o.gradient_fill &&
-          is_auto == o.is_auto &&
-          is_automatic_color == o.is_automatic_color &&
-          is_visible == o.is_visible &&
-          join_type == o.join_type &&
-          style == o.style &&
-          transparency == o.transparency &&
-          weight == o.weight &&
-          weight_pt == o.weight_pt 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ link , backward , data_labels , display_equation , display_r_squared , forward , intercept , is_name_auto , legend_entry , name , order , period , type , begin_arrow_length , begin_arrow_width , begin_type , cap_type , color , compound_type , dash_type , end_arrow_length , end_arrow_width , end_type , gradient_fill , is_auto , is_automatic_color , is_visible , join_type , style , transparency , weight , weight_pt ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

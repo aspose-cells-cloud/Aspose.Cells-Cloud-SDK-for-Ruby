@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostConvertWorksheetToImage_request.rb.cs">
+ <copyright company="Aspose" file="PostConvertWorksheetToImageRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,87 +25,62 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostConvertWorksheetToImageRequest
 
-    attr_accessor :convert_worksheet_options  
-    attr_accessor :fonts_location  
+  class PostConvertWorksheetToImageRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [ConvertWorksheetOptions]
+    attr_accessor :convert_worksheet_options
+    # @return [String, nil when omitted]
+    attr_accessor :fonts_location
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(convert_worksheet_options:, fonts_location: nil)
+      raise ArgumentError, 'Missing the required parameter `convert_worksheet_options` when calling `PostConvertWorksheetToImageRequest.new`' if convert_worksheet_options.nil?
+      @convert_worksheet_options = convert_worksheet_options
+      @fonts_location = fonts_location
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'convertWorksheetOptions')
-          self.convert_worksheet_options = attributes[:'convertWorksheetOptions']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/convertWorksheetToImage'
+      path
+    end
 
-      if attributes.has_key?(:'FontsLocation')
-          self.fonts_location = attributes[:'FontsLocation']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['FontsLocation'] = @fonts_location unless @fonts_location.nil?
+      query
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'convert_worksheet_options' => :'convertWorksheetOptions',
-        :'fonts_location' => :'FontsLocation'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'convert_worksheet_options' => :'ConvertWorksheetOptions',
-        :'fonts_location' => :'String'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @convert_worksheet_options.nil?
+      if @convert_worksheet_options.is_a?(Array)
+        @convert_worksheet_options.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @convert_worksheet_options.respond_to?(:to_hash)
+        @convert_worksheet_options.to_hash
+      else
+        @convert_worksheet_options
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_convert_worksheet_to_image ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'convert_worksheet_options' is set
-      if api_client.config.client_side_validation && convert_worksheet_options.nil?
-          fail ArgumentError, "Missing the required parameter 'convert_worksheet_options' when calling CellsApi.post_convert_worksheet_to_image "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/convertWorksheetToImage"
-      # query parameters
-      query_params = {}
-      query_params[:'FontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(convert_worksheet_options) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FileInfo')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_convert_worksheet_to_image\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

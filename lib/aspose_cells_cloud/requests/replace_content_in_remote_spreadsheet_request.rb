@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="ReplaceContentInRemoteSpreadsheet_request.rb.cs">
+ <copyright company="Aspose" file="ReplaceContentInRemoteSpreadsheetRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,134 +25,73 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class ReplaceContentInRemoteSpreadsheetRequest
 
-    attr_accessor :name  
-    attr_accessor :search_text  
-    attr_accessor :replace_text  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
-    attr_accessor :region  
-    attr_accessor :password  
+  class ReplaceContentInRemoteSpreadsheetRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :replace_text
+    # @return [String]
+    attr_accessor :search_text
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, replace_text:, search_text:, folder: nil, password: nil, region: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `ReplaceContentInRemoteSpreadsheetRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `replace_text` when calling `ReplaceContentInRemoteSpreadsheetRequest.new`' if replace_text.nil?
+      raise ArgumentError, 'Missing the required parameter `search_text` when calling `ReplaceContentInRemoteSpreadsheetRequest.new`' if search_text.nil?
+      @name = name
+      @replace_text = replace_text
+      @search_text = search_text
+      @folder = folder
+      @password = password
+      @region = region
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/{name}/replace/content'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'searchText')
-          self.search_text = attributes[:'searchText']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['searchText'] = @search_text
+      query['replaceText'] = @replace_text
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'replaceText')
-          self.replace_text = attributes[:'replaceText']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'search_text' => :'searchText',
-        :'replace_text' => :'replaceText',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'search_text' => :'String',
-        :'replace_text' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.replace_content_in_remote_spreadsheet ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.replace_content_in_remote_spreadsheet "
-      end 
-      # verify the required parameter 'search_text' is set
-      if api_client.config.client_side_validation && search_text.nil?
-          fail ArgumentError, "Missing the required parameter 'search_text' when calling CellsApi.replace_content_in_remote_spreadsheet "
-      end 
-      # verify the required parameter 'replace_text' is set
-      if api_client.config.client_side_validation && replace_text.nil?
-          fail ArgumentError, "Missing the required parameter 'replace_text' when calling CellsApi.replace_content_in_remote_spreadsheet "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/{name}/replace/content".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'searchText'] = self.search_text if !self.search_text.nil? 
-      query_params[:'replaceText'] = self.replace_text if !self.replace_text.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.replace_content_in_remote_spreadsheet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

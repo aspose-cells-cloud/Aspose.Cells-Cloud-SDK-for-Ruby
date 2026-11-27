@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="DataBarrb.cs">
+ <copyright company="Aspose" file="DataBar.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,36 +25,48 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
 
 module AsposeCellsCloud
 
+  # Describe the DataBar conditional formatting rule. This conditional formatting    rule displays a gradated data bar in the range of cells.
   class DataBar
-        #Gets the color of the axis for cells with conditional formatting as data bars.             
-        attr_accessor :axis_color
-        #Gets or sets the position of the axis of the data bars specified by a conditional formatting rule.             
-        attr_accessor :axis_position
-        #Gets an object that specifies the border of a data bar.             
-        attr_accessor :bar_border
-        #Gets or sets how a data bar is filled with color.             
-        attr_accessor :bar_fill_type
-        #Get or set this DataBar's Color.             
-        attr_accessor :color
-        #Gets or sets the direction the databar is displayed.             
-        attr_accessor :direction
-        #Get or set this DataBar's max value object.            Cannot set null or CFValueObject with type FormatConditionValueType.Min to it.             
-        attr_accessor :max_cfvo
-        #Represents the max length of data bar .             
-        attr_accessor :max_length
-        #Get or set this DataBar's min value object.            Cannot set null or CFValueObject with type FormatConditionValueType.Max to it.             
-        attr_accessor :min_cfvo
-        #Represents the min length of data bar .             
-        attr_accessor :min_length
-        #Gets the NegativeBarFormat object associated with a data bar conditional formatting rule.             
-        attr_accessor :negative_bar_format
-        #Get or set the flag indicating whether to show the values of the cells on which this data bar is applied.            Default value is true.             
-        attr_accessor :show_value
+    # Gets the color of the axis for cells with conditional formatting as data bars.
+    # @return [Color]
+    attr_accessor :axis_color
+    # Gets or sets the position of the axis of the data bars specified by a conditional formatting rule.
+    # @return [String]
+    attr_accessor :axis_position
+    # Gets an object that specifies the border of a data bar.
+    # @return [DataBarBorder]
+    attr_accessor :bar_border
+    # Gets or sets how a data bar is filled with color.
+    # @return [String]
+    attr_accessor :bar_fill_type
+    # Get or set this DataBar's Color.
+    # @return [Color]
+    attr_accessor :color
+    # Gets or sets the direction the databar is displayed.
+    # @return [String]
+    attr_accessor :direction
+    # Get or set this DataBar's max value object.             Cannot set null or CFValueObject with type FormatConditionValueType.Min to it.
+    # @return [ConditionalFormattingValue]
+    attr_accessor :max_cfvo
+    # Represents the max length of data bar .
+    # @return [Integer]
+    attr_accessor :max_length
+    # Get or set this DataBar's min value object.             Cannot set null or CFValueObject with type FormatConditionValueType.Max to it.
+    # @return [ConditionalFormattingValue]
+    attr_accessor :min_cfvo
+    # Represents the min length of data bar .
+    # @return [Integer]
+    attr_accessor :min_length
+    # Gets the NegativeBarFormat object associated with a data bar conditional formatting rule.
+    # @return [NegativeBarFormat]
+    attr_accessor :negative_bar_format
+    # Get or set the flag indicating whether to show the values of the cells on which this data bar is applied.             Default value is true.
+    # @return [BOOLEAN]
+    attr_accessor :show_value
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -70,7 +82,7 @@ module AsposeCellsCloud
         :'min_cfvo' => :'MinCfvo',
         :'min_length' => :'MinLength',
         :'negative_bar_format' => :'NegativeBarFormat',
-        :'show_value' => :'ShowValue'
+        :'show_value' => :'ShowValue',
       }
     end
 
@@ -88,7 +100,7 @@ module AsposeCellsCloud
         :'min_cfvo' => :'ConditionalFormattingValue',
         :'min_length' => :'Integer',
         :'negative_bar_format' => :'NegativeBarFormat',
-        :'show_value' => :'BOOLEAN'
+        :'show_value' => :'BOOLEAN',
       }
     end
 
@@ -96,245 +108,66 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'AxisColor')
-          self.axis_color = attributes[:'AxisColor']
-      end
-      if attributes.has_key?(:'AxisPosition')
-          self.axis_position = attributes[:'AxisPosition']
-      end
-      if attributes.has_key?(:'BarBorder')
-          self.bar_border = attributes[:'BarBorder']
-      end
-      if attributes.has_key?(:'BarFillType')
-          self.bar_fill_type = attributes[:'BarFillType']
-      end
-      if attributes.has_key?(:'Color')
-          self.color = attributes[:'Color']
-      end
-      if attributes.has_key?(:'Direction')
-          self.direction = attributes[:'Direction']
-      end
-      if attributes.has_key?(:'MaxCfvo')
-          self.max_cfvo = attributes[:'MaxCfvo']
-      end
-      if attributes.has_key?(:'MaxLength')
-          self.max_length = attributes[:'MaxLength']
-      end
-      if attributes.has_key?(:'MinCfvo')
-          self.min_cfvo = attributes[:'MinCfvo']
-      end
-      if attributes.has_key?(:'MinLength')
-          self.min_length = attributes[:'MinLength']
-      end
-      if attributes.has_key?(:'NegativeBarFormat')
-          self.negative_bar_format = attributes[:'NegativeBarFormat']
-      end
-      if attributes.has_key?(:'ShowValue')
-          self.show_value = attributes[:'ShowValue']
-      end
-
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.axis_color = attributes[:axis_color] if attributes.key?(:axis_color)
+      self.axis_position = attributes[:axis_position] if attributes.key?(:axis_position)
+      self.bar_border = attributes[:bar_border] if attributes.key?(:bar_border)
+      self.bar_fill_type = attributes[:bar_fill_type] if attributes.key?(:bar_fill_type)
+      self.color = attributes[:color] if attributes.key?(:color)
+      self.direction = attributes[:direction] if attributes.key?(:direction)
+      self.max_cfvo = attributes[:max_cfvo] if attributes.key?(:max_cfvo)
+      self.max_length = attributes[:max_length] if attributes.key?(:max_length)
+      self.min_cfvo = attributes[:min_cfvo] if attributes.key?(:min_cfvo)
+      self.min_length = attributes[:min_length] if attributes.key?(:min_length)
+      self.negative_bar_format = attributes[:negative_bar_format] if attributes.key?(:negative_bar_format)
+      self.show_value = attributes[:show_value] if attributes.key?(:show_value)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @axis_color.nil?
-          invalid_properties.push("invalid value for 'axis_color', axis_color cannot be nil.")
-      end
-      if @axis_position.nil?
-          invalid_properties.push("invalid value for 'axis_position', axis_position cannot be nil.")
-      end
-      if @bar_border.nil?
-          invalid_properties.push("invalid value for 'bar_border', bar_border cannot be nil.")
-      end
-      if @bar_fill_type.nil?
-          invalid_properties.push("invalid value for 'bar_fill_type', bar_fill_type cannot be nil.")
-      end
-      if @color.nil?
-          invalid_properties.push("invalid value for 'color', color cannot be nil.")
-      end
-      if @direction.nil?
-          invalid_properties.push("invalid value for 'direction', direction cannot be nil.")
-      end
-      if @max_cfvo.nil?
-          invalid_properties.push("invalid value for 'max_cfvo', max_cfvo cannot be nil.")
-      end
-      if @max_length.nil?
-          invalid_properties.push("invalid value for 'max_length', max_length cannot be nil.")
-      end
-      if @min_cfvo.nil?
-          invalid_properties.push("invalid value for 'min_cfvo', min_cfvo cannot be nil.")
-      end
-      if @min_length.nil?
-          invalid_properties.push("invalid value for 'min_length', min_length cannot be nil.")
-      end
-      if @negative_bar_format.nil?
-          invalid_properties.push("invalid value for 'negative_bar_format', negative_bar_format cannot be nil.")
-      end
-      if @show_value.nil?
-          invalid_properties.push("invalid value for 'show_value', show_value cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @axis_color.nil?
-      return false if @axis_position.nil?
-      return false if @bar_border.nil?
-      return false if @bar_fill_type.nil?
-      return false if @color.nil?
-      return false if @direction.nil?
-      return false if @max_cfvo.nil?
-      return false if @max_length.nil?
-      return false if @min_cfvo.nil?
-      return false if @min_length.nil?
-      return false if @negative_bar_format.nil?
-      return false if @show_value.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          axis_color == o.axis_color &&
-          axis_position == o.axis_position &&
-          bar_border == o.bar_border &&
-          bar_fill_type == o.bar_fill_type &&
-          color == o.color &&
-          direction == o.direction &&
-          max_cfvo == o.max_cfvo &&
-          max_length == o.max_length &&
-          min_cfvo == o.min_cfvo &&
-          min_length == o.min_length &&
-          negative_bar_format == o.negative_bar_format &&
-          show_value == o.show_value 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ axis_color , axis_position , bar_border , bar_fill_type , color , direction , max_cfvo , max_length , min_cfvo , min_length , negative_bar_format , show_value ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

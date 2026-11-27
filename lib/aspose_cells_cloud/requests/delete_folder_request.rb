@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="DeleteFolder_request.rb.cs">
+ <copyright company="Aspose" file="DeleteFolderRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,93 +25,55 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class DeleteFolderRequest
 
-    attr_accessor :path  
-    attr_accessor :storage_name  
-    attr_accessor :recursive  
+  class DeleteFolderRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :path
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :recursive
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(path:, recursive: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `path` when calling `DeleteFolderRequest.new`' if path.nil?
+      @path = path
+      @recursive = recursive
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'DELETE'
+    end
 
-      if attributes.has_key?(:'path')
-          self.path = attributes[:'path']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/storage/folder/{path}'
+      path = path.gsub('{path}', encode_path_segment(@path))
+      path
+    end
 
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['recursive'] = @recursive unless @recursive.nil?
+      query
+    end
 
-      if attributes.has_key?(:'recursive')
-          self.recursive = attributes[:'recursive']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'path' => :'path',
-        :'storage_name' => :'storageName',
-        :'recursive' => :'recursive'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'path' => :'String',
-        :'storage_name' => :'String',
-        :'recursive' => :'BOOLEAN'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.delete_folder ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'path' is set
-      if api_client.config.client_side_validation && path.nil?
-          fail ArgumentError, "Missing the required parameter 'path' when calling CellsApi.delete_folder "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/storage/folder/{path}".sub('{' + 'path' + '}', path.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'recursive'] = self.recursive if !self.recursive.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:DELETE, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.delete_folder\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

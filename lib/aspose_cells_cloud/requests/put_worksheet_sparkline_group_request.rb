@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PutWorksheetSparklineGroup_request.rb.cs">
+ <copyright company="Aspose" file="PutWorksheetSparklineGroupRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,153 +25,80 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PutWorksheetSparklineGroupRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :type  
-    attr_accessor :data_range  
-    attr_accessor :is_vertical  
-    attr_accessor :location_range  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PutWorksheetSparklineGroupRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :data_range
+    # @return [BOOLEAN]
+    attr_accessor :is_vertical
+    # @return [String]
+    attr_accessor :location_range
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String]
+    attr_accessor :type
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(data_range:, is_vertical:, location_range:, name:, sheet_name:, type:, folder: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `data_range` when calling `PutWorksheetSparklineGroupRequest.new`' if data_range.nil?
+      raise ArgumentError, 'Missing the required parameter `is_vertical` when calling `PutWorksheetSparklineGroupRequest.new`' if is_vertical.nil?
+      raise ArgumentError, 'Missing the required parameter `location_range` when calling `PutWorksheetSparklineGroupRequest.new`' if location_range.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PutWorksheetSparklineGroupRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PutWorksheetSparklineGroupRequest.new`' if sheet_name.nil?
+      raise ArgumentError, 'Missing the required parameter `type` when calling `PutWorksheetSparklineGroupRequest.new`' if type.nil?
+      @data_range = data_range
+      @is_vertical = is_vertical
+      @location_range = location_range
+      @name = name
+      @sheet_name = sheet_name
+      @type = type
+      @folder = folder
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/sparklineGroups'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['type'] = @type
+      query['dataRange'] = @data_range
+      query['isVertical'] = @is_vertical
+      query['locationRange'] = @location_range
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'type')
-          self.type = attributes[:'type']
-      end
-
-      if attributes.has_key?(:'dataRange')
-          self.data_range = attributes[:'dataRange']
-      end
-
-      if attributes.has_key?(:'isVertical')
-          self.is_vertical = attributes[:'isVertical']
-      end
-
-      if attributes.has_key?(:'locationRange')
-          self.location_range = attributes[:'locationRange']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'type' => :'type',
-        :'data_range' => :'dataRange',
-        :'is_vertical' => :'isVertical',
-        :'location_range' => :'locationRange',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'type' => :'String',
-        :'data_range' => :'String',
-        :'is_vertical' => :'BOOLEAN',
-        :'location_range' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.put_worksheet_sparkline_group ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.put_worksheet_sparkline_group "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.put_worksheet_sparkline_group "
-      end 
-      # verify the required parameter 'type' is set
-      if api_client.config.client_side_validation && type.nil?
-          fail ArgumentError, "Missing the required parameter 'type' when calling CellsApi.put_worksheet_sparkline_group "
-      end 
-      # verify the required parameter 'data_range' is set
-      if api_client.config.client_side_validation && data_range.nil?
-          fail ArgumentError, "Missing the required parameter 'data_range' when calling CellsApi.put_worksheet_sparkline_group "
-      end 
-      # verify the required parameter 'is_vertical' is set
-      if api_client.config.client_side_validation && is_vertical.nil?
-          fail ArgumentError, "Missing the required parameter 'is_vertical' when calling CellsApi.put_worksheet_sparkline_group "
-      end 
-      # verify the required parameter 'location_range' is set
-      if api_client.config.client_side_validation && location_range.nil?
-          fail ArgumentError, "Missing the required parameter 'location_range' when calling CellsApi.put_worksheet_sparkline_group "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/sparklineGroups".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'type'] = self.type if !self.type.nil? 
-      query_params[:'dataRange'] = self.data_range if !self.data_range.nil? 
-      query_params[:'isVertical'] = self.is_vertical if !self.is_vertical.nil? 
-      query_params[:'locationRange'] = self.location_range if !self.location_range.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.put_worksheet_sparkline_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

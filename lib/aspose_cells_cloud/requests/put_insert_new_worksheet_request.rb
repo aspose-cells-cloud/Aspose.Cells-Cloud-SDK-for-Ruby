@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PutInsertNewWorksheet_request.rb.cs">
+ <copyright company="Aspose" file="PutInsertNewWorksheetRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,138 +25,74 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PutInsertNewWorksheetRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :index  
-    attr_accessor :sheettype  
-    attr_accessor :newsheetname  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PutInsertNewWorksheetRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [Integer]
+    attr_accessor :index
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String]
+    attr_accessor :sheettype
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :newsheetname
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(index:, name:, sheet_name:, sheettype:, folder: nil, newsheetname: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `index` when calling `PutInsertNewWorksheetRequest.new`' if index.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PutInsertNewWorksheetRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PutInsertNewWorksheetRequest.new`' if sheet_name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheettype` when calling `PutInsertNewWorksheetRequest.new`' if sheettype.nil?
+      @index = index
+      @name = name
+      @sheet_name = sheet_name
+      @sheettype = sheettype
+      @folder = folder
+      @newsheetname = newsheetname
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/insert'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['sheetName'] = @sheet_name
+      query['index'] = @index
+      query['sheettype'] = @sheettype
+      query['newsheetname'] = @newsheetname unless @newsheetname.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'index')
-          self.index = attributes[:'index']
-      end
-
-      if attributes.has_key?(:'sheettype')
-          self.sheettype = attributes[:'sheettype']
-      end
-
-      if attributes.has_key?(:'newsheetname')
-          self.newsheetname = attributes[:'newsheetname']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'index' => :'index',
-        :'sheettype' => :'sheettype',
-        :'newsheetname' => :'newsheetname',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'index' => :'Integer',
-        :'sheettype' => :'String',
-        :'newsheetname' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.put_insert_new_worksheet ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.put_insert_new_worksheet "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.put_insert_new_worksheet "
-      end 
-      # verify the required parameter 'index' is set
-      if api_client.config.client_side_validation && index.nil?
-          fail ArgumentError, "Missing the required parameter 'index' when calling CellsApi.put_insert_new_worksheet "
-      end 
-      # verify the required parameter 'sheettype' is set
-      if api_client.config.client_side_validation && sheettype.nil?
-          fail ArgumentError, "Missing the required parameter 'sheettype' when calling CellsApi.put_insert_new_worksheet "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/insert".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'sheetName'] = self.sheet_name if !self.sheet_name.nil? 
-      query_params[:'index'] = self.index if !self.index.nil? 
-      query_params[:'sheettype'] = self.sheettype if !self.sheettype.nil? 
-      query_params[:'newsheetname'] = self.newsheetname if !self.newsheetname.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.put_insert_new_worksheet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

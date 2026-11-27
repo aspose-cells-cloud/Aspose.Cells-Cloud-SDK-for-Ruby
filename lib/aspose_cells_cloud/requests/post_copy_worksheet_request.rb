@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostCopyWorksheet_request.rb.cs">
+ <copyright company="Aspose" file="PostCopyWorksheetRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,145 +25,89 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostCopyWorksheetRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :source_sheet  
-    attr_accessor :options  
-    attr_accessor :source_workbook  
-    attr_accessor :source_folder  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PostCopyWorksheetRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [CopyOptions]
+    attr_accessor :options
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String]
+    attr_accessor :source_sheet
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :source_folder
+    # @return [String, nil when omitted]
+    attr_accessor :source_workbook
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, options:, sheet_name:, source_sheet:, folder: nil, source_folder: nil, source_workbook: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostCopyWorksheetRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `options` when calling `PostCopyWorksheetRequest.new`' if options.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PostCopyWorksheetRequest.new`' if sheet_name.nil?
+      raise ArgumentError, 'Missing the required parameter `source_sheet` when calling `PostCopyWorksheetRequest.new`' if source_sheet.nil?
+      @name = name
+      @options = options
+      @sheet_name = sheet_name
+      @source_sheet = source_sheet
+      @folder = folder
+      @source_folder = source_folder
+      @source_workbook = source_workbook
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/copy'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['sourceSheet'] = @source_sheet
+      query['sourceWorkbook'] = @source_workbook unless @source_workbook.nil?
+      query['sourceFolder'] = @source_folder unless @source_folder.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'sourceSheet')
-          self.source_sheet = attributes[:'sourceSheet']
-      end
-
-      if attributes.has_key?(:'options')
-          self.options = attributes[:'options']
-      end
-
-      if attributes.has_key?(:'sourceWorkbook')
-          self.source_workbook = attributes[:'sourceWorkbook']
-      end
-
-      if attributes.has_key?(:'sourceFolder')
-          self.source_folder = attributes[:'sourceFolder']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'source_sheet' => :'sourceSheet',
-        :'options' => :'options',
-        :'source_workbook' => :'sourceWorkbook',
-        :'source_folder' => :'sourceFolder',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'source_sheet' => :'String',
-        :'options' => :'CopyOptions',
-        :'source_workbook' => :'String',
-        :'source_folder' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @options.nil?
+      if @options.is_a?(Array)
+        @options.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @options.respond_to?(:to_hash)
+        @options.to_hash
+      else
+        @options
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_copy_worksheet ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_copy_worksheet "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.post_copy_worksheet "
-      end 
-      # verify the required parameter 'source_sheet' is set
-      if api_client.config.client_side_validation && source_sheet.nil?
-          fail ArgumentError, "Missing the required parameter 'source_sheet' when calling CellsApi.post_copy_worksheet "
-      end 
-      # verify the required parameter 'options' is set
-      if api_client.config.client_side_validation && options.nil?
-          fail ArgumentError, "Missing the required parameter 'options' when calling CellsApi.post_copy_worksheet "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/copy".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'sourceSheet'] = self.source_sheet if !self.source_sheet.nil? 
-      query_params[:'sourceWorkbook'] = self.source_workbook if !self.source_workbook.nil? 
-      query_params[:'sourceFolder'] = self.source_folder if !self.source_folder.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(options) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_copy_worksheet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="CopyFile_request.rb.cs">
+ <copyright company="Aspose" file="CopyFileRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,113 +25,64 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class CopyFileRequest
 
-    attr_accessor :src_path  
-    attr_accessor :dest_path  
-    attr_accessor :src_storage_name  
-    attr_accessor :dest_storage_name  
-    attr_accessor :version_id  
+  class CopyFileRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :dest_path
+    # @return [String]
+    attr_accessor :src_path
+    # @return [String, nil when omitted]
+    attr_accessor :dest_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :src_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :version_id
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(dest_path:, src_path:, dest_storage_name: nil, src_storage_name: nil, version_id: nil)
+      raise ArgumentError, 'Missing the required parameter `dest_path` when calling `CopyFileRequest.new`' if dest_path.nil?
+      raise ArgumentError, 'Missing the required parameter `src_path` when calling `CopyFileRequest.new`' if src_path.nil?
+      @dest_path = dest_path
+      @src_path = src_path
+      @dest_storage_name = dest_storage_name
+      @src_storage_name = src_storage_name
+      @version_id = version_id
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'srcPath')
-          self.src_path = attributes[:'srcPath']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/storage/file/copy/{srcPath}'
+      path = path.gsub('{srcPath}', encode_path_segment(@src_path))
+      path
+    end
 
-      if attributes.has_key?(:'destPath')
-          self.dest_path = attributes[:'destPath']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['destPath'] = @dest_path
+      query['srcStorageName'] = @src_storage_name unless @src_storage_name.nil?
+      query['destStorageName'] = @dest_storage_name unless @dest_storage_name.nil?
+      query['versionId'] = @version_id unless @version_id.nil?
+      query
+    end
 
-      if attributes.has_key?(:'srcStorageName')
-          self.src_storage_name = attributes[:'srcStorageName']
-      end
-
-      if attributes.has_key?(:'destStorageName')
-          self.dest_storage_name = attributes[:'destStorageName']
-      end
-
-      if attributes.has_key?(:'versionId')
-          self.version_id = attributes[:'versionId']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'src_path' => :'srcPath',
-        :'dest_path' => :'destPath',
-        :'src_storage_name' => :'srcStorageName',
-        :'dest_storage_name' => :'destStorageName',
-        :'version_id' => :'versionId'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'src_path' => :'String',
-        :'dest_path' => :'String',
-        :'src_storage_name' => :'String',
-        :'dest_storage_name' => :'String',
-        :'version_id' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.copy_file ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'src_path' is set
-      if api_client.config.client_side_validation && src_path.nil?
-          fail ArgumentError, "Missing the required parameter 'src_path' when calling CellsApi.copy_file "
-      end 
-      # verify the required parameter 'dest_path' is set
-      if api_client.config.client_side_validation && dest_path.nil?
-          fail ArgumentError, "Missing the required parameter 'dest_path' when calling CellsApi.copy_file "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/storage/file/copy/{srcPath}".sub('{' + 'srcPath' + '}', src_path.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'destPath'] = self.dest_path if !self.dest_path.nil? 
-      query_params[:'srcStorageName'] = self.src_storage_name if !self.src_storage_name.nil? 
-      query_params[:'destStorageName'] = self.dest_storage_name if !self.dest_storage_name.nil? 
-      query_params[:'versionId'] = self.version_id if !self.version_id.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.copy_file\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

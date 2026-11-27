@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="ExtractText_request.rb.cs">
+ <copyright company="Aspose" file="ExtractTextRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,187 +25,103 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class ExtractTextRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :extract_text_type  
-    attr_accessor :out_position_range  
-    attr_accessor :before_text  
-    attr_accessor :after_text  
-    attr_accessor :before_position  
-    attr_accessor :after_position  
-    attr_accessor :worksheet  
-    attr_accessor :range  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :region  
-    attr_accessor :password  
+  class ExtractTextRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :extract_text_type
+    # @return [String]
+    attr_accessor :out_position_range
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [Integer, nil when omitted]
+    attr_accessor :after_position
+    # @return [String, nil when omitted]
+    attr_accessor :after_text
+    # @return [Integer, nil when omitted]
+    attr_accessor :before_position
+    # @return [String, nil when omitted]
+    attr_accessor :before_text
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :range
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :worksheet
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(extract_text_type:, out_position_range:, spreadsheet:, after_position: nil, after_text: nil, before_position: nil, before_text: nil, out_path: nil, out_storage_name: nil, password: nil, range: nil, region: nil, worksheet: nil)
+      raise ArgumentError, 'Missing the required parameter `extract_text_type` when calling `ExtractTextRequest.new`' if extract_text_type.nil?
+      raise ArgumentError, 'Missing the required parameter `out_position_range` when calling `ExtractTextRequest.new`' if out_position_range.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `ExtractTextRequest.new`' if spreadsheet.nil?
+      @extract_text_type = extract_text_type
+      @out_position_range = out_position_range
+      @spreadsheet = spreadsheet
+      @after_position = after_position
+      @after_text = after_text
+      @before_position = before_position
+      @before_text = before_text
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @password = password
+      @range = range
+      @region = region
+      @worksheet = worksheet
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/content/extract/text'
+      path
+    end
 
-      if attributes.has_key?(:'extractTextType')
-          self.extract_text_type = attributes[:'extractTextType']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['extractTextType'] = @extract_text_type
+      query['outPositionRange'] = @out_position_range
+      query['beforeText'] = @before_text unless @before_text.nil?
+      query['afterText'] = @after_text unless @after_text.nil?
+      query['beforePosition'] = @before_position unless @before_position.nil?
+      query['afterPosition'] = @after_position unless @after_position.nil?
+      query['worksheet'] = @worksheet unless @worksheet.nil?
+      query['range'] = @range unless @range.nil?
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'outPositionRange')
-          self.out_position_range = attributes[:'outPositionRange']
-      end
-
-      if attributes.has_key?(:'beforeText')
-          self.before_text = attributes[:'beforeText']
-      end
-
-      if attributes.has_key?(:'afterText')
-          self.after_text = attributes[:'afterText']
-      end
-
-      if attributes.has_key?(:'beforePosition')
-          self.before_position = attributes[:'beforePosition']
-      end
-
-      if attributes.has_key?(:'afterPosition')
-          self.after_position = attributes[:'afterPosition']
-      end
-
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
-
-      if attributes.has_key?(:'range')
-          self.range = attributes[:'range']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'extract_text_type' => :'extractTextType',
-        :'out_position_range' => :'outPositionRange',
-        :'before_text' => :'beforeText',
-        :'after_text' => :'afterText',
-        :'before_position' => :'beforePosition',
-        :'after_position' => :'afterPosition',
-        :'worksheet' => :'worksheet',
-        :'range' => :'range',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'spreadsheet' => :'String',
-        :'extract_text_type' => :'String',
-        :'out_position_range' => :'String',
-        :'before_text' => :'String',
-        :'after_text' => :'String',
-        :'before_position' => :'Integer',
-        :'after_position' => :'Integer',
-        :'worksheet' => :'String',
-        :'range' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.extract_text ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.extract_text "
-      end 
-      # verify the required parameter 'extract_text_type' is set
-      if api_client.config.client_side_validation && extract_text_type.nil?
-          fail ArgumentError, "Missing the required parameter 'extract_text_type' when calling CellsApi.extract_text "
-      end 
-      # verify the required parameter 'out_position_range' is set
-      if api_client.config.client_side_validation && out_position_range.nil?
-          fail ArgumentError, "Missing the required parameter 'out_position_range' when calling CellsApi.extract_text "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/content/extract/text"
-      # query parameters
-      query_params = {}
-      query_params[:'extractTextType'] = self.extract_text_type if !self.extract_text_type.nil? 
-      query_params[:'outPositionRange'] = self.out_position_range if !self.out_position_range.nil? 
-      query_params[:'beforeText'] = self.before_text if !self.before_text.nil? 
-      query_params[:'afterText'] = self.after_text if !self.after_text.nil? 
-      query_params[:'beforePosition'] = self.before_position if !self.before_position.nil? 
-      query_params[:'afterPosition'] = self.after_position if !self.after_position.nil? 
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'range'] = self.range if !self.range.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.extract_text\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

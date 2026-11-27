@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostTrimContent_request.rb.cs">
+ <copyright company="Aspose" file="PostTrimContentRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,78 +25,52 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostTrimContentRequest
 
-    attr_accessor :trim_content_options  
+  class PostTrimContentRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [TrimContentOptions]
+    attr_accessor :trim_content_options
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(trim_content_options:)
+      raise ArgumentError, 'Missing the required parameter `trim_content_options` when calling `PostTrimContentRequest.new`' if trim_content_options.nil?
+      @trim_content_options = trim_content_options
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'trimContentOptions')
-          self.trim_content_options = attributes[:'trimContentOptions']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/trimcontent'
+      path
+    end
 
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'trim_content_options' => :'trimContentOptions'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'trim_content_options' => :'TrimContentOptions'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @trim_content_options.nil?
+      if @trim_content_options.is_a?(Array)
+        @trim_content_options.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @trim_content_options.respond_to?(:to_hash)
+        @trim_content_options.to_hash
+      else
+        @trim_content_options
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_trim_content ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'trim_content_options' is set
-      if api_client.config.client_side_validation && trim_content_options.nil?
-          fail ArgumentError, "Missing the required parameter 'trim_content_options' when calling CellsApi.post_trim_content "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/trimcontent"
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(trim_content_options) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FileInfo')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_trim_content\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

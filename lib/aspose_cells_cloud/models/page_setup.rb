@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PageSetuprb.cs">
+ <copyright company="Aspose" file="PageSetup.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,80 +25,114 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
 
 module AsposeCellsCloud
 
+  # excel print page setting
   class PageSetup
-        #Represents if elements of the document will be printed in black and white.             
-        attr_accessor :black_and_white
-        #Represents the size of the bottom margin, in unit of centimeters.             
-        attr_accessor :bottom_margin
-        #Represent if the sheet is printed centered horizontally.             
-        attr_accessor :center_horizontally
-        #Represent if the sheet is printed centered vertically.             
-        attr_accessor :center_vertically
-        #Represents the first page number that will be used when this sheet is printed.             
-        attr_accessor :first_page_number
-        #Represents  the number of pages tall the worksheet will be scaled to when it's printed.            The default value is 1.             
-        attr_accessor :fit_to_pages_tall
-        #Represents the number of pages wide the worksheet will be scaled to when it's printed.            The default value is 1.             
-        attr_accessor :fit_to_pages_wide
-        #Represents the distance from the bottom of the page to the footer, in unit of centimeters.             
-        attr_accessor :footer_margin
-        #Represents the distance from the top of the page to the header, in unit of centimeters.             
-        attr_accessor :header_margin
-        #Indicates whether the first the page number is automatically assigned.             
-        attr_accessor :is_auto_first_page_number
-        #Indicates whether header and footer margins are aligned with the page margins.            If this property is true, the left header and footer will be aligned with the left margin,            and the right header and footer will be aligned with the right margin.            This option is enabled by default.             
-        attr_accessor :is_hf_align_margins
-        #True means that the header/footer of the first page is different with other pages.             
-        attr_accessor :is_hf_diff_first
-        #True means that the header/footer of the odd pages is different with odd pages.             
-        attr_accessor :is_hf_diff_odd_even
-        #Indicates whether header and footer are scaled with document scaling.            Only applies for Excel 2007.             
-        attr_accessor :is_hf_scale_with_doc
-        #If this property is False, the FitToPagesWide and FitToPagesTall properties control how the worksheet is scaled.             
-        attr_accessor :is_percent_scale
-        #Represents the size of the left margin, in unit of centimeters.             
-        attr_accessor :left_margin
-        #Represents the order that Microsoft Excel uses to number pages when printing a large worksheet.             
-        attr_accessor :order
-        #Represents page print orientation.             
-        attr_accessor :orientation
-        #Represents the size of the paper.             
-        attr_accessor :paper_size
-        #Represents the range to be printed.             
-        attr_accessor :print_area
-        #Represents the way comments are printed with the sheet.             
-        attr_accessor :print_comments
-        #Get and sets number of copies to print.             
-        attr_accessor :print_copies
-        #Represents if the sheet will be printed without graphics.             
-        attr_accessor :print_draft
-        #Specifies the type of print error displayed.             
-        attr_accessor :print_errors
-        #Represents if cell gridlines are printed on the page.             
-        attr_accessor :print_gridlines
-        #Represents if row and column headings are printed with this page.             
-        attr_accessor :print_headings
-        #Represents the print quality.             
-        attr_accessor :print_quality
-        #Represents the columns that contain the cells to be repeated on the left side of each page.             
-        attr_accessor :print_title_columns
-        #Represents the rows that contain the cells to be repeated at the top of each page.             
-        attr_accessor :print_title_rows
-        #Represents the size of the right margin, in unit of centimeters.             
-        attr_accessor :right_margin
-        #Represents the size of the top margin, in unit of centimeters.             
-        attr_accessor :top_margin
-        #Represents the scaling factor in percent. It should be between 10 and 400.             
-        attr_accessor :zoom
-        #Represents the page header.            
-        attr_accessor :header
-        #Represents the page footor.            
-        attr_accessor :footer
+    # Represents if elements of the document will be printed in black and white.
+    # @return [BOOLEAN]
+    attr_accessor :black_and_white
+    # Represents the size of the bottom margin, in unit of centimeters.
+    # @return [Float]
+    attr_accessor :bottom_margin
+    # Represent if the sheet is printed centered horizontally.
+    # @return [BOOLEAN]
+    attr_accessor :center_horizontally
+    # Represent if the sheet is printed centered vertically.
+    # @return [BOOLEAN]
+    attr_accessor :center_vertically
+    # Represents the first page number that will be used when this sheet is printed.
+    # @return [Integer]
+    attr_accessor :first_page_number
+    # Represents  the number of pages tall the worksheet will be scaled to when it's printed.             The default value is 1.
+    # @return [Integer]
+    attr_accessor :fit_to_pages_tall
+    # Represents the number of pages wide the worksheet will be scaled to when it's printed.             The default value is 1.
+    # @return [Integer]
+    attr_accessor :fit_to_pages_wide
+    # Represents the distance from the bottom of the page to the footer, in unit of centimeters.
+    # @return [Float]
+    attr_accessor :footer_margin
+    # Represents the distance from the top of the page to the header, in unit of centimeters.
+    # @return [Float]
+    attr_accessor :header_margin
+    # Indicates whether the first the page number is automatically assigned.
+    # @return [BOOLEAN]
+    attr_accessor :is_auto_first_page_number
+    # Indicates whether header and footer margins are aligned with the page margins.             If this property is true, the left header and footer will be aligned with the left margin,             and the right header and footer will be aligned with the right margin.             This option is enabled by default.
+    # @return [BOOLEAN]
+    attr_accessor :is_hf_align_margins
+    # True means that the header/footer of the first page is different with other pages.
+    # @return [BOOLEAN]
+    attr_accessor :is_hf_diff_first
+    # True means that the header/footer of the odd pages is different with odd pages.
+    # @return [BOOLEAN]
+    attr_accessor :is_hf_diff_odd_even
+    # Indicates whether header and footer are scaled with document scaling.             Only applies for Excel 2007.
+    # @return [BOOLEAN]
+    attr_accessor :is_hf_scale_with_doc
+    # If this property is False, the FitToPagesWide and FitToPagesTall properties control how the worksheet is scaled.
+    # @return [BOOLEAN]
+    attr_accessor :is_percent_scale
+    # Represents the size of the left margin, in unit of centimeters.
+    # @return [Float]
+    attr_accessor :left_margin
+    # Represents the order that Microsoft Excel uses to number pages when printing a large worksheet.
+    # @return [String]
+    attr_accessor :order
+    # Represents page print orientation.
+    # @return [String]
+    attr_accessor :orientation
+    # Represents the size of the paper.
+    # @return [String]
+    attr_accessor :paper_size
+    # Represents the range to be printed.
+    # @return [String]
+    attr_accessor :print_area
+    # Represents the way comments are printed with the sheet.
+    # @return [String]
+    attr_accessor :print_comments
+    # Get and sets number of copies to print.
+    # @return [Integer]
+    attr_accessor :print_copies
+    # Represents if the sheet will be printed without graphics.
+    # @return [BOOLEAN]
+    attr_accessor :print_draft
+    # Specifies the type of print error displayed.
+    # @return [String]
+    attr_accessor :print_errors
+    # Represents if cell gridlines are printed on the page.
+    # @return [BOOLEAN]
+    attr_accessor :print_gridlines
+    # Represents if row and column headings are printed with this page.
+    # @return [BOOLEAN]
+    attr_accessor :print_headings
+    # Represents the print quality.
+    # @return [Integer]
+    attr_accessor :print_quality
+    # Represents the columns that contain the cells to be repeated on the left side of each page.
+    # @return [String]
+    attr_accessor :print_title_columns
+    # Represents the rows that contain the cells to be repeated at the top of each page.
+    # @return [String]
+    attr_accessor :print_title_rows
+    # Represents the size of the right margin, in unit of centimeters.
+    # @return [Float]
+    attr_accessor :right_margin
+    # Represents the size of the top margin, in unit of centimeters.
+    # @return [Float]
+    attr_accessor :top_margin
+    # Represents the scaling factor in percent. It should be between 10 and 400.
+    # @return [Integer]
+    attr_accessor :zoom
+    # Represents the page header.
+    # @return [Array<PageSection>]
+    attr_accessor :header
+    # Represents the page footor.
+    # @return [Array<PageSection>]
+    attr_accessor :footer
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -136,7 +170,7 @@ module AsposeCellsCloud
         :'top_margin' => :'TopMargin',
         :'zoom' => :'Zoom',
         :'header' => :'Header',
-        :'footer' => :'Footer'
+        :'footer' => :'Footer',
       }
     end
 
@@ -176,7 +210,7 @@ module AsposeCellsCloud
         :'top_margin' => :'Float',
         :'zoom' => :'Integer',
         :'header' => :'Array<PageSection>',
-        :'footer' => :'Array<PageSection>'
+        :'footer' => :'Array<PageSection>',
       }
     end
 
@@ -184,421 +218,88 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'BlackAndWhite')
-          self.black_and_white = attributes[:'BlackAndWhite']
-      end
-      if attributes.has_key?(:'BottomMargin')
-          self.bottom_margin = attributes[:'BottomMargin']
-      end
-      if attributes.has_key?(:'CenterHorizontally')
-          self.center_horizontally = attributes[:'CenterHorizontally']
-      end
-      if attributes.has_key?(:'CenterVertically')
-          self.center_vertically = attributes[:'CenterVertically']
-      end
-      if attributes.has_key?(:'FirstPageNumber')
-          self.first_page_number = attributes[:'FirstPageNumber']
-      end
-      if attributes.has_key?(:'FitToPagesTall')
-          self.fit_to_pages_tall = attributes[:'FitToPagesTall']
-      end
-      if attributes.has_key?(:'FitToPagesWide')
-          self.fit_to_pages_wide = attributes[:'FitToPagesWide']
-      end
-      if attributes.has_key?(:'FooterMargin')
-          self.footer_margin = attributes[:'FooterMargin']
-      end
-      if attributes.has_key?(:'HeaderMargin')
-          self.header_margin = attributes[:'HeaderMargin']
-      end
-      if attributes.has_key?(:'IsAutoFirstPageNumber')
-          self.is_auto_first_page_number = attributes[:'IsAutoFirstPageNumber']
-      end
-      if attributes.has_key?(:'IsHFAlignMargins')
-          self.is_hf_align_margins = attributes[:'IsHFAlignMargins']
-      end
-      if attributes.has_key?(:'IsHFDiffFirst')
-          self.is_hf_diff_first = attributes[:'IsHFDiffFirst']
-      end
-      if attributes.has_key?(:'IsHFDiffOddEven')
-          self.is_hf_diff_odd_even = attributes[:'IsHFDiffOddEven']
-      end
-      if attributes.has_key?(:'IsHFScaleWithDoc')
-          self.is_hf_scale_with_doc = attributes[:'IsHFScaleWithDoc']
-      end
-      if attributes.has_key?(:'IsPercentScale')
-          self.is_percent_scale = attributes[:'IsPercentScale']
-      end
-      if attributes.has_key?(:'LeftMargin')
-          self.left_margin = attributes[:'LeftMargin']
-      end
-      if attributes.has_key?(:'Order')
-          self.order = attributes[:'Order']
-      end
-      if attributes.has_key?(:'Orientation')
-          self.orientation = attributes[:'Orientation']
-      end
-      if attributes.has_key?(:'PaperSize')
-          self.paper_size = attributes[:'PaperSize']
-      end
-      if attributes.has_key?(:'PrintArea')
-          self.print_area = attributes[:'PrintArea']
-      end
-      if attributes.has_key?(:'PrintComments')
-          self.print_comments = attributes[:'PrintComments']
-      end
-      if attributes.has_key?(:'PrintCopies')
-          self.print_copies = attributes[:'PrintCopies']
-      end
-      if attributes.has_key?(:'PrintDraft')
-          self.print_draft = attributes[:'PrintDraft']
-      end
-      if attributes.has_key?(:'PrintErrors')
-          self.print_errors = attributes[:'PrintErrors']
-      end
-      if attributes.has_key?(:'PrintGridlines')
-          self.print_gridlines = attributes[:'PrintGridlines']
-      end
-      if attributes.has_key?(:'PrintHeadings')
-          self.print_headings = attributes[:'PrintHeadings']
-      end
-      if attributes.has_key?(:'PrintQuality')
-          self.print_quality = attributes[:'PrintQuality']
-      end
-      if attributes.has_key?(:'PrintTitleColumns')
-          self.print_title_columns = attributes[:'PrintTitleColumns']
-      end
-      if attributes.has_key?(:'PrintTitleRows')
-          self.print_title_rows = attributes[:'PrintTitleRows']
-      end
-      if attributes.has_key?(:'RightMargin')
-          self.right_margin = attributes[:'RightMargin']
-      end
-      if attributes.has_key?(:'TopMargin')
-          self.top_margin = attributes[:'TopMargin']
-      end
-      if attributes.has_key?(:'Zoom')
-          self.zoom = attributes[:'Zoom']
-      end
-      if attributes.has_key?(:'Header')
-          self.header = attributes[:'Header']
-      end
-      if attributes.has_key?(:'Footer')
-          self.footer = attributes[:'Footer']
-      end
-
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.black_and_white = attributes[:black_and_white] if attributes.key?(:black_and_white)
+      self.bottom_margin = attributes[:bottom_margin] if attributes.key?(:bottom_margin)
+      self.center_horizontally = attributes[:center_horizontally] if attributes.key?(:center_horizontally)
+      self.center_vertically = attributes[:center_vertically] if attributes.key?(:center_vertically)
+      self.first_page_number = attributes[:first_page_number] if attributes.key?(:first_page_number)
+      self.fit_to_pages_tall = attributes[:fit_to_pages_tall] if attributes.key?(:fit_to_pages_tall)
+      self.fit_to_pages_wide = attributes[:fit_to_pages_wide] if attributes.key?(:fit_to_pages_wide)
+      self.footer_margin = attributes[:footer_margin] if attributes.key?(:footer_margin)
+      self.header_margin = attributes[:header_margin] if attributes.key?(:header_margin)
+      self.is_auto_first_page_number = attributes[:is_auto_first_page_number] if attributes.key?(:is_auto_first_page_number)
+      self.is_hf_align_margins = attributes[:is_hf_align_margins] if attributes.key?(:is_hf_align_margins)
+      self.is_hf_diff_first = attributes[:is_hf_diff_first] if attributes.key?(:is_hf_diff_first)
+      self.is_hf_diff_odd_even = attributes[:is_hf_diff_odd_even] if attributes.key?(:is_hf_diff_odd_even)
+      self.is_hf_scale_with_doc = attributes[:is_hf_scale_with_doc] if attributes.key?(:is_hf_scale_with_doc)
+      self.is_percent_scale = attributes[:is_percent_scale] if attributes.key?(:is_percent_scale)
+      self.left_margin = attributes[:left_margin] if attributes.key?(:left_margin)
+      self.order = attributes[:order] if attributes.key?(:order)
+      self.orientation = attributes[:orientation] if attributes.key?(:orientation)
+      self.paper_size = attributes[:paper_size] if attributes.key?(:paper_size)
+      self.print_area = attributes[:print_area] if attributes.key?(:print_area)
+      self.print_comments = attributes[:print_comments] if attributes.key?(:print_comments)
+      self.print_copies = attributes[:print_copies] if attributes.key?(:print_copies)
+      self.print_draft = attributes[:print_draft] if attributes.key?(:print_draft)
+      self.print_errors = attributes[:print_errors] if attributes.key?(:print_errors)
+      self.print_gridlines = attributes[:print_gridlines] if attributes.key?(:print_gridlines)
+      self.print_headings = attributes[:print_headings] if attributes.key?(:print_headings)
+      self.print_quality = attributes[:print_quality] if attributes.key?(:print_quality)
+      self.print_title_columns = attributes[:print_title_columns] if attributes.key?(:print_title_columns)
+      self.print_title_rows = attributes[:print_title_rows] if attributes.key?(:print_title_rows)
+      self.right_margin = attributes[:right_margin] if attributes.key?(:right_margin)
+      self.top_margin = attributes[:top_margin] if attributes.key?(:top_margin)
+      self.zoom = attributes[:zoom] if attributes.key?(:zoom)
+      self.header = attributes[:header] if attributes.key?(:header)
+      self.footer = attributes[:footer] if attributes.key?(:footer)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @black_and_white.nil?
-          invalid_properties.push("invalid value for 'black_and_white', black_and_white cannot be nil.")
-      end
-      if @bottom_margin.nil?
-          invalid_properties.push("invalid value for 'bottom_margin', bottom_margin cannot be nil.")
-      end
-      if @center_horizontally.nil?
-          invalid_properties.push("invalid value for 'center_horizontally', center_horizontally cannot be nil.")
-      end
-      if @center_vertically.nil?
-          invalid_properties.push("invalid value for 'center_vertically', center_vertically cannot be nil.")
-      end
-      if @first_page_number.nil?
-          invalid_properties.push("invalid value for 'first_page_number', first_page_number cannot be nil.")
-      end
-      if @fit_to_pages_tall.nil?
-          invalid_properties.push("invalid value for 'fit_to_pages_tall', fit_to_pages_tall cannot be nil.")
-      end
-      if @fit_to_pages_wide.nil?
-          invalid_properties.push("invalid value for 'fit_to_pages_wide', fit_to_pages_wide cannot be nil.")
-      end
-      if @footer_margin.nil?
-          invalid_properties.push("invalid value for 'footer_margin', footer_margin cannot be nil.")
-      end
-      if @header_margin.nil?
-          invalid_properties.push("invalid value for 'header_margin', header_margin cannot be nil.")
-      end
-      if @is_auto_first_page_number.nil?
-          invalid_properties.push("invalid value for 'is_auto_first_page_number', is_auto_first_page_number cannot be nil.")
-      end
-      if @is_hf_align_margins.nil?
-          invalid_properties.push("invalid value for 'is_hf_align_margins', is_hf_align_margins cannot be nil.")
-      end
-      if @is_hf_diff_first.nil?
-          invalid_properties.push("invalid value for 'is_hf_diff_first', is_hf_diff_first cannot be nil.")
-      end
-      if @is_hf_diff_odd_even.nil?
-          invalid_properties.push("invalid value for 'is_hf_diff_odd_even', is_hf_diff_odd_even cannot be nil.")
-      end
-      if @is_hf_scale_with_doc.nil?
-          invalid_properties.push("invalid value for 'is_hf_scale_with_doc', is_hf_scale_with_doc cannot be nil.")
-      end
-      if @is_percent_scale.nil?
-          invalid_properties.push("invalid value for 'is_percent_scale', is_percent_scale cannot be nil.")
-      end
-      if @left_margin.nil?
-          invalid_properties.push("invalid value for 'left_margin', left_margin cannot be nil.")
-      end
-      if @order.nil?
-          invalid_properties.push("invalid value for 'order', order cannot be nil.")
-      end
-      if @orientation.nil?
-          invalid_properties.push("invalid value for 'orientation', orientation cannot be nil.")
-      end
-      if @paper_size.nil?
-          invalid_properties.push("invalid value for 'paper_size', paper_size cannot be nil.")
-      end
-      if @print_area.nil?
-          invalid_properties.push("invalid value for 'print_area', print_area cannot be nil.")
-      end
-      if @print_comments.nil?
-          invalid_properties.push("invalid value for 'print_comments', print_comments cannot be nil.")
-      end
-      if @print_copies.nil?
-          invalid_properties.push("invalid value for 'print_copies', print_copies cannot be nil.")
-      end
-      if @print_draft.nil?
-          invalid_properties.push("invalid value for 'print_draft', print_draft cannot be nil.")
-      end
-      if @print_errors.nil?
-          invalid_properties.push("invalid value for 'print_errors', print_errors cannot be nil.")
-      end
-      if @print_gridlines.nil?
-          invalid_properties.push("invalid value for 'print_gridlines', print_gridlines cannot be nil.")
-      end
-      if @print_headings.nil?
-          invalid_properties.push("invalid value for 'print_headings', print_headings cannot be nil.")
-      end
-      if @print_quality.nil?
-          invalid_properties.push("invalid value for 'print_quality', print_quality cannot be nil.")
-      end
-      if @print_title_columns.nil?
-          invalid_properties.push("invalid value for 'print_title_columns', print_title_columns cannot be nil.")
-      end
-      if @print_title_rows.nil?
-          invalid_properties.push("invalid value for 'print_title_rows', print_title_rows cannot be nil.")
-      end
-      if @right_margin.nil?
-          invalid_properties.push("invalid value for 'right_margin', right_margin cannot be nil.")
-      end
-      if @top_margin.nil?
-          invalid_properties.push("invalid value for 'top_margin', top_margin cannot be nil.")
-      end
-      if @zoom.nil?
-          invalid_properties.push("invalid value for 'zoom', zoom cannot be nil.")
-      end
-      if @header.nil?
-          invalid_properties.push("invalid value for 'header', header cannot be nil.")
-      end
-      if @footer.nil?
-          invalid_properties.push("invalid value for 'footer', footer cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @black_and_white.nil?
-      return false if @bottom_margin.nil?
-      return false if @center_horizontally.nil?
-      return false if @center_vertically.nil?
-      return false if @first_page_number.nil?
-      return false if @fit_to_pages_tall.nil?
-      return false if @fit_to_pages_wide.nil?
-      return false if @footer_margin.nil?
-      return false if @header_margin.nil?
-      return false if @is_auto_first_page_number.nil?
-      return false if @is_hf_align_margins.nil?
-      return false if @is_hf_diff_first.nil?
-      return false if @is_hf_diff_odd_even.nil?
-      return false if @is_hf_scale_with_doc.nil?
-      return false if @is_percent_scale.nil?
-      return false if @left_margin.nil?
-      return false if @order.nil?
-      return false if @orientation.nil?
-      return false if @paper_size.nil?
-      return false if @print_area.nil?
-      return false if @print_comments.nil?
-      return false if @print_copies.nil?
-      return false if @print_draft.nil?
-      return false if @print_errors.nil?
-      return false if @print_gridlines.nil?
-      return false if @print_headings.nil?
-      return false if @print_quality.nil?
-      return false if @print_title_columns.nil?
-      return false if @print_title_rows.nil?
-      return false if @right_margin.nil?
-      return false if @top_margin.nil?
-      return false if @zoom.nil?
-      return false if @header.nil?
-      return false if @footer.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          black_and_white == o.black_and_white &&
-          bottom_margin == o.bottom_margin &&
-          center_horizontally == o.center_horizontally &&
-          center_vertically == o.center_vertically &&
-          first_page_number == o.first_page_number &&
-          fit_to_pages_tall == o.fit_to_pages_tall &&
-          fit_to_pages_wide == o.fit_to_pages_wide &&
-          footer_margin == o.footer_margin &&
-          header_margin == o.header_margin &&
-          is_auto_first_page_number == o.is_auto_first_page_number &&
-          is_hf_align_margins == o.is_hf_align_margins &&
-          is_hf_diff_first == o.is_hf_diff_first &&
-          is_hf_diff_odd_even == o.is_hf_diff_odd_even &&
-          is_hf_scale_with_doc == o.is_hf_scale_with_doc &&
-          is_percent_scale == o.is_percent_scale &&
-          left_margin == o.left_margin &&
-          order == o.order &&
-          orientation == o.orientation &&
-          paper_size == o.paper_size &&
-          print_area == o.print_area &&
-          print_comments == o.print_comments &&
-          print_copies == o.print_copies &&
-          print_draft == o.print_draft &&
-          print_errors == o.print_errors &&
-          print_gridlines == o.print_gridlines &&
-          print_headings == o.print_headings &&
-          print_quality == o.print_quality &&
-          print_title_columns == o.print_title_columns &&
-          print_title_rows == o.print_title_rows &&
-          right_margin == o.right_margin &&
-          top_margin == o.top_margin &&
-          zoom == o.zoom &&
-          header == o.header &&
-          footer == o.footer 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ black_and_white , bottom_margin , center_horizontally , center_vertically , first_page_number , fit_to_pages_tall , fit_to_pages_wide , footer_margin , header_margin , is_auto_first_page_number , is_hf_align_margins , is_hf_diff_first , is_hf_diff_odd_even , is_hf_scale_with_doc , is_percent_scale , left_margin , order , orientation , paper_size , print_area , print_comments , print_copies , print_draft , print_errors , print_gridlines , print_headings , print_quality , print_title_columns , print_title_rows , right_margin , top_margin , zoom , header , footer ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

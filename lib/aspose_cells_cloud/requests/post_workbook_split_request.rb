@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostWorkbookSplit_request.rb.cs">
+ <copyright company="Aspose" file="PostWorkbookSplitRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,158 +25,87 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostWorkbookSplitRequest
 
-    attr_accessor :name  
-    attr_accessor :format  
-    attr_accessor :out_folder  
-    attr_accessor :from  
-    attr_accessor :to  
-    attr_accessor :horizontal_resolution  
-    attr_accessor :vertical_resolution  
-    attr_accessor :split_name_rule  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
-    attr_accessor :out_storage_name  
+  class PostWorkbookSplitRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :format
+    # @return [Integer, nil when omitted]
+    attr_accessor :from
+    # @return [Integer, nil when omitted]
+    attr_accessor :horizontal_resolution
+    # @return [String, nil when omitted]
+    attr_accessor :out_folder
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :split_name_rule
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [Integer, nil when omitted]
+    attr_accessor :to
+    # @return [Integer, nil when omitted]
+    attr_accessor :vertical_resolution
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, folder: nil, format: nil, from: nil, horizontal_resolution: nil, out_folder: nil, out_storage_name: nil, split_name_rule: nil, storage_name: nil, to: nil, vertical_resolution: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostWorkbookSplitRequest.new`' if name.nil?
+      @name = name
+      @folder = folder
+      @format = format
+      @from = from
+      @horizontal_resolution = horizontal_resolution
+      @out_folder = out_folder
+      @out_storage_name = out_storage_name
+      @split_name_rule = split_name_rule
+      @storage_name = storage_name
+      @to = to
+      @vertical_resolution = vertical_resolution
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/split'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'format')
-          self.format = attributes[:'format']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['format'] = @format unless @format.nil?
+      query['outFolder'] = @out_folder unless @out_folder.nil?
+      query['from'] = @from unless @from.nil?
+      query['to'] = @to unless @to.nil?
+      query['horizontalResolution'] = @horizontal_resolution unless @horizontal_resolution.nil?
+      query['verticalResolution'] = @vertical_resolution unless @vertical_resolution.nil?
+      query['splitNameRule'] = @split_name_rule unless @split_name_rule.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'outFolder')
-          self.out_folder = attributes[:'outFolder']
-      end
-
-      if attributes.has_key?(:'from')
-          self.from = attributes[:'from']
-      end
-
-      if attributes.has_key?(:'to')
-          self.to = attributes[:'to']
-      end
-
-      if attributes.has_key?(:'horizontalResolution')
-          self.horizontal_resolution = attributes[:'horizontalResolution']
-      end
-
-      if attributes.has_key?(:'verticalResolution')
-          self.vertical_resolution = attributes[:'verticalResolution']
-      end
-
-      if attributes.has_key?(:'splitNameRule')
-          self.split_name_rule = attributes[:'splitNameRule']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'format' => :'format',
-        :'out_folder' => :'outFolder',
-        :'from' => :'from',
-        :'to' => :'to',
-        :'horizontal_resolution' => :'horizontalResolution',
-        :'vertical_resolution' => :'verticalResolution',
-        :'split_name_rule' => :'splitNameRule',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName',
-        :'out_storage_name' => :'outStorageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'format' => :'String',
-        :'out_folder' => :'String',
-        :'from' => :'Integer',
-        :'to' => :'Integer',
-        :'horizontal_resolution' => :'Integer',
-        :'vertical_resolution' => :'Integer',
-        :'split_name_rule' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String',
-        :'out_storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_workbook_split ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_workbook_split "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/split".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'format'] = self.format if !self.format.nil? 
-      query_params[:'outFolder'] = self.out_folder if !self.out_folder.nil? 
-      query_params[:'from'] = self.from if !self.from.nil? 
-      query_params[:'to'] = self.to if !self.to.nil? 
-      query_params[:'horizontalResolution'] = self.horizontal_resolution if !self.horizontal_resolution.nil? 
-      query_params[:'verticalResolution'] = self.vertical_resolution if !self.vertical_resolution.nil? 
-      query_params[:'splitNameRule'] = self.split_name_rule if !self.split_name_rule.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'SplitResultResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_workbook_split\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

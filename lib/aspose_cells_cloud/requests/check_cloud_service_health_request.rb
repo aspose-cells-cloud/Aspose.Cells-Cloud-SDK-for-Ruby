@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="CheckCloudServiceHealth_request.rb.cs">
+ <copyright company="Aspose" file="CheckCloudServiceHealthRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,67 +25,35 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class CheckCloudServiceHealthRequest
 
+  class CheckCloudServiceHealthRequest < Aspose::Cells::Cloud::RequestOption
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize
+    end
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @return [String] HTTP method for this operation
+    def get_method
+      'GET'
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/status/check'
+      path
+    end
 
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.check_cloud_service_health ..."
-      end
-      api_client.request_token_if_needed
-
-      # resource path
-      local_var_path = "v4.0/cells/status/check"
-      # query parameters
-      query_params = {}
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'String')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.check_cloud_service_health\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

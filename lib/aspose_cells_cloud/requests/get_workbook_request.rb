@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="GetWorkbook_request.rb.cs">
+ <copyright company="Aspose" file="GetWorkbookRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,198 +25,107 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class GetWorkbookRequest
 
-    attr_accessor :name  
-    attr_accessor :format  
-    attr_accessor :password  
-    attr_accessor :is_auto_fit  
-    attr_accessor :only_save_table  
-    attr_accessor :folder  
-    attr_accessor :out_path  
-    attr_accessor :storage_name  
-    attr_accessor :out_storage_name  
-    attr_accessor :check_excel_restriction  
-    attr_accessor :region  
-    attr_accessor :page_wide_fit_on_per_sheet  
-    attr_accessor :page_tall_fit_on_per_sheet  
-    attr_accessor :one_page_per_sheet  
-    attr_accessor :only_autofit_table  
-    attr_accessor :fonts_location  
+  class GetWorkbookRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :fonts_location
+    # @return [String, nil when omitted]
+    attr_accessor :format
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :is_auto_fit
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :one_page_per_sheet
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :only_autofit_table
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :only_save_table
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :page_tall_fit_on_per_sheet
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :page_wide_fit_on_per_sheet
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, check_excel_restriction: nil, folder: nil, fonts_location: nil, format: nil, is_auto_fit: nil, one_page_per_sheet: nil, only_autofit_table: nil, only_save_table: nil, out_path: nil, out_storage_name: nil, page_tall_fit_on_per_sheet: nil, page_wide_fit_on_per_sheet: nil, password: nil, region: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `GetWorkbookRequest.new`' if name.nil?
+      @name = name
+      @check_excel_restriction = check_excel_restriction
+      @folder = folder
+      @fonts_location = fonts_location
+      @format = format
+      @is_auto_fit = is_auto_fit
+      @one_page_per_sheet = one_page_per_sheet
+      @only_autofit_table = only_autofit_table
+      @only_save_table = only_save_table
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @page_tall_fit_on_per_sheet = page_tall_fit_on_per_sheet
+      @page_wide_fit_on_per_sheet = page_wide_fit_on_per_sheet
+      @password = password
+      @region = region
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'GET'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path
+    end
 
-      if attributes.has_key?(:'format')
-          self.format = attributes[:'format']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['format'] = @format unless @format.nil?
+      query['password'] = @password unless @password.nil?
+      query['isAutoFit'] = @is_auto_fit unless @is_auto_fit.nil?
+      query['onlySaveTable'] = @only_save_table unless @only_save_table.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query['region'] = @region unless @region.nil?
+      query['pageWideFitOnPerSheet'] = @page_wide_fit_on_per_sheet unless @page_wide_fit_on_per_sheet.nil?
+      query['pageTallFitOnPerSheet'] = @page_tall_fit_on_per_sheet unless @page_tall_fit_on_per_sheet.nil?
+      query['onePagePerSheet'] = @one_page_per_sheet unless @one_page_per_sheet.nil?
+      query['onlyAutofitTable'] = @only_autofit_table unless @only_autofit_table.nil?
+      query['FontsLocation'] = @fonts_location unless @fonts_location.nil?
+      query
+    end
 
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-      if attributes.has_key?(:'isAutoFit')
-          self.is_auto_fit = attributes[:'isAutoFit']
-      end
-
-      if attributes.has_key?(:'onlySaveTable')
-          self.only_save_table = attributes[:'onlySaveTable']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'pageWideFitOnPerSheet')
-          self.page_wide_fit_on_per_sheet = attributes[:'pageWideFitOnPerSheet']
-      end
-
-      if attributes.has_key?(:'pageTallFitOnPerSheet')
-          self.page_tall_fit_on_per_sheet = attributes[:'pageTallFitOnPerSheet']
-      end
-
-      if attributes.has_key?(:'onePagePerSheet')
-          self.one_page_per_sheet = attributes[:'onePagePerSheet']
-      end
-
-      if attributes.has_key?(:'onlyAutofitTable')
-          self.only_autofit_table = attributes[:'onlyAutofitTable']
-      end
-
-      if attributes.has_key?(:'FontsLocation')
-          self.fonts_location = attributes[:'FontsLocation']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'format' => :'format',
-        :'password' => :'password',
-        :'is_auto_fit' => :'isAutoFit',
-        :'only_save_table' => :'onlySaveTable',
-        :'folder' => :'folder',
-        :'out_path' => :'outPath',
-        :'storage_name' => :'storageName',
-        :'out_storage_name' => :'outStorageName',
-        :'check_excel_restriction' => :'checkExcelRestriction',
-        :'region' => :'region',
-        :'page_wide_fit_on_per_sheet' => :'pageWideFitOnPerSheet',
-        :'page_tall_fit_on_per_sheet' => :'pageTallFitOnPerSheet',
-        :'one_page_per_sheet' => :'onePagePerSheet',
-        :'only_autofit_table' => :'onlyAutofitTable',
-        :'fonts_location' => :'FontsLocation'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'format' => :'String',
-        :'password' => :'String',
-        :'is_auto_fit' => :'BOOLEAN',
-        :'only_save_table' => :'BOOLEAN',
-        :'folder' => :'String',
-        :'out_path' => :'String',
-        :'storage_name' => :'String',
-        :'out_storage_name' => :'String',
-        :'check_excel_restriction' => :'BOOLEAN',
-        :'region' => :'String',
-        :'page_wide_fit_on_per_sheet' => :'BOOLEAN',
-        :'page_tall_fit_on_per_sheet' => :'BOOLEAN',
-        :'one_page_per_sheet' => :'BOOLEAN',
-        :'only_autofit_table' => :'BOOLEAN',
-        :'fonts_location' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.get_workbook ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.get_workbook "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}".sub('{' + 'name' + '}', name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'format'] = self.format if !self.format.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'isAutoFit'] = self.is_auto_fit if !self.is_auto_fit.nil? 
-      query_params[:'onlySaveTable'] = self.only_save_table if !self.only_save_table.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'pageWideFitOnPerSheet'] = self.page_wide_fit_on_per_sheet if !self.page_wide_fit_on_per_sheet.nil? 
-      query_params[:'pageTallFitOnPerSheet'] = self.page_tall_fit_on_per_sheet if !self.page_tall_fit_on_per_sheet.nil? 
-      query_params[:'onePagePerSheet'] = self.one_page_per_sheet if !self.one_page_per_sheet.nil? 
-      query_params[:'onlyAutofitTable'] = self.only_autofit_table if !self.only_autofit_table.nil? 
-      query_params[:'FontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.get_workbook\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

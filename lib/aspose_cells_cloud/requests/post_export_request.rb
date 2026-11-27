@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostExport_request.rb.cs">
+ <copyright company="Aspose" file="PostExportRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,133 +25,77 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostExportRequest
 
-    attr_accessor :file  
-    attr_accessor :object_type  
-    attr_accessor :format  
-    attr_accessor :password  
-    attr_accessor :check_excel_restriction  
-    attr_accessor :region  
-    attr_accessor :fonts_location  
+  class PostExportRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :file
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [String, nil when omitted]
+    attr_accessor :fonts_location
+    # @return [String, nil when omitted]
+    attr_accessor :format
+    # @return [String, nil when omitted]
+    attr_accessor :object_type
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(file:, check_excel_restriction: nil, fonts_location: nil, format: nil, object_type: nil, password: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `file` when calling `PostExportRequest.new`' if file.nil?
+      @file = file
+      @check_excel_restriction = check_excel_restriction
+      @fonts_location = fonts_location
+      @format = format
+      @object_type = object_type
+      @password = password
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'File')
-          self.file = attributes[:'File']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/export'
+      path
+    end
 
-      if attributes.has_key?(:'objectType')
-          self.object_type = attributes[:'objectType']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['objectType'] = @object_type unless @object_type.nil?
+      query['format'] = @format unless @format.nil?
+      query['password'] = @password unless @password.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query['region'] = @region unless @region.nil?
+      query['FontsLocation'] = @fonts_location unless @fonts_location.nil?
+      query
+    end
 
-      if attributes.has_key?(:'format')
-          self.format = attributes[:'format']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'FontsLocation')
-          self.fonts_location = attributes[:'FontsLocation']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'file' => :'File',
-        :'object_type' => :'objectType',
-        :'format' => :'format',
-        :'password' => :'password',
-        :'check_excel_restriction' => :'checkExcelRestriction',
-        :'region' => :'region',
-        :'fonts_location' => :'FontsLocation'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'file' => :'Hash',
-        :'object_type' => :'String',
-        :'format' => :'String',
-        :'password' => :'String',
-        :'check_excel_restriction' => :'BOOLEAN',
-        :'region' => :'String',
-        :'fonts_location' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['File'] = @file
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_export ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'file' is set
-      if api_client.config.client_side_validation && file.nil?
-          fail ArgumentError, "Missing the required parameter 'file' when calling CellsApi.post_export "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/export"
-      # query parameters
-      query_params = {}
-      query_params[:'objectType'] = self.object_type if !self.object_type.nil? 
-      query_params[:'format'] = self.format if !self.format.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'FontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !file.nil?
-          file.each do |filename , context|
-          form_params[File.basename(filename)]  = context
-          end
-      end
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'FilesResult')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_export\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

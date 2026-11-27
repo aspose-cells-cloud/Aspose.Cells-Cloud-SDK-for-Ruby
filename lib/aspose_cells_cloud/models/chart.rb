@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="Chartrb.cs">
+ <copyright company="Aspose" file="Chart.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,100 +25,144 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
+require_relative 'link_element'
 
 module AsposeCellsCloud
 
-  class Chart
-        #True if Microsoft Excel scales a 3-D chart so that it's closer in size to the equivalent 2-D chart.                         The RightAngleAxes property must be True.            
-        attr_accessor :auto_scaling
-        #Returns a  object that represents the back wall of a 3-D chart.            
-        attr_accessor :back_wall
-        #Gets the chart's X axis.            
-        attr_accessor :category_axis
-        #Gets the chart area in the worksheet.            
-        attr_accessor :chart_area
-        #Represents the chart data table.            
-        attr_accessor :chart_data_table
-        #Represents the chartShape;            
-        attr_accessor :chart_object
-        #Represents the depth of a 3-D chart as a percentage of the chart width (between 20 and 2000 percent).            
-        attr_accessor :depth_percent
-        #Represents the elevation of the 3-D chart view, in degrees.            
-        attr_accessor :elevation
-        #Gets or sets the angle of the first pie-chart or doughnut-chart slice, in degrees (clockwise from vertical).                         Applies only to pie, 3-D pie, and doughnut charts, 0 to 360.            
-        attr_accessor :first_slice_angle
-        #Returns a  object that represents the walls of a 3-D chart.            
-        attr_accessor :floor
-        #Gets or sets the distance between the data series in a 3-D chart, as a percentage of the marker width.                        The value of this property must be between 0 and 500.            
-        attr_accessor :gap_depth
-        #Returns or sets the space between bar or column clusters, as a percentage of the bar or column width.                        The value of this property must be between 0 and 500.            
-        attr_accessor :gap_width
-        #Returns or sets the height of a 3-D chart as a percentage of the chart width (between 5 and 500 percent).            
-        attr_accessor :height_percent
-        #Indicates whether hide the pivot chart field buttons only when the chart is PivotChart.            
-        attr_accessor :hide_pivot_field_buttons
-        #Indicates whether the chart is a 3d chart.            
-        attr_accessor :is3_d
-        #Gets or sets a value indicating whether the chart area is rectangular cornered.                        Default is true.            
-        attr_accessor :is_rectangular_cornered
-        #Gets the chart legend.            
-        attr_accessor :legend
-        #Represents chart name.            
-        attr_accessor :name
-        #Gets a  collection representing the data series in the chart.            
-        attr_accessor :n_series
-        #Represents the page setup description in this chart.            
-        attr_accessor :page_setup
-        #Returns or sets the perspective for the 3-D chart view. Must be between 0 and 100.                        This property is ignored if the RightAngleAxes property is True.            
-        attr_accessor :perspective
-        #The source is the data of the pivotTable.                        If PivotSource is not empty ,the chart is PivotChart.            
-        attr_accessor :pivot_source
-        #Represents the way the chart is attached to the cells below it.            
-        attr_accessor :placement
-        #Gets the chart's plot area which includes axis tick labels.            
-        attr_accessor :plot_area
-        #Gets and sets  how to plot the empty cells.            
-        attr_accessor :plot_empty_cells_type
-        #Indicates whether only plot visible cells.            
-        attr_accessor :plot_visible_cells
-        #Gets and sets the printed chart size.            
-        attr_accessor :print_size
-        #True if the chart axes are at right angles. Applies only for 3-D charts(except Column3D and 3-D Pie Charts).            
-        attr_accessor :right_angle_axes
-        #Represents the rotation of the 3-D chart view (the rotation of the plot area around the z-axis, in degrees).            
-        attr_accessor :rotation_angle
-        #Gets the chart's second X axis.            
-        attr_accessor :second_category_axis
-        #Gets the chart's second Y axis.            
-        attr_accessor :second_value_axis
-        #Gets the chart's series axis.            
-        attr_accessor :series_axis
-        #Returns all drawing shapes in this chart.            
-        attr_accessor :shapes
-        #Gets or sets a value indicating whether the chart displays a data table.            
-        attr_accessor :show_data_table
-        #Gets or sets a value indicating whether the chart legend will be displayed. Default is true.            
-        attr_accessor :show_legend
-        #Returns a  object that represents the side wall of a 3-D chart.            
-        attr_accessor :side_wall
-        #True if Microsoft Excel resizes the chart to match the size of the chart sheet window.            
-        attr_accessor :size_with_window
-        #Gets and sets the builtin style.            
-        attr_accessor :style
-        #Represents chart title.            
-        attr_accessor :title
-        #Represents chart type.            
-        attr_accessor :type
-        #Gets the chart's Y axis.            
-        attr_accessor :value_axis
-        #Returns a  object that represents the walls of a 3-D chart.            
-        attr_accessor :walls
-        #True if gridlines are drawn two-dimensionally on a 3-D chart.            
-        attr_accessor :walls_and_gridlines2_d
-        #            
-        attr_accessor :link
+  # Encapsulates the object that represents a single Excel chart.
+  class Chart < LinkElement
+    # True if Microsoft Excel scales a 3-D chart so that it's closer in size to the equivalent 2-D chart.                          The RightAngleAxes property must be True.
+    # @return [BOOLEAN]
+    attr_accessor :auto_scaling
+    # Returns a  object that represents the back wall of a 3-D chart.
+    # @return [Walls]
+    attr_accessor :back_wall
+    # Gets the chart's X axis.
+    # @return [Axis]
+    attr_accessor :category_axis
+    # Gets the chart area in the worksheet.
+    # @return [ChartArea]
+    attr_accessor :chart_area
+    # Represents the chart data table.
+    # @return [ChartDataTable]
+    attr_accessor :chart_data_table
+    # Represents the chartShape;
+    # @return [LinkElement]
+    attr_accessor :chart_object
+    # Represents the depth of a 3-D chart as a percentage of the chart width (between 20 and 2000 percent).
+    # @return [Integer]
+    attr_accessor :depth_percent
+    # Represents the elevation of the 3-D chart view, in degrees.
+    # @return [Integer]
+    attr_accessor :elevation
+    # Gets or sets the angle of the first pie-chart or doughnut-chart slice, in degrees (clockwise from vertical).                          Applies only to pie, 3-D pie, and doughnut charts, 0 to 360.
+    # @return [Integer]
+    attr_accessor :first_slice_angle
+    # Returns a  object that represents the walls of a 3-D chart.
+    # @return [Floor]
+    attr_accessor :floor
+    # Gets or sets the distance between the data series in a 3-D chart, as a percentage of the marker width.                         The value of this property must be between 0 and 500.
+    # @return [Integer]
+    attr_accessor :gap_depth
+    # Returns or sets the space between bar or column clusters, as a percentage of the bar or column width.                         The value of this property must be between 0 and 500.
+    # @return [Integer]
+    attr_accessor :gap_width
+    # Returns or sets the height of a 3-D chart as a percentage of the chart width (between 5 and 500 percent).
+    # @return [Integer]
+    attr_accessor :height_percent
+    # Indicates whether hide the pivot chart field buttons only when the chart is PivotChart.
+    # @return [BOOLEAN]
+    attr_accessor :hide_pivot_field_buttons
+    # Indicates whether the chart is a 3d chart.
+    # @return [BOOLEAN]
+    attr_accessor :is3_d
+    # Gets or sets a value indicating whether the chart area is rectangular cornered.                         Default is true.
+    # @return [BOOLEAN]
+    attr_accessor :is_rectangular_cornered
+    # Gets the chart legend.
+    # @return [Legend]
+    attr_accessor :legend
+    # Represents chart name.
+    # @return [String]
+    attr_accessor :name
+    # Gets a  collection representing the data series in the chart.
+    # @return [SeriesItems]
+    attr_accessor :n_series
+    # Represents the page setup description in this chart.
+    # @return [LinkElement]
+    attr_accessor :page_setup
+    # Returns or sets the perspective for the 3-D chart view. Must be between 0 and 100.                         This property is ignored if the RightAngleAxes property is True.
+    # @return [Integer]
+    attr_accessor :perspective
+    # The source is the data of the pivotTable.                         If PivotSource is not empty ,the chart is PivotChart.
+    # @return [String]
+    attr_accessor :pivot_source
+    # Represents the way the chart is attached to the cells below it.
+    # @return [String]
+    attr_accessor :placement
+    # Gets the chart's plot area which includes axis tick labels.
+    # @return [PlotArea]
+    attr_accessor :plot_area
+    # Gets and sets  how to plot the empty cells.
+    # @return [String]
+    attr_accessor :plot_empty_cells_type
+    # Indicates whether only plot visible cells.
+    # @return [BOOLEAN]
+    attr_accessor :plot_visible_cells
+    # Gets and sets the printed chart size.
+    # @return [String]
+    attr_accessor :print_size
+    # True if the chart axes are at right angles. Applies only for 3-D charts(except Column3D and 3-D Pie Charts).
+    # @return [BOOLEAN]
+    attr_accessor :right_angle_axes
+    # Represents the rotation of the 3-D chart view (the rotation of the plot area around the z-axis, in degrees).
+    # @return [Integer]
+    attr_accessor :rotation_angle
+    # Gets the chart's second X axis.
+    # @return [LinkElement]
+    attr_accessor :second_category_axis
+    # Gets the chart's second Y axis.
+    # @return [LinkElement]
+    attr_accessor :second_value_axis
+    # Gets the chart's series axis.
+    # @return [LinkElement]
+    attr_accessor :series_axis
+    # Returns all drawing shapes in this chart.
+    # @return [LinkElement]
+    attr_accessor :shapes
+    # Gets or sets a value indicating whether the chart displays a data table.
+    # @return [BOOLEAN]
+    attr_accessor :show_data_table
+    # Gets or sets a value indicating whether the chart legend will be displayed. Default is true.
+    # @return [BOOLEAN]
+    attr_accessor :show_legend
+    # Returns a  object that represents the side wall of a 3-D chart.
+    # @return [LinkElement]
+    attr_accessor :side_wall
+    # True if Microsoft Excel resizes the chart to match the size of the chart sheet window.
+    # @return [BOOLEAN]
+    attr_accessor :size_with_window
+    # Gets and sets the builtin style.
+    # @return [Integer]
+    attr_accessor :style
+    # Represents chart title.
+    # @return [LinkElement]
+    attr_accessor :title
+    # Represents chart type.
+    # @return [String]
+    attr_accessor :type
+    # Gets the chart's Y axis.
+    # @return [Axis]
+    attr_accessor :value_axis
+    # Returns a  object that represents the walls of a 3-D chart.
+    # @return [LinkElement]
+    attr_accessor :walls
+    # True if gridlines are drawn two-dimensionally on a 3-D chart.
+    # @return [BOOLEAN]
+    attr_accessor :walls_and_gridlines2_d
+    # @return [Link]
+    attr_accessor :link
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -166,7 +210,7 @@ module AsposeCellsCloud
         :'value_axis' => :'ValueAxis',
         :'walls' => :'Walls',
         :'walls_and_gridlines2_d' => :'WallsAndGridlines2D',
-        :'link' => :'link'
+        :'link' => :'link',
       }
     end
 
@@ -216,7 +260,7 @@ module AsposeCellsCloud
         :'value_axis' => :'Axis',
         :'walls' => :'LinkElement',
         :'walls_and_gridlines2_d' => :'BOOLEAN',
-        :'link' => :'Link'
+        :'link' => :'Link',
       }
     end
 
@@ -224,501 +268,99 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'AutoScaling')
-          self.auto_scaling = attributes[:'AutoScaling']
-      end
-      if attributes.has_key?(:'BackWall')
-          self.back_wall = attributes[:'BackWall']
-      end
-      if attributes.has_key?(:'CategoryAxis')
-          self.category_axis = attributes[:'CategoryAxis']
-      end
-      if attributes.has_key?(:'ChartArea')
-          self.chart_area = attributes[:'ChartArea']
-      end
-      if attributes.has_key?(:'ChartDataTable')
-          self.chart_data_table = attributes[:'ChartDataTable']
-      end
-      if attributes.has_key?(:'ChartObject')
-          self.chart_object = attributes[:'ChartObject']
-      end
-      if attributes.has_key?(:'DepthPercent')
-          self.depth_percent = attributes[:'DepthPercent']
-      end
-      if attributes.has_key?(:'Elevation')
-          self.elevation = attributes[:'Elevation']
-      end
-      if attributes.has_key?(:'FirstSliceAngle')
-          self.first_slice_angle = attributes[:'FirstSliceAngle']
-      end
-      if attributes.has_key?(:'Floor')
-          self.floor = attributes[:'Floor']
-      end
-      if attributes.has_key?(:'GapDepth')
-          self.gap_depth = attributes[:'GapDepth']
-      end
-      if attributes.has_key?(:'GapWidth')
-          self.gap_width = attributes[:'GapWidth']
-      end
-      if attributes.has_key?(:'HeightPercent')
-          self.height_percent = attributes[:'HeightPercent']
-      end
-      if attributes.has_key?(:'HidePivotFieldButtons')
-          self.hide_pivot_field_buttons = attributes[:'HidePivotFieldButtons']
-      end
-      if attributes.has_key?(:'Is3D')
-          self.is3_d = attributes[:'Is3D']
-      end
-      if attributes.has_key?(:'IsRectangularCornered')
-          self.is_rectangular_cornered = attributes[:'IsRectangularCornered']
-      end
-      if attributes.has_key?(:'Legend')
-          self.legend = attributes[:'Legend']
-      end
-      if attributes.has_key?(:'Name')
-          self.name = attributes[:'Name']
-      end
-      if attributes.has_key?(:'NSeries')
-          self.n_series = attributes[:'NSeries']
-      end
-      if attributes.has_key?(:'PageSetup')
-          self.page_setup = attributes[:'PageSetup']
-      end
-      if attributes.has_key?(:'Perspective')
-          self.perspective = attributes[:'Perspective']
-      end
-      if attributes.has_key?(:'PivotSource')
-          self.pivot_source = attributes[:'PivotSource']
-      end
-      if attributes.has_key?(:'Placement')
-          self.placement = attributes[:'Placement']
-      end
-      if attributes.has_key?(:'PlotArea')
-          self.plot_area = attributes[:'PlotArea']
-      end
-      if attributes.has_key?(:'PlotEmptyCellsType')
-          self.plot_empty_cells_type = attributes[:'PlotEmptyCellsType']
-      end
-      if attributes.has_key?(:'PlotVisibleCells')
-          self.plot_visible_cells = attributes[:'PlotVisibleCells']
-      end
-      if attributes.has_key?(:'PrintSize')
-          self.print_size = attributes[:'PrintSize']
-      end
-      if attributes.has_key?(:'RightAngleAxes')
-          self.right_angle_axes = attributes[:'RightAngleAxes']
-      end
-      if attributes.has_key?(:'RotationAngle')
-          self.rotation_angle = attributes[:'RotationAngle']
-      end
-      if attributes.has_key?(:'SecondCategoryAxis')
-          self.second_category_axis = attributes[:'SecondCategoryAxis']
-      end
-      if attributes.has_key?(:'SecondValueAxis')
-          self.second_value_axis = attributes[:'SecondValueAxis']
-      end
-      if attributes.has_key?(:'SeriesAxis')
-          self.series_axis = attributes[:'SeriesAxis']
-      end
-      if attributes.has_key?(:'Shapes')
-          self.shapes = attributes[:'Shapes']
-      end
-      if attributes.has_key?(:'ShowDataTable')
-          self.show_data_table = attributes[:'ShowDataTable']
-      end
-      if attributes.has_key?(:'ShowLegend')
-          self.show_legend = attributes[:'ShowLegend']
-      end
-      if attributes.has_key?(:'SideWall')
-          self.side_wall = attributes[:'SideWall']
-      end
-      if attributes.has_key?(:'SizeWithWindow')
-          self.size_with_window = attributes[:'SizeWithWindow']
-      end
-      if attributes.has_key?(:'Style')
-          self.style = attributes[:'Style']
-      end
-      if attributes.has_key?(:'Title')
-          self.title = attributes[:'Title']
-      end
-      if attributes.has_key?(:'Type')
-          self.type = attributes[:'Type']
-      end
-      if attributes.has_key?(:'ValueAxis')
-          self.value_axis = attributes[:'ValueAxis']
-      end
-      if attributes.has_key?(:'Walls')
-          self.walls = attributes[:'Walls']
-      end
-      if attributes.has_key?(:'WallsAndGridlines2D')
-          self.walls_and_gridlines2_d = attributes[:'WallsAndGridlines2D']
-      end
-      if attributes.has_key?(:'link')
-          self.link = attributes[:'link']
-      end
-
+      super(attributes)
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.auto_scaling = attributes[:auto_scaling] if attributes.key?(:auto_scaling)
+      self.back_wall = attributes[:back_wall] if attributes.key?(:back_wall)
+      self.category_axis = attributes[:category_axis] if attributes.key?(:category_axis)
+      self.chart_area = attributes[:chart_area] if attributes.key?(:chart_area)
+      self.chart_data_table = attributes[:chart_data_table] if attributes.key?(:chart_data_table)
+      self.chart_object = attributes[:chart_object] if attributes.key?(:chart_object)
+      self.depth_percent = attributes[:depth_percent] if attributes.key?(:depth_percent)
+      self.elevation = attributes[:elevation] if attributes.key?(:elevation)
+      self.first_slice_angle = attributes[:first_slice_angle] if attributes.key?(:first_slice_angle)
+      self.floor = attributes[:floor] if attributes.key?(:floor)
+      self.gap_depth = attributes[:gap_depth] if attributes.key?(:gap_depth)
+      self.gap_width = attributes[:gap_width] if attributes.key?(:gap_width)
+      self.height_percent = attributes[:height_percent] if attributes.key?(:height_percent)
+      self.hide_pivot_field_buttons = attributes[:hide_pivot_field_buttons] if attributes.key?(:hide_pivot_field_buttons)
+      self.is3_d = attributes[:is3_d] if attributes.key?(:is3_d)
+      self.is_rectangular_cornered = attributes[:is_rectangular_cornered] if attributes.key?(:is_rectangular_cornered)
+      self.legend = attributes[:legend] if attributes.key?(:legend)
+      self.name = attributes[:name] if attributes.key?(:name)
+      self.n_series = attributes[:n_series] if attributes.key?(:n_series)
+      self.page_setup = attributes[:page_setup] if attributes.key?(:page_setup)
+      self.perspective = attributes[:perspective] if attributes.key?(:perspective)
+      self.pivot_source = attributes[:pivot_source] if attributes.key?(:pivot_source)
+      self.placement = attributes[:placement] if attributes.key?(:placement)
+      self.plot_area = attributes[:plot_area] if attributes.key?(:plot_area)
+      self.plot_empty_cells_type = attributes[:plot_empty_cells_type] if attributes.key?(:plot_empty_cells_type)
+      self.plot_visible_cells = attributes[:plot_visible_cells] if attributes.key?(:plot_visible_cells)
+      self.print_size = attributes[:print_size] if attributes.key?(:print_size)
+      self.right_angle_axes = attributes[:right_angle_axes] if attributes.key?(:right_angle_axes)
+      self.rotation_angle = attributes[:rotation_angle] if attributes.key?(:rotation_angle)
+      self.second_category_axis = attributes[:second_category_axis] if attributes.key?(:second_category_axis)
+      self.second_value_axis = attributes[:second_value_axis] if attributes.key?(:second_value_axis)
+      self.series_axis = attributes[:series_axis] if attributes.key?(:series_axis)
+      self.shapes = attributes[:shapes] if attributes.key?(:shapes)
+      self.show_data_table = attributes[:show_data_table] if attributes.key?(:show_data_table)
+      self.show_legend = attributes[:show_legend] if attributes.key?(:show_legend)
+      self.side_wall = attributes[:side_wall] if attributes.key?(:side_wall)
+      self.size_with_window = attributes[:size_with_window] if attributes.key?(:size_with_window)
+      self.style = attributes[:style] if attributes.key?(:style)
+      self.title = attributes[:title] if attributes.key?(:title)
+      self.type = attributes[:type] if attributes.key?(:type)
+      self.value_axis = attributes[:value_axis] if attributes.key?(:value_axis)
+      self.walls = attributes[:walls] if attributes.key?(:walls)
+      self.walls_and_gridlines2_d = attributes[:walls_and_gridlines2_d] if attributes.key?(:walls_and_gridlines2_d)
+      self.link = attributes[:link] if attributes.key?(:link)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @auto_scaling.nil?
-          invalid_properties.push("invalid value for 'auto_scaling', auto_scaling cannot be nil.")
-      end
-      if @back_wall.nil?
-          invalid_properties.push("invalid value for 'back_wall', back_wall cannot be nil.")
-      end
-      if @category_axis.nil?
-          invalid_properties.push("invalid value for 'category_axis', category_axis cannot be nil.")
-      end
-      if @chart_area.nil?
-          invalid_properties.push("invalid value for 'chart_area', chart_area cannot be nil.")
-      end
-      if @chart_data_table.nil?
-          invalid_properties.push("invalid value for 'chart_data_table', chart_data_table cannot be nil.")
-      end
-      if @chart_object.nil?
-          invalid_properties.push("invalid value for 'chart_object', chart_object cannot be nil.")
-      end
-      if @depth_percent.nil?
-          invalid_properties.push("invalid value for 'depth_percent', depth_percent cannot be nil.")
-      end
-      if @elevation.nil?
-          invalid_properties.push("invalid value for 'elevation', elevation cannot be nil.")
-      end
-      if @first_slice_angle.nil?
-          invalid_properties.push("invalid value for 'first_slice_angle', first_slice_angle cannot be nil.")
-      end
-      if @floor.nil?
-          invalid_properties.push("invalid value for 'floor', floor cannot be nil.")
-      end
-      if @gap_depth.nil?
-          invalid_properties.push("invalid value for 'gap_depth', gap_depth cannot be nil.")
-      end
-      if @gap_width.nil?
-          invalid_properties.push("invalid value for 'gap_width', gap_width cannot be nil.")
-      end
-      if @height_percent.nil?
-          invalid_properties.push("invalid value for 'height_percent', height_percent cannot be nil.")
-      end
-      if @hide_pivot_field_buttons.nil?
-          invalid_properties.push("invalid value for 'hide_pivot_field_buttons', hide_pivot_field_buttons cannot be nil.")
-      end
-      if @is3_d.nil?
-          invalid_properties.push("invalid value for 'is3_d', is3_d cannot be nil.")
-      end
-      if @is_rectangular_cornered.nil?
-          invalid_properties.push("invalid value for 'is_rectangular_cornered', is_rectangular_cornered cannot be nil.")
-      end
-      if @legend.nil?
-          invalid_properties.push("invalid value for 'legend', legend cannot be nil.")
-      end
-      if @name.nil?
-          invalid_properties.push("invalid value for 'name', name cannot be nil.")
-      end
-      if @n_series.nil?
-          invalid_properties.push("invalid value for 'n_series', n_series cannot be nil.")
-      end
-      if @page_setup.nil?
-          invalid_properties.push("invalid value for 'page_setup', page_setup cannot be nil.")
-      end
-      if @perspective.nil?
-          invalid_properties.push("invalid value for 'perspective', perspective cannot be nil.")
-      end
-      if @pivot_source.nil?
-          invalid_properties.push("invalid value for 'pivot_source', pivot_source cannot be nil.")
-      end
-      if @placement.nil?
-          invalid_properties.push("invalid value for 'placement', placement cannot be nil.")
-      end
-      if @plot_area.nil?
-          invalid_properties.push("invalid value for 'plot_area', plot_area cannot be nil.")
-      end
-      if @plot_empty_cells_type.nil?
-          invalid_properties.push("invalid value for 'plot_empty_cells_type', plot_empty_cells_type cannot be nil.")
-      end
-      if @plot_visible_cells.nil?
-          invalid_properties.push("invalid value for 'plot_visible_cells', plot_visible_cells cannot be nil.")
-      end
-      if @print_size.nil?
-          invalid_properties.push("invalid value for 'print_size', print_size cannot be nil.")
-      end
-      if @right_angle_axes.nil?
-          invalid_properties.push("invalid value for 'right_angle_axes', right_angle_axes cannot be nil.")
-      end
-      if @rotation_angle.nil?
-          invalid_properties.push("invalid value for 'rotation_angle', rotation_angle cannot be nil.")
-      end
-      if @second_category_axis.nil?
-          invalid_properties.push("invalid value for 'second_category_axis', second_category_axis cannot be nil.")
-      end
-      if @second_value_axis.nil?
-          invalid_properties.push("invalid value for 'second_value_axis', second_value_axis cannot be nil.")
-      end
-      if @series_axis.nil?
-          invalid_properties.push("invalid value for 'series_axis', series_axis cannot be nil.")
-      end
-      if @shapes.nil?
-          invalid_properties.push("invalid value for 'shapes', shapes cannot be nil.")
-      end
-      if @show_data_table.nil?
-          invalid_properties.push("invalid value for 'show_data_table', show_data_table cannot be nil.")
-      end
-      if @show_legend.nil?
-          invalid_properties.push("invalid value for 'show_legend', show_legend cannot be nil.")
-      end
-      if @side_wall.nil?
-          invalid_properties.push("invalid value for 'side_wall', side_wall cannot be nil.")
-      end
-      if @size_with_window.nil?
-          invalid_properties.push("invalid value for 'size_with_window', size_with_window cannot be nil.")
-      end
-      if @style.nil?
-          invalid_properties.push("invalid value for 'style', style cannot be nil.")
-      end
-      if @title.nil?
-          invalid_properties.push("invalid value for 'title', title cannot be nil.")
-      end
-      if @type.nil?
-          invalid_properties.push("invalid value for 'type', type cannot be nil.")
-      end
-      if @value_axis.nil?
-          invalid_properties.push("invalid value for 'value_axis', value_axis cannot be nil.")
-      end
-      if @walls.nil?
-          invalid_properties.push("invalid value for 'walls', walls cannot be nil.")
-      end
-      if @walls_and_gridlines2_d.nil?
-          invalid_properties.push("invalid value for 'walls_and_gridlines2_d', walls_and_gridlines2_d cannot be nil.")
-      end
-      if @link.nil?
-          invalid_properties.push("invalid value for 'link', link cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @auto_scaling.nil?
-      return false if @back_wall.nil?
-      return false if @category_axis.nil?
-      return false if @chart_area.nil?
-      return false if @chart_data_table.nil?
-      return false if @chart_object.nil?
-      return false if @depth_percent.nil?
-      return false if @elevation.nil?
-      return false if @first_slice_angle.nil?
-      return false if @floor.nil?
-      return false if @gap_depth.nil?
-      return false if @gap_width.nil?
-      return false if @height_percent.nil?
-      return false if @hide_pivot_field_buttons.nil?
-      return false if @is3_d.nil?
-      return false if @is_rectangular_cornered.nil?
-      return false if @legend.nil?
-      return false if @name.nil?
-      return false if @n_series.nil?
-      return false if @page_setup.nil?
-      return false if @perspective.nil?
-      return false if @pivot_source.nil?
-      return false if @placement.nil?
-      return false if @plot_area.nil?
-      return false if @plot_empty_cells_type.nil?
-      return false if @plot_visible_cells.nil?
-      return false if @print_size.nil?
-      return false if @right_angle_axes.nil?
-      return false if @rotation_angle.nil?
-      return false if @second_category_axis.nil?
-      return false if @second_value_axis.nil?
-      return false if @series_axis.nil?
-      return false if @shapes.nil?
-      return false if @show_data_table.nil?
-      return false if @show_legend.nil?
-      return false if @side_wall.nil?
-      return false if @size_with_window.nil?
-      return false if @style.nil?
-      return false if @title.nil?
-      return false if @type.nil?
-      return false if @value_axis.nil?
-      return false if @walls.nil?
-      return false if @walls_and_gridlines2_d.nil?
-      return false if @link.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          auto_scaling == o.auto_scaling &&
-          back_wall == o.back_wall &&
-          category_axis == o.category_axis &&
-          chart_area == o.chart_area &&
-          chart_data_table == o.chart_data_table &&
-          chart_object == o.chart_object &&
-          depth_percent == o.depth_percent &&
-          elevation == o.elevation &&
-          first_slice_angle == o.first_slice_angle &&
-          floor == o.floor &&
-          gap_depth == o.gap_depth &&
-          gap_width == o.gap_width &&
-          height_percent == o.height_percent &&
-          hide_pivot_field_buttons == o.hide_pivot_field_buttons &&
-          is3_d == o.is3_d &&
-          is_rectangular_cornered == o.is_rectangular_cornered &&
-          legend == o.legend &&
-          name == o.name &&
-          n_series == o.n_series &&
-          page_setup == o.page_setup &&
-          perspective == o.perspective &&
-          pivot_source == o.pivot_source &&
-          placement == o.placement &&
-          plot_area == o.plot_area &&
-          plot_empty_cells_type == o.plot_empty_cells_type &&
-          plot_visible_cells == o.plot_visible_cells &&
-          print_size == o.print_size &&
-          right_angle_axes == o.right_angle_axes &&
-          rotation_angle == o.rotation_angle &&
-          second_category_axis == o.second_category_axis &&
-          second_value_axis == o.second_value_axis &&
-          series_axis == o.series_axis &&
-          shapes == o.shapes &&
-          show_data_table == o.show_data_table &&
-          show_legend == o.show_legend &&
-          side_wall == o.side_wall &&
-          size_with_window == o.size_with_window &&
-          style == o.style &&
-          title == o.title &&
-          type == o.type &&
-          value_axis == o.value_axis &&
-          walls == o.walls &&
-          walls_and_gridlines2_d == o.walls_and_gridlines2_d &&
-          link == o.link 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ auto_scaling , back_wall , category_axis , chart_area , chart_data_table , chart_object , depth_percent , elevation , first_slice_angle , floor , gap_depth , gap_width , height_percent , hide_pivot_field_buttons , is3_d , is_rectangular_cornered , legend , name , n_series , page_setup , perspective , pivot_source , placement , plot_area , plot_empty_cells_type , plot_visible_cells , print_size , right_angle_axes , rotation_angle , second_category_axis , second_value_axis , series_axis , shapes , show_data_table , show_legend , side_wall , size_with_window , style , title , type , value_axis , walls , walls_and_gridlines2_d , link ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

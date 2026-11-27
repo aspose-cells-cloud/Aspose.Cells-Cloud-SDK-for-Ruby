@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="RemoveCharactersByPositionInRemoteSpreadsheet_request.rb.cs">
+ <copyright company="Aspose" file="RemoveCharactersByPositionInRemoteSpreadsheetRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,172 +25,93 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class RemoveCharactersByPositionInRemoteSpreadsheetRequest
 
-    attr_accessor :name  
-    attr_accessor :worksheet  
-    attr_accessor :range  
-    attr_accessor :the_first_n_characters  
-    attr_accessor :the_last_n_characters  
-    attr_accessor :all_characters_before_text  
-    attr_accessor :all_characters_after_text  
-    attr_accessor :case_sensitive  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
-    attr_accessor :region  
-    attr_accessor :password  
+  class RemoveCharactersByPositionInRemoteSpreadsheetRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :range
+    # @return [String]
+    attr_accessor :worksheet
+    # @return [String, nil when omitted]
+    attr_accessor :all_characters_after_text
+    # @return [String, nil when omitted]
+    attr_accessor :all_characters_before_text
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :case_sensitive
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [Integer, nil when omitted]
+    attr_accessor :the_first_n_characters
+    # @return [Integer, nil when omitted]
+    attr_accessor :the_last_n_characters
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, range:, worksheet:, all_characters_after_text: nil, all_characters_before_text: nil, case_sensitive: nil, folder: nil, password: nil, region: nil, storage_name: nil, the_first_n_characters: nil, the_last_n_characters: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `RemoveCharactersByPositionInRemoteSpreadsheetRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `range` when calling `RemoveCharactersByPositionInRemoteSpreadsheetRequest.new`' if range.nil?
+      raise ArgumentError, 'Missing the required parameter `worksheet` when calling `RemoveCharactersByPositionInRemoteSpreadsheetRequest.new`' if worksheet.nil?
+      @name = name
+      @range = range
+      @worksheet = worksheet
+      @all_characters_after_text = all_characters_after_text
+      @all_characters_before_text = all_characters_before_text
+      @case_sensitive = case_sensitive
+      @folder = folder
+      @password = password
+      @region = region
+      @storage_name = storage_name
+      @the_first_n_characters = the_first_n_characters
+      @the_last_n_characters = the_last_n_characters
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/{name}/worksheets/{worksheet}/range/{range}/content/remove/characters-by-position'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{worksheet}', encode_path_segment(@worksheet))
+      path = path.gsub('{range}', encode_path_segment(@range))
+      path
+    end
 
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['theFirstNCharacters'] = @the_first_n_characters unless @the_first_n_characters.nil?
+      query['theLastNCharacters'] = @the_last_n_characters unless @the_last_n_characters.nil?
+      query['allCharactersBeforeText'] = @all_characters_before_text unless @all_characters_before_text.nil?
+      query['allCharactersAfterText'] = @all_characters_after_text unless @all_characters_after_text.nil?
+      query['caseSensitive'] = @case_sensitive unless @case_sensitive.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'range')
-          self.range = attributes[:'range']
-      end
-
-      if attributes.has_key?(:'theFirstNCharacters')
-          self.the_first_n_characters = attributes[:'theFirstNCharacters']
-      end
-
-      if attributes.has_key?(:'theLastNCharacters')
-          self.the_last_n_characters = attributes[:'theLastNCharacters']
-      end
-
-      if attributes.has_key?(:'allCharactersBeforeText')
-          self.all_characters_before_text = attributes[:'allCharactersBeforeText']
-      end
-
-      if attributes.has_key?(:'allCharactersAfterText')
-          self.all_characters_after_text = attributes[:'allCharactersAfterText']
-      end
-
-      if attributes.has_key?(:'caseSensitive')
-          self.case_sensitive = attributes[:'caseSensitive']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'worksheet' => :'worksheet',
-        :'range' => :'range',
-        :'the_first_n_characters' => :'theFirstNCharacters',
-        :'the_last_n_characters' => :'theLastNCharacters',
-        :'all_characters_before_text' => :'allCharactersBeforeText',
-        :'all_characters_after_text' => :'allCharactersAfterText',
-        :'case_sensitive' => :'caseSensitive',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'worksheet' => :'String',
-        :'range' => :'String',
-        :'the_first_n_characters' => :'Integer',
-        :'the_last_n_characters' => :'Integer',
-        :'all_characters_before_text' => :'String',
-        :'all_characters_after_text' => :'String',
-        :'case_sensitive' => :'BOOLEAN',
-        :'folder' => :'String',
-        :'storage_name' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.remove_characters_by_position_in_remote_spreadsheet ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.remove_characters_by_position_in_remote_spreadsheet "
-      end 
-      # verify the required parameter 'worksheet' is set
-      if api_client.config.client_side_validation && worksheet.nil?
-          fail ArgumentError, "Missing the required parameter 'worksheet' when calling CellsApi.remove_characters_by_position_in_remote_spreadsheet "
-      end 
-      # verify the required parameter 'range' is set
-      if api_client.config.client_side_validation && range.nil?
-          fail ArgumentError, "Missing the required parameter 'range' when calling CellsApi.remove_characters_by_position_in_remote_spreadsheet "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/{name}/worksheets/{worksheet}/range/{range}/content/remove/characters-by-position".sub('{' + 'name' + '}', name.to_s).sub('{' + 'worksheet' + '}', worksheet.to_s).sub('{' + 'range' + '}', range.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'theFirstNCharacters'] = self.the_first_n_characters if !self.the_first_n_characters.nil? 
-      query_params[:'theLastNCharacters'] = self.the_last_n_characters if !self.the_last_n_characters.nil? 
-      query_params[:'allCharactersBeforeText'] = self.all_characters_before_text if !self.all_characters_before_text.nil? 
-      query_params[:'allCharactersAfterText'] = self.all_characters_after_text if !self.all_characters_after_text.nil? 
-      query_params[:'caseSensitive'] = self.case_sensitive if !self.case_sensitive.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.remove_characters_by_position_in_remote_spreadsheet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

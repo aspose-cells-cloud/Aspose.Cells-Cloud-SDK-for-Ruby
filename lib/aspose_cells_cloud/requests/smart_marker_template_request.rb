@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="SmartMarkerTemplate_request.rb.cs">
+ <copyright company="Aspose" file="SmartMarkerTemplateRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,113 +25,66 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class SmartMarkerTemplateRequest
 
-    attr_accessor :datafile  
-    attr_accessor :templatefile  
-    attr_accessor :region  
-    attr_accessor :password  
+  class SmartMarkerTemplateRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :datafile
+    # @return [File]
+    attr_accessor :templatefile
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(datafile:, templatefile:, password: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `datafile` when calling `SmartMarkerTemplateRequest.new`' if datafile.nil?
+      raise ArgumentError, 'Missing the required parameter `templatefile` when calling `SmartMarkerTemplateRequest.new`' if templatefile.nil?
+      @datafile = datafile
+      @templatefile = templatefile
+      @password = password
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'datafile')
-          self.datafile = attributes[:'datafile']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/report/smart/template'
+      path
+    end
 
-      if attributes.has_key?(:'templatefile')
-          self.templatefile = attributes[:'templatefile']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'datafile' => :'datafile',
-        :'templatefile' => :'templatefile',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'datafile' => :'String',
-        :'templatefile' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @datafile
+      form['file'] = @templatefile
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.smart_marker_template ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'datafile' is set
-      if api_client.config.client_side_validation && datafile.nil?
-          fail ArgumentError, "Missing the required parameter 'datafile' when calling CellsApi.smart_marker_template "
-      end 
-      # verify the required parameter 'templatefile' is set
-      if api_client.config.client_side_validation && templatefile.nil?
-          fail ArgumentError, "Missing the required parameter 'templatefile' when calling CellsApi.smart_marker_template "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/report/smart/template"
-      # query parameters
-      query_params = {}
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !datafile.empty? && File.exist?(datafile )
-          form_params[File.basename(datafile)] =  ::File.open(datafile,"r")   
-      end 
-      if !templatefile.empty? && File.exist?(templatefile )
-          form_params[File.basename(templatefile)] =  ::File.open(templatefile,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.smart_marker_template\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

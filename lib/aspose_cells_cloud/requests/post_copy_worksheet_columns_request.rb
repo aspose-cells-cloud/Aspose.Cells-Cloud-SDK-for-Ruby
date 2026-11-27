@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostCopyWorksheetColumns_request.rb.cs">
+ <copyright company="Aspose" file="PostCopyWorksheetColumnsRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,149 +25,79 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostCopyWorksheetColumnsRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :source_column_index  
-    attr_accessor :destination_column_index  
-    attr_accessor :column_number  
-    attr_accessor :worksheet  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PostCopyWorksheetColumnsRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [Integer]
+    attr_accessor :column_number
+    # @return [Integer]
+    attr_accessor :destination_column_index
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [Integer]
+    attr_accessor :source_column_index
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :worksheet
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(column_number:, destination_column_index:, name:, sheet_name:, source_column_index:, folder: nil, storage_name: nil, worksheet: nil)
+      raise ArgumentError, 'Missing the required parameter `column_number` when calling `PostCopyWorksheetColumnsRequest.new`' if column_number.nil?
+      raise ArgumentError, 'Missing the required parameter `destination_column_index` when calling `PostCopyWorksheetColumnsRequest.new`' if destination_column_index.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostCopyWorksheetColumnsRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PostCopyWorksheetColumnsRequest.new`' if sheet_name.nil?
+      raise ArgumentError, 'Missing the required parameter `source_column_index` when calling `PostCopyWorksheetColumnsRequest.new`' if source_column_index.nil?
+      @column_number = column_number
+      @destination_column_index = destination_column_index
+      @name = name
+      @sheet_name = sheet_name
+      @source_column_index = source_column_index
+      @folder = folder
+      @storage_name = storage_name
+      @worksheet = worksheet
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/cells/columns/copy'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['sourceColumnIndex'] = @source_column_index
+      query['destinationColumnIndex'] = @destination_column_index
+      query['columnNumber'] = @column_number
+      query['worksheet'] = @worksheet unless @worksheet.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'sourceColumnIndex')
-          self.source_column_index = attributes[:'sourceColumnIndex']
-      end
-
-      if attributes.has_key?(:'destinationColumnIndex')
-          self.destination_column_index = attributes[:'destinationColumnIndex']
-      end
-
-      if attributes.has_key?(:'columnNumber')
-          self.column_number = attributes[:'columnNumber']
-      end
-
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'source_column_index' => :'sourceColumnIndex',
-        :'destination_column_index' => :'destinationColumnIndex',
-        :'column_number' => :'columnNumber',
-        :'worksheet' => :'worksheet',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'source_column_index' => :'Integer',
-        :'destination_column_index' => :'Integer',
-        :'column_number' => :'Integer',
-        :'worksheet' => :'String',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_copy_worksheet_columns ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_copy_worksheet_columns "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.post_copy_worksheet_columns "
-      end 
-      # verify the required parameter 'source_column_index' is set
-      if api_client.config.client_side_validation && source_column_index.nil?
-          fail ArgumentError, "Missing the required parameter 'source_column_index' when calling CellsApi.post_copy_worksheet_columns "
-      end 
-      # verify the required parameter 'destination_column_index' is set
-      if api_client.config.client_side_validation && destination_column_index.nil?
-          fail ArgumentError, "Missing the required parameter 'destination_column_index' when calling CellsApi.post_copy_worksheet_columns "
-      end 
-      # verify the required parameter 'column_number' is set
-      if api_client.config.client_side_validation && column_number.nil?
-          fail ArgumentError, "Missing the required parameter 'column_number' when calling CellsApi.post_copy_worksheet_columns "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/cells/columns/copy".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'sourceColumnIndex'] = self.source_column_index if !self.source_column_index.nil? 
-      query_params[:'destinationColumnIndex'] = self.destination_column_index if !self.destination_column_index.nil? 
-      query_params[:'columnNumber'] = self.column_number if !self.column_number.nil? 
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_copy_worksheet_columns\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

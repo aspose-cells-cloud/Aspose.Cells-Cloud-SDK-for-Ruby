@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="SwapRange_request.rb.cs">
+ <copyright company="Aspose" file="SwapRangeRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,163 +25,89 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class SwapRangeRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :worksheet1  
-    attr_accessor :range1  
-    attr_accessor :worksheet2  
-    attr_accessor :range2  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :region  
-    attr_accessor :password  
+  class SwapRangeRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :range1
+    # @return [String]
+    attr_accessor :range2
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [String]
+    attr_accessor :worksheet1
+    # @return [String]
+    attr_accessor :worksheet2
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(range1:, range2:, spreadsheet:, worksheet1:, worksheet2:, out_path: nil, out_storage_name: nil, password: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `range1` when calling `SwapRangeRequest.new`' if range1.nil?
+      raise ArgumentError, 'Missing the required parameter `range2` when calling `SwapRangeRequest.new`' if range2.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `SwapRangeRequest.new`' if spreadsheet.nil?
+      raise ArgumentError, 'Missing the required parameter `worksheet1` when calling `SwapRangeRequest.new`' if worksheet1.nil?
+      raise ArgumentError, 'Missing the required parameter `worksheet2` when calling `SwapRangeRequest.new`' if worksheet2.nil?
+      @range1 = range1
+      @range2 = range2
+      @spreadsheet = spreadsheet
+      @worksheet1 = worksheet1
+      @worksheet2 = worksheet2
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @password = password
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/swap/range'
+      path
+    end
 
-      if attributes.has_key?(:'worksheet1')
-          self.worksheet1 = attributes[:'worksheet1']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['worksheet1'] = @worksheet1
+      query['range1'] = @range1
+      query['worksheet2'] = @worksheet2
+      query['range2'] = @range2
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'range1')
-          self.range1 = attributes[:'range1']
-      end
-
-      if attributes.has_key?(:'worksheet2')
-          self.worksheet2 = attributes[:'worksheet2']
-      end
-
-      if attributes.has_key?(:'range2')
-          self.range2 = attributes[:'range2']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'worksheet1' => :'worksheet1',
-        :'range1' => :'range1',
-        :'worksheet2' => :'worksheet2',
-        :'range2' => :'range2',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'spreadsheet' => :'String',
-        :'worksheet1' => :'String',
-        :'range1' => :'String',
-        :'worksheet2' => :'String',
-        :'range2' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.swap_range ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.swap_range "
-      end 
-      # verify the required parameter 'worksheet1' is set
-      if api_client.config.client_side_validation && worksheet1.nil?
-          fail ArgumentError, "Missing the required parameter 'worksheet1' when calling CellsApi.swap_range "
-      end 
-      # verify the required parameter 'range1' is set
-      if api_client.config.client_side_validation && range1.nil?
-          fail ArgumentError, "Missing the required parameter 'range1' when calling CellsApi.swap_range "
-      end 
-      # verify the required parameter 'worksheet2' is set
-      if api_client.config.client_side_validation && worksheet2.nil?
-          fail ArgumentError, "Missing the required parameter 'worksheet2' when calling CellsApi.swap_range "
-      end 
-      # verify the required parameter 'range2' is set
-      if api_client.config.client_side_validation && range2.nil?
-          fail ArgumentError, "Missing the required parameter 'range2' when calling CellsApi.swap_range "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/swap/range"
-      # query parameters
-      query_params = {}
-      query_params[:'worksheet1'] = self.worksheet1 if !self.worksheet1.nil? 
-      query_params[:'range1'] = self.range1 if !self.range1.nil? 
-      query_params[:'worksheet2'] = self.worksheet2 if !self.worksheet2.nil? 
-      query_params[:'range2'] = self.range2 if !self.range2.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.swap_range\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="DecomposeUserTask_request.rb.cs">
+ <copyright company="Aspose" file="DecomposeUserTaskRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,95 +25,66 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class DecomposeUserTaskRequest
 
-    attr_accessor :task_description  
-    attr_accessor :region  
-    attr_accessor :password  
+  class DecomposeUserTaskRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :task_description
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(task_description:, password: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `task_description` when calling `DecomposeUserTaskRequest.new`' if task_description.nil?
+      @task_description = task_description
+      @password = password
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'TaskDescription')
-          self.task_description = attributes[:'TaskDescription']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/ai/task/decompose'
+      path
+    end
 
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'task_description' => :'TaskDescription',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'task_description' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @task_description.nil?
+      if @task_description.is_a?(Array)
+        @task_description.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @task_description.respond_to?(:to_hash)
+        @task_description.to_hash
+      else
+        @task_description
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.decompose_user_task ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'task_description' is set
-      if api_client.config.client_side_validation && task_description.nil?
-          fail ArgumentError, "Missing the required parameter 'task_description' when calling CellsApi.decompose_user_task "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/ai/task/decompose"
-      # query parameters
-      query_params = {}
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(task_description) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.decompose_user_task\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

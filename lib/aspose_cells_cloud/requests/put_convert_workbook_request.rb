@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PutConvertWorkbook_request.rb.cs">
+ <copyright company="Aspose" file="PutConvertWorkbookRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,209 +25,114 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PutConvertWorkbookRequest
 
-    attr_accessor :file  
-    attr_accessor :format  
-    attr_accessor :password  
-    attr_accessor :out_path  
-    attr_accessor :storage_name  
-    attr_accessor :check_excel_restriction  
-    attr_accessor :stream_format  
-    attr_accessor :region  
-    attr_accessor :page_wide_fit_on_per_sheet  
-    attr_accessor :page_tall_fit_on_per_sheet  
-    attr_accessor :sheet_name  
-    attr_accessor :page_index  
-    attr_accessor :one_page_per_sheet  
-    attr_accessor :auto_rows_fit  
-    attr_accessor :auto_columns_fit  
-    attr_accessor :fonts_location  
+  class PutConvertWorkbookRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [File]
+    attr_accessor :file
+    # @return [String]
+    attr_accessor :format
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :auto_columns_fit
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :auto_rows_fit
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :check_excel_restriction
+    # @return [String, nil when omitted]
+    attr_accessor :fonts_location
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :one_page_per_sheet
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [Integer, nil when omitted]
+    attr_accessor :page_index
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :page_tall_fit_on_per_sheet
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :page_wide_fit_on_per_sheet
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :stream_format
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(file:, format:, auto_columns_fit: nil, auto_rows_fit: nil, check_excel_restriction: nil, fonts_location: nil, one_page_per_sheet: nil, out_path: nil, page_index: nil, page_tall_fit_on_per_sheet: nil, page_wide_fit_on_per_sheet: nil, password: nil, region: nil, sheet_name: nil, storage_name: nil, stream_format: nil)
+      raise ArgumentError, 'Missing the required parameter `file` when calling `PutConvertWorkbookRequest.new`' if file.nil?
+      raise ArgumentError, 'Missing the required parameter `format` when calling `PutConvertWorkbookRequest.new`' if format.nil?
+      @file = file
+      @format = format
+      @auto_columns_fit = auto_columns_fit
+      @auto_rows_fit = auto_rows_fit
+      @check_excel_restriction = check_excel_restriction
+      @fonts_location = fonts_location
+      @one_page_per_sheet = one_page_per_sheet
+      @out_path = out_path
+      @page_index = page_index
+      @page_tall_fit_on_per_sheet = page_tall_fit_on_per_sheet
+      @page_wide_fit_on_per_sheet = page_wide_fit_on_per_sheet
+      @password = password
+      @region = region
+      @sheet_name = sheet_name
+      @storage_name = storage_name
+      @stream_format = stream_format
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'File')
-          self.file = attributes[:'File']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/convert'
+      path
+    end
 
-      if attributes.has_key?(:'format')
-          self.format = attributes[:'format']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['format'] = @format
+      query['password'] = @password unless @password.nil?
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query['checkExcelRestriction'] = @check_excel_restriction unless @check_excel_restriction.nil?
+      query['streamFormat'] = @stream_format unless @stream_format.nil?
+      query['region'] = @region unless @region.nil?
+      query['pageWideFitOnPerSheet'] = @page_wide_fit_on_per_sheet unless @page_wide_fit_on_per_sheet.nil?
+      query['pageTallFitOnPerSheet'] = @page_tall_fit_on_per_sheet unless @page_tall_fit_on_per_sheet.nil?
+      query['sheetName'] = @sheet_name unless @sheet_name.nil?
+      query['pageIndex'] = @page_index unless @page_index.nil?
+      query['onePagePerSheet'] = @one_page_per_sheet unless @one_page_per_sheet.nil?
+      query['AutoRowsFit'] = @auto_rows_fit unless @auto_rows_fit.nil?
+      query['AutoColumnsFit'] = @auto_columns_fit unless @auto_columns_fit.nil?
+      query['FontsLocation'] = @fonts_location unless @fonts_location.nil?
+      query
+    end
 
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-      if attributes.has_key?(:'checkExcelRestriction')
-          self.check_excel_restriction = attributes[:'checkExcelRestriction']
-      end
-
-      if attributes.has_key?(:'streamFormat')
-          self.stream_format = attributes[:'streamFormat']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'pageWideFitOnPerSheet')
-          self.page_wide_fit_on_per_sheet = attributes[:'pageWideFitOnPerSheet']
-      end
-
-      if attributes.has_key?(:'pageTallFitOnPerSheet')
-          self.page_tall_fit_on_per_sheet = attributes[:'pageTallFitOnPerSheet']
-      end
-
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
-
-      if attributes.has_key?(:'pageIndex')
-          self.page_index = attributes[:'pageIndex']
-      end
-
-      if attributes.has_key?(:'onePagePerSheet')
-          self.one_page_per_sheet = attributes[:'onePagePerSheet']
-      end
-
-      if attributes.has_key?(:'AutoRowsFit')
-          self.auto_rows_fit = attributes[:'AutoRowsFit']
-      end
-
-      if attributes.has_key?(:'AutoColumnsFit')
-          self.auto_columns_fit = attributes[:'AutoColumnsFit']
-      end
-
-      if attributes.has_key?(:'FontsLocation')
-          self.fonts_location = attributes[:'FontsLocation']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'file' => :'File',
-        :'format' => :'format',
-        :'password' => :'password',
-        :'out_path' => :'outPath',
-        :'storage_name' => :'storageName',
-        :'check_excel_restriction' => :'checkExcelRestriction',
-        :'stream_format' => :'streamFormat',
-        :'region' => :'region',
-        :'page_wide_fit_on_per_sheet' => :'pageWideFitOnPerSheet',
-        :'page_tall_fit_on_per_sheet' => :'pageTallFitOnPerSheet',
-        :'sheet_name' => :'sheetName',
-        :'page_index' => :'pageIndex',
-        :'one_page_per_sheet' => :'onePagePerSheet',
-        :'auto_rows_fit' => :'AutoRowsFit',
-        :'auto_columns_fit' => :'AutoColumnsFit',
-        :'fonts_location' => :'FontsLocation'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'file' => :'Hash',
-        :'format' => :'String',
-        :'password' => :'String',
-        :'out_path' => :'String',
-        :'storage_name' => :'String',
-        :'check_excel_restriction' => :'BOOLEAN',
-        :'stream_format' => :'String',
-        :'region' => :'String',
-        :'page_wide_fit_on_per_sheet' => :'BOOLEAN',
-        :'page_tall_fit_on_per_sheet' => :'BOOLEAN',
-        :'sheet_name' => :'String',
-        :'page_index' => :'Integer',
-        :'one_page_per_sheet' => :'BOOLEAN',
-        :'auto_rows_fit' => :'BOOLEAN',
-        :'auto_columns_fit' => :'BOOLEAN',
-        :'fonts_location' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['File'] = @file
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.put_convert_workbook ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'file' is set
-      if api_client.config.client_side_validation && file.nil?
-          fail ArgumentError, "Missing the required parameter 'file' when calling CellsApi.put_convert_workbook "
-      end 
-      # verify the required parameter 'format' is set
-      if api_client.config.client_side_validation && format.nil?
-          fail ArgumentError, "Missing the required parameter 'format' when calling CellsApi.put_convert_workbook "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/convert"
-      # query parameters
-      query_params = {}
-      query_params[:'format'] = self.format if !self.format.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-      query_params[:'checkExcelRestriction'] = self.check_excel_restriction if !self.check_excel_restriction.nil? 
-      query_params[:'streamFormat'] = self.stream_format if !self.stream_format.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'pageWideFitOnPerSheet'] = self.page_wide_fit_on_per_sheet if !self.page_wide_fit_on_per_sheet.nil? 
-      query_params[:'pageTallFitOnPerSheet'] = self.page_tall_fit_on_per_sheet if !self.page_tall_fit_on_per_sheet.nil? 
-      query_params[:'sheetName'] = self.sheet_name if !self.sheet_name.nil? 
-      query_params[:'pageIndex'] = self.page_index if !self.page_index.nil? 
-      query_params[:'onePagePerSheet'] = self.one_page_per_sheet if !self.one_page_per_sheet.nil? 
-      query_params[:'AutoRowsFit'] = self.auto_rows_fit if !self.auto_rows_fit.nil? 
-      query_params[:'AutoColumnsFit'] = self.auto_columns_fit if !self.auto_columns_fit.nil? 
-      query_params[:'FontsLocation'] = self.fonts_location if !self.fonts_location.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !file.nil?
-          file.each do |filename , context|
-          form_params[File.basename(filename)]  = context
-          end
-      end
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.put_convert_workbook\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

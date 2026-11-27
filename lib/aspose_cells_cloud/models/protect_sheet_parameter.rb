@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="ProtectSheetParameterrb.cs">
+ <copyright company="Aspose" file="ProtectSheetParameter.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,44 +25,45 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
 
 module AsposeCellsCloud
 
+  # Class Summary: The features discussed include natural language processing, image recognition, data visualization, clustering, regression, classification, and recommendation systems.
   class ProtectSheetParameter
-        #Property Summary: Defines a public string property for the ProtectionType.            
-        attr_accessor :protection_type
-        #            
-        attr_accessor :password
-        #            
-        attr_accessor :allow_edit_area
-        #            
-        attr_accessor :allow_deleting_column
-        #            
-        attr_accessor :allow_deleting_row
-        #            
-        attr_accessor :allow_filtering
-        #            
-        attr_accessor :allow_formatting_cell
-        #            
-        attr_accessor :allow_formatting_column
-        #            
-        attr_accessor :allow_formatting_row
-        #            
-        attr_accessor :allow_inserting_column
-        #            
-        attr_accessor :allow_inserting_hyperlink
-        #            
-        attr_accessor :allow_inserting_row
-        #            
-        attr_accessor :allow_selecting_locked_cell
-        #            
-        attr_accessor :allow_selecting_unlocked_cell
-        #            
-        attr_accessor :allow_sorting
-        #            
-        attr_accessor :allow_using_pivot_table
+    # Property Summary: Defines a public string property for the ProtectionType.
+    # @return [String]
+    attr_accessor :protection_type
+    # @return [String]
+    attr_accessor :password
+    # @return [Array<String>]
+    attr_accessor :allow_edit_area
+    # @return [String]
+    attr_accessor :allow_deleting_column
+    # @return [String]
+    attr_accessor :allow_deleting_row
+    # @return [String]
+    attr_accessor :allow_filtering
+    # @return [String]
+    attr_accessor :allow_formatting_cell
+    # @return [String]
+    attr_accessor :allow_formatting_column
+    # @return [String]
+    attr_accessor :allow_formatting_row
+    # @return [String]
+    attr_accessor :allow_inserting_column
+    # @return [String]
+    attr_accessor :allow_inserting_hyperlink
+    # @return [String]
+    attr_accessor :allow_inserting_row
+    # @return [String]
+    attr_accessor :allow_selecting_locked_cell
+    # @return [String]
+    attr_accessor :allow_selecting_unlocked_cell
+    # @return [String]
+    attr_accessor :allow_sorting
+    # @return [String]
+    attr_accessor :allow_using_pivot_table
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -82,7 +83,7 @@ module AsposeCellsCloud
         :'allow_selecting_locked_cell' => :'AllowSelectingLockedCell',
         :'allow_selecting_unlocked_cell' => :'AllowSelectingUnlockedCell',
         :'allow_sorting' => :'AllowSorting',
-        :'allow_using_pivot_table' => :'AllowUsingPivotTable'
+        :'allow_using_pivot_table' => :'AllowUsingPivotTable',
       }
     end
 
@@ -104,7 +105,7 @@ module AsposeCellsCloud
         :'allow_selecting_locked_cell' => :'String',
         :'allow_selecting_unlocked_cell' => :'String',
         :'allow_sorting' => :'String',
-        :'allow_using_pivot_table' => :'String'
+        :'allow_using_pivot_table' => :'String',
       }
     end
 
@@ -112,277 +113,70 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'ProtectionType')
-          self.protection_type = attributes[:'ProtectionType']
-      end
-      if attributes.has_key?(:'Password')
-          self.password = attributes[:'Password']
-      end
-      if attributes.has_key?(:'AllowEditArea')
-          self.allow_edit_area = attributes[:'AllowEditArea']
-      end
-      if attributes.has_key?(:'AllowDeletingColumn')
-          self.allow_deleting_column = attributes[:'AllowDeletingColumn']
-      end
-      if attributes.has_key?(:'AllowDeletingRow')
-          self.allow_deleting_row = attributes[:'AllowDeletingRow']
-      end
-      if attributes.has_key?(:'AllowFiltering')
-          self.allow_filtering = attributes[:'AllowFiltering']
-      end
-      if attributes.has_key?(:'AllowFormattingCell')
-          self.allow_formatting_cell = attributes[:'AllowFormattingCell']
-      end
-      if attributes.has_key?(:'AllowFormattingColumn')
-          self.allow_formatting_column = attributes[:'AllowFormattingColumn']
-      end
-      if attributes.has_key?(:'AllowFormattingRow')
-          self.allow_formatting_row = attributes[:'AllowFormattingRow']
-      end
-      if attributes.has_key?(:'AllowInsertingColumn')
-          self.allow_inserting_column = attributes[:'AllowInsertingColumn']
-      end
-      if attributes.has_key?(:'AllowInsertingHyperlink')
-          self.allow_inserting_hyperlink = attributes[:'AllowInsertingHyperlink']
-      end
-      if attributes.has_key?(:'AllowInsertingRow')
-          self.allow_inserting_row = attributes[:'AllowInsertingRow']
-      end
-      if attributes.has_key?(:'AllowSelectingLockedCell')
-          self.allow_selecting_locked_cell = attributes[:'AllowSelectingLockedCell']
-      end
-      if attributes.has_key?(:'AllowSelectingUnlockedCell')
-          self.allow_selecting_unlocked_cell = attributes[:'AllowSelectingUnlockedCell']
-      end
-      if attributes.has_key?(:'AllowSorting')
-          self.allow_sorting = attributes[:'AllowSorting']
-      end
-      if attributes.has_key?(:'AllowUsingPivotTable')
-          self.allow_using_pivot_table = attributes[:'AllowUsingPivotTable']
-      end
-
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.protection_type = attributes[:protection_type] if attributes.key?(:protection_type)
+      self.password = attributes[:password] if attributes.key?(:password)
+      self.allow_edit_area = attributes[:allow_edit_area] if attributes.key?(:allow_edit_area)
+      self.allow_deleting_column = attributes[:allow_deleting_column] if attributes.key?(:allow_deleting_column)
+      self.allow_deleting_row = attributes[:allow_deleting_row] if attributes.key?(:allow_deleting_row)
+      self.allow_filtering = attributes[:allow_filtering] if attributes.key?(:allow_filtering)
+      self.allow_formatting_cell = attributes[:allow_formatting_cell] if attributes.key?(:allow_formatting_cell)
+      self.allow_formatting_column = attributes[:allow_formatting_column] if attributes.key?(:allow_formatting_column)
+      self.allow_formatting_row = attributes[:allow_formatting_row] if attributes.key?(:allow_formatting_row)
+      self.allow_inserting_column = attributes[:allow_inserting_column] if attributes.key?(:allow_inserting_column)
+      self.allow_inserting_hyperlink = attributes[:allow_inserting_hyperlink] if attributes.key?(:allow_inserting_hyperlink)
+      self.allow_inserting_row = attributes[:allow_inserting_row] if attributes.key?(:allow_inserting_row)
+      self.allow_selecting_locked_cell = attributes[:allow_selecting_locked_cell] if attributes.key?(:allow_selecting_locked_cell)
+      self.allow_selecting_unlocked_cell = attributes[:allow_selecting_unlocked_cell] if attributes.key?(:allow_selecting_unlocked_cell)
+      self.allow_sorting = attributes[:allow_sorting] if attributes.key?(:allow_sorting)
+      self.allow_using_pivot_table = attributes[:allow_using_pivot_table] if attributes.key?(:allow_using_pivot_table)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @protection_type.nil?
-          invalid_properties.push("invalid value for 'protection_type', protection_type cannot be nil.")
-      end
-      if @password.nil?
-          invalid_properties.push("invalid value for 'password', password cannot be nil.")
-      end
-      if @allow_edit_area.nil?
-          invalid_properties.push("invalid value for 'allow_edit_area', allow_edit_area cannot be nil.")
-      end
-      if @allow_deleting_column.nil?
-          invalid_properties.push("invalid value for 'allow_deleting_column', allow_deleting_column cannot be nil.")
-      end
-      if @allow_deleting_row.nil?
-          invalid_properties.push("invalid value for 'allow_deleting_row', allow_deleting_row cannot be nil.")
-      end
-      if @allow_filtering.nil?
-          invalid_properties.push("invalid value for 'allow_filtering', allow_filtering cannot be nil.")
-      end
-      if @allow_formatting_cell.nil?
-          invalid_properties.push("invalid value for 'allow_formatting_cell', allow_formatting_cell cannot be nil.")
-      end
-      if @allow_formatting_column.nil?
-          invalid_properties.push("invalid value for 'allow_formatting_column', allow_formatting_column cannot be nil.")
-      end
-      if @allow_formatting_row.nil?
-          invalid_properties.push("invalid value for 'allow_formatting_row', allow_formatting_row cannot be nil.")
-      end
-      if @allow_inserting_column.nil?
-          invalid_properties.push("invalid value for 'allow_inserting_column', allow_inserting_column cannot be nil.")
-      end
-      if @allow_inserting_hyperlink.nil?
-          invalid_properties.push("invalid value for 'allow_inserting_hyperlink', allow_inserting_hyperlink cannot be nil.")
-      end
-      if @allow_inserting_row.nil?
-          invalid_properties.push("invalid value for 'allow_inserting_row', allow_inserting_row cannot be nil.")
-      end
-      if @allow_selecting_locked_cell.nil?
-          invalid_properties.push("invalid value for 'allow_selecting_locked_cell', allow_selecting_locked_cell cannot be nil.")
-      end
-      if @allow_selecting_unlocked_cell.nil?
-          invalid_properties.push("invalid value for 'allow_selecting_unlocked_cell', allow_selecting_unlocked_cell cannot be nil.")
-      end
-      if @allow_sorting.nil?
-          invalid_properties.push("invalid value for 'allow_sorting', allow_sorting cannot be nil.")
-      end
-      if @allow_using_pivot_table.nil?
-          invalid_properties.push("invalid value for 'allow_using_pivot_table', allow_using_pivot_table cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @protection_type.nil?
-      return false if @password.nil?
-      return false if @allow_edit_area.nil?
-      return false if @allow_deleting_column.nil?
-      return false if @allow_deleting_row.nil?
-      return false if @allow_filtering.nil?
-      return false if @allow_formatting_cell.nil?
-      return false if @allow_formatting_column.nil?
-      return false if @allow_formatting_row.nil?
-      return false if @allow_inserting_column.nil?
-      return false if @allow_inserting_hyperlink.nil?
-      return false if @allow_inserting_row.nil?
-      return false if @allow_selecting_locked_cell.nil?
-      return false if @allow_selecting_unlocked_cell.nil?
-      return false if @allow_sorting.nil?
-      return false if @allow_using_pivot_table.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          protection_type == o.protection_type &&
-          password == o.password &&
-          allow_edit_area == o.allow_edit_area &&
-          allow_deleting_column == o.allow_deleting_column &&
-          allow_deleting_row == o.allow_deleting_row &&
-          allow_filtering == o.allow_filtering &&
-          allow_formatting_cell == o.allow_formatting_cell &&
-          allow_formatting_column == o.allow_formatting_column &&
-          allow_formatting_row == o.allow_formatting_row &&
-          allow_inserting_column == o.allow_inserting_column &&
-          allow_inserting_hyperlink == o.allow_inserting_hyperlink &&
-          allow_inserting_row == o.allow_inserting_row &&
-          allow_selecting_locked_cell == o.allow_selecting_locked_cell &&
-          allow_selecting_unlocked_cell == o.allow_selecting_unlocked_cell &&
-          allow_sorting == o.allow_sorting &&
-          allow_using_pivot_table == o.allow_using_pivot_table 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ protection_type , password , allow_edit_area , allow_deleting_column , allow_deleting_row , allow_filtering , allow_formatting_cell , allow_formatting_column , allow_formatting_row , allow_inserting_column , allow_inserting_hyperlink , allow_inserting_row , allow_selecting_locked_cell , allow_selecting_unlocked_cell , allow_sorting , allow_using_pivot_table ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

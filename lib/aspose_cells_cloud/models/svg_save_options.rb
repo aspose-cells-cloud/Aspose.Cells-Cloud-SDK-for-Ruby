@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="SvgSaveOptionsrb.cs">
+ <copyright company="Aspose" file="SvgSaveOptions.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,64 +25,64 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
+require_relative 'save_options'
 
 module AsposeCellsCloud
 
-  class SvgSaveOptions
-        #            
-        attr_accessor :sheet_index
-        #            
-        attr_accessor :chart_image_type
-        #            
-        attr_accessor :embeded_image_name_in_svg
-        #            
-        attr_accessor :horizontal_resolution
-        #            
-        attr_accessor :image_format
-        #            
-        attr_accessor :is_cell_auto_fit
-        #            
-        attr_accessor :one_page_per_sheet
-        #            
-        attr_accessor :only_area
-        #            
-        attr_accessor :printing_page
-        #            
-        attr_accessor :print_with_status_dialog
-        #            
-        attr_accessor :quality
-        #            
-        attr_accessor :tiff_compression
-        #            
-        attr_accessor :vertical_resolution
-        #            
-        attr_accessor :save_format
-        #            
-        attr_accessor :cached_file_folder
-        #            
-        attr_accessor :clear_data
-        #            
-        attr_accessor :create_directory
-        #            
-        attr_accessor :enable_http_compression
-        #            
-        attr_accessor :refresh_chart_cache
-        #            
-        attr_accessor :sort_names
-        #            
-        attr_accessor :validate_merged_areas
-        #            
-        attr_accessor :merge_areas
-        #            
-        attr_accessor :sort_external_names
-        #            
-        attr_accessor :check_excel_restriction
-        #            
-        attr_accessor :update_smart_art
-        #            
-        attr_accessor :encrypt_document_properties
+  class SvgSaveOptions < SaveOptions
+    # @return [Integer]
+    attr_accessor :sheet_index
+    # @return [String]
+    attr_accessor :chart_image_type
+    # @return [String]
+    attr_accessor :embeded_image_name_in_svg
+    # @return [Integer]
+    attr_accessor :horizontal_resolution
+    # @return [String]
+    attr_accessor :image_format
+    # @return [BOOLEAN]
+    attr_accessor :is_cell_auto_fit
+    # @return [BOOLEAN]
+    attr_accessor :one_page_per_sheet
+    # @return [BOOLEAN]
+    attr_accessor :only_area
+    # @return [String]
+    attr_accessor :printing_page
+    # @return [BOOLEAN]
+    attr_accessor :print_with_status_dialog
+    # @return [Integer]
+    attr_accessor :quality
+    # @return [String]
+    attr_accessor :tiff_compression
+    # @return [Integer]
+    attr_accessor :vertical_resolution
+    # @return [String]
+    attr_accessor :save_format
+    # @return [String]
+    attr_accessor :cached_file_folder
+    # @return [BOOLEAN]
+    attr_accessor :clear_data
+    # @return [BOOLEAN]
+    attr_accessor :create_directory
+    # @return [BOOLEAN]
+    attr_accessor :enable_http_compression
+    # @return [BOOLEAN]
+    attr_accessor :refresh_chart_cache
+    # @return [BOOLEAN]
+    attr_accessor :sort_names
+    # @return [BOOLEAN]
+    attr_accessor :validate_merged_areas
+    # @return [BOOLEAN]
+    attr_accessor :merge_areas
+    # @return [BOOLEAN]
+    attr_accessor :sort_external_names
+    # @return [BOOLEAN]
+    attr_accessor :check_excel_restriction
+    # @return [BOOLEAN]
+    attr_accessor :update_smart_art
+    # @return [BOOLEAN]
+    attr_accessor :encrypt_document_properties
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -112,7 +112,7 @@ module AsposeCellsCloud
         :'sort_external_names' => :'SortExternalNames',
         :'check_excel_restriction' => :'CheckExcelRestriction',
         :'update_smart_art' => :'UpdateSmartArt',
-        :'encrypt_document_properties' => :'EncryptDocumentProperties'
+        :'encrypt_document_properties' => :'EncryptDocumentProperties',
       }
     end
 
@@ -144,7 +144,7 @@ module AsposeCellsCloud
         :'sort_external_names' => :'BOOLEAN',
         :'check_excel_restriction' => :'BOOLEAN',
         :'update_smart_art' => :'BOOLEAN',
-        :'encrypt_document_properties' => :'BOOLEAN'
+        :'encrypt_document_properties' => :'BOOLEAN',
       }
     end
 
@@ -152,357 +152,81 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'SheetIndex')
-          self.sheet_index = attributes[:'SheetIndex']
-      end
-      if attributes.has_key?(:'ChartImageType')
-          self.chart_image_type = attributes[:'ChartImageType']
-      end
-      if attributes.has_key?(:'EmbededImageNameInSvg')
-          self.embeded_image_name_in_svg = attributes[:'EmbededImageNameInSvg']
-      end
-      if attributes.has_key?(:'HorizontalResolution')
-          self.horizontal_resolution = attributes[:'HorizontalResolution']
-      end
-      if attributes.has_key?(:'ImageFormat')
-          self.image_format = attributes[:'ImageFormat']
-      end
-      if attributes.has_key?(:'IsCellAutoFit')
-          self.is_cell_auto_fit = attributes[:'IsCellAutoFit']
-      end
-      if attributes.has_key?(:'OnePagePerSheet')
-          self.one_page_per_sheet = attributes[:'OnePagePerSheet']
-      end
-      if attributes.has_key?(:'OnlyArea')
-          self.only_area = attributes[:'OnlyArea']
-      end
-      if attributes.has_key?(:'PrintingPage')
-          self.printing_page = attributes[:'PrintingPage']
-      end
-      if attributes.has_key?(:'PrintWithStatusDialog')
-          self.print_with_status_dialog = attributes[:'PrintWithStatusDialog']
-      end
-      if attributes.has_key?(:'Quality')
-          self.quality = attributes[:'Quality']
-      end
-      if attributes.has_key?(:'TiffCompression')
-          self.tiff_compression = attributes[:'TiffCompression']
-      end
-      if attributes.has_key?(:'VerticalResolution')
-          self.vertical_resolution = attributes[:'VerticalResolution']
-      end
-      if attributes.has_key?(:'SaveFormat')
-          self.save_format = attributes[:'SaveFormat']
-      end
-      if attributes.has_key?(:'CachedFileFolder')
-          self.cached_file_folder = attributes[:'CachedFileFolder']
-      end
-      if attributes.has_key?(:'ClearData')
-          self.clear_data = attributes[:'ClearData']
-      end
-      if attributes.has_key?(:'CreateDirectory')
-          self.create_directory = attributes[:'CreateDirectory']
-      end
-      if attributes.has_key?(:'EnableHTTPCompression')
-          self.enable_http_compression = attributes[:'EnableHTTPCompression']
-      end
-      if attributes.has_key?(:'RefreshChartCache')
-          self.refresh_chart_cache = attributes[:'RefreshChartCache']
-      end
-      if attributes.has_key?(:'SortNames')
-          self.sort_names = attributes[:'SortNames']
-      end
-      if attributes.has_key?(:'ValidateMergedAreas')
-          self.validate_merged_areas = attributes[:'ValidateMergedAreas']
-      end
-      if attributes.has_key?(:'MergeAreas')
-          self.merge_areas = attributes[:'MergeAreas']
-      end
-      if attributes.has_key?(:'SortExternalNames')
-          self.sort_external_names = attributes[:'SortExternalNames']
-      end
-      if attributes.has_key?(:'CheckExcelRestriction')
-          self.check_excel_restriction = attributes[:'CheckExcelRestriction']
-      end
-      if attributes.has_key?(:'UpdateSmartArt')
-          self.update_smart_art = attributes[:'UpdateSmartArt']
-      end
-      if attributes.has_key?(:'EncryptDocumentProperties')
-          self.encrypt_document_properties = attributes[:'EncryptDocumentProperties']
-      end
-
+      super(attributes)
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.sheet_index = attributes[:sheet_index] if attributes.key?(:sheet_index)
+      self.chart_image_type = attributes[:chart_image_type] if attributes.key?(:chart_image_type)
+      self.embeded_image_name_in_svg = attributes[:embeded_image_name_in_svg] if attributes.key?(:embeded_image_name_in_svg)
+      self.horizontal_resolution = attributes[:horizontal_resolution] if attributes.key?(:horizontal_resolution)
+      self.image_format = attributes[:image_format] if attributes.key?(:image_format)
+      self.is_cell_auto_fit = attributes[:is_cell_auto_fit] if attributes.key?(:is_cell_auto_fit)
+      self.one_page_per_sheet = attributes[:one_page_per_sheet] if attributes.key?(:one_page_per_sheet)
+      self.only_area = attributes[:only_area] if attributes.key?(:only_area)
+      self.printing_page = attributes[:printing_page] if attributes.key?(:printing_page)
+      self.print_with_status_dialog = attributes[:print_with_status_dialog] if attributes.key?(:print_with_status_dialog)
+      self.quality = attributes[:quality] if attributes.key?(:quality)
+      self.tiff_compression = attributes[:tiff_compression] if attributes.key?(:tiff_compression)
+      self.vertical_resolution = attributes[:vertical_resolution] if attributes.key?(:vertical_resolution)
+      self.save_format = attributes[:save_format] if attributes.key?(:save_format)
+      self.cached_file_folder = attributes[:cached_file_folder] if attributes.key?(:cached_file_folder)
+      self.clear_data = attributes[:clear_data] if attributes.key?(:clear_data)
+      self.create_directory = attributes[:create_directory] if attributes.key?(:create_directory)
+      self.enable_http_compression = attributes[:enable_http_compression] if attributes.key?(:enable_http_compression)
+      self.refresh_chart_cache = attributes[:refresh_chart_cache] if attributes.key?(:refresh_chart_cache)
+      self.sort_names = attributes[:sort_names] if attributes.key?(:sort_names)
+      self.validate_merged_areas = attributes[:validate_merged_areas] if attributes.key?(:validate_merged_areas)
+      self.merge_areas = attributes[:merge_areas] if attributes.key?(:merge_areas)
+      self.sort_external_names = attributes[:sort_external_names] if attributes.key?(:sort_external_names)
+      self.check_excel_restriction = attributes[:check_excel_restriction] if attributes.key?(:check_excel_restriction)
+      self.update_smart_art = attributes[:update_smart_art] if attributes.key?(:update_smart_art)
+      self.encrypt_document_properties = attributes[:encrypt_document_properties] if attributes.key?(:encrypt_document_properties)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @sheet_index.nil?
-          invalid_properties.push("invalid value for 'sheet_index', sheet_index cannot be nil.")
-      end
-      if @chart_image_type.nil?
-          invalid_properties.push("invalid value for 'chart_image_type', chart_image_type cannot be nil.")
-      end
-      if @embeded_image_name_in_svg.nil?
-          invalid_properties.push("invalid value for 'embeded_image_name_in_svg', embeded_image_name_in_svg cannot be nil.")
-      end
-      if @horizontal_resolution.nil?
-          invalid_properties.push("invalid value for 'horizontal_resolution', horizontal_resolution cannot be nil.")
-      end
-      if @image_format.nil?
-          invalid_properties.push("invalid value for 'image_format', image_format cannot be nil.")
-      end
-      if @is_cell_auto_fit.nil?
-          invalid_properties.push("invalid value for 'is_cell_auto_fit', is_cell_auto_fit cannot be nil.")
-      end
-      if @one_page_per_sheet.nil?
-          invalid_properties.push("invalid value for 'one_page_per_sheet', one_page_per_sheet cannot be nil.")
-      end
-      if @only_area.nil?
-          invalid_properties.push("invalid value for 'only_area', only_area cannot be nil.")
-      end
-      if @printing_page.nil?
-          invalid_properties.push("invalid value for 'printing_page', printing_page cannot be nil.")
-      end
-      if @print_with_status_dialog.nil?
-          invalid_properties.push("invalid value for 'print_with_status_dialog', print_with_status_dialog cannot be nil.")
-      end
-      if @quality.nil?
-          invalid_properties.push("invalid value for 'quality', quality cannot be nil.")
-      end
-      if @tiff_compression.nil?
-          invalid_properties.push("invalid value for 'tiff_compression', tiff_compression cannot be nil.")
-      end
-      if @vertical_resolution.nil?
-          invalid_properties.push("invalid value for 'vertical_resolution', vertical_resolution cannot be nil.")
-      end
-      if @save_format.nil?
-          invalid_properties.push("invalid value for 'save_format', save_format cannot be nil.")
-      end
-      if @cached_file_folder.nil?
-          invalid_properties.push("invalid value for 'cached_file_folder', cached_file_folder cannot be nil.")
-      end
-      if @clear_data.nil?
-          invalid_properties.push("invalid value for 'clear_data', clear_data cannot be nil.")
-      end
-      if @create_directory.nil?
-          invalid_properties.push("invalid value for 'create_directory', create_directory cannot be nil.")
-      end
-      if @enable_http_compression.nil?
-          invalid_properties.push("invalid value for 'enable_http_compression', enable_http_compression cannot be nil.")
-      end
-      if @refresh_chart_cache.nil?
-          invalid_properties.push("invalid value for 'refresh_chart_cache', refresh_chart_cache cannot be nil.")
-      end
-      if @sort_names.nil?
-          invalid_properties.push("invalid value for 'sort_names', sort_names cannot be nil.")
-      end
-      if @validate_merged_areas.nil?
-          invalid_properties.push("invalid value for 'validate_merged_areas', validate_merged_areas cannot be nil.")
-      end
-      if @merge_areas.nil?
-          invalid_properties.push("invalid value for 'merge_areas', merge_areas cannot be nil.")
-      end
-      if @sort_external_names.nil?
-          invalid_properties.push("invalid value for 'sort_external_names', sort_external_names cannot be nil.")
-      end
-      if @check_excel_restriction.nil?
-          invalid_properties.push("invalid value for 'check_excel_restriction', check_excel_restriction cannot be nil.")
-      end
-      if @update_smart_art.nil?
-          invalid_properties.push("invalid value for 'update_smart_art', update_smart_art cannot be nil.")
-      end
-      if @encrypt_document_properties.nil?
-          invalid_properties.push("invalid value for 'encrypt_document_properties', encrypt_document_properties cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @sheet_index.nil?
-      return false if @chart_image_type.nil?
-      return false if @embeded_image_name_in_svg.nil?
-      return false if @horizontal_resolution.nil?
-      return false if @image_format.nil?
-      return false if @is_cell_auto_fit.nil?
-      return false if @one_page_per_sheet.nil?
-      return false if @only_area.nil?
-      return false if @printing_page.nil?
-      return false if @print_with_status_dialog.nil?
-      return false if @quality.nil?
-      return false if @tiff_compression.nil?
-      return false if @vertical_resolution.nil?
-      return false if @save_format.nil?
-      return false if @cached_file_folder.nil?
-      return false if @clear_data.nil?
-      return false if @create_directory.nil?
-      return false if @enable_http_compression.nil?
-      return false if @refresh_chart_cache.nil?
-      return false if @sort_names.nil?
-      return false if @validate_merged_areas.nil?
-      return false if @merge_areas.nil?
-      return false if @sort_external_names.nil?
-      return false if @check_excel_restriction.nil?
-      return false if @update_smart_art.nil?
-      return false if @encrypt_document_properties.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          sheet_index == o.sheet_index &&
-          chart_image_type == o.chart_image_type &&
-          embeded_image_name_in_svg == o.embeded_image_name_in_svg &&
-          horizontal_resolution == o.horizontal_resolution &&
-          image_format == o.image_format &&
-          is_cell_auto_fit == o.is_cell_auto_fit &&
-          one_page_per_sheet == o.one_page_per_sheet &&
-          only_area == o.only_area &&
-          printing_page == o.printing_page &&
-          print_with_status_dialog == o.print_with_status_dialog &&
-          quality == o.quality &&
-          tiff_compression == o.tiff_compression &&
-          vertical_resolution == o.vertical_resolution &&
-          save_format == o.save_format &&
-          cached_file_folder == o.cached_file_folder &&
-          clear_data == o.clear_data &&
-          create_directory == o.create_directory &&
-          enable_http_compression == o.enable_http_compression &&
-          refresh_chart_cache == o.refresh_chart_cache &&
-          sort_names == o.sort_names &&
-          validate_merged_areas == o.validate_merged_areas &&
-          merge_areas == o.merge_areas &&
-          sort_external_names == o.sort_external_names &&
-          check_excel_restriction == o.check_excel_restriction &&
-          update_smart_art == o.update_smart_art &&
-          encrypt_document_properties == o.encrypt_document_properties 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ sheet_index , chart_image_type , embeded_image_name_in_svg , horizontal_resolution , image_format , is_cell_auto_fit , one_page_per_sheet , only_area , printing_page , print_with_status_dialog , quality , tiff_compression , vertical_resolution , save_format , cached_file_folder , clear_data , create_directory , enable_http_compression , refresh_chart_cache , sort_names , validate_merged_areas , merge_areas , sort_external_names , check_excel_restriction , update_smart_art , encrypt_document_properties ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

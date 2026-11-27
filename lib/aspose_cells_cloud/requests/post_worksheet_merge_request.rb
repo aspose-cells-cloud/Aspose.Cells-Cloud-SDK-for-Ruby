@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostWorksheetMerge_request.rb.cs">
+ <copyright company="Aspose" file="PostWorksheetMergeRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,153 +25,80 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostWorksheetMergeRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :start_row  
-    attr_accessor :start_column  
-    attr_accessor :total_rows  
-    attr_accessor :total_columns  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PostWorksheetMergeRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [Integer]
+    attr_accessor :start_column
+    # @return [Integer]
+    attr_accessor :start_row
+    # @return [Integer]
+    attr_accessor :total_columns
+    # @return [Integer]
+    attr_accessor :total_rows
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, sheet_name:, start_column:, start_row:, total_columns:, total_rows:, folder: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostWorksheetMergeRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PostWorksheetMergeRequest.new`' if sheet_name.nil?
+      raise ArgumentError, 'Missing the required parameter `start_column` when calling `PostWorksheetMergeRequest.new`' if start_column.nil?
+      raise ArgumentError, 'Missing the required parameter `start_row` when calling `PostWorksheetMergeRequest.new`' if start_row.nil?
+      raise ArgumentError, 'Missing the required parameter `total_columns` when calling `PostWorksheetMergeRequest.new`' if total_columns.nil?
+      raise ArgumentError, 'Missing the required parameter `total_rows` when calling `PostWorksheetMergeRequest.new`' if total_rows.nil?
+      @name = name
+      @sheet_name = sheet_name
+      @start_column = start_column
+      @start_row = start_row
+      @total_columns = total_columns
+      @total_rows = total_rows
+      @folder = folder
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/cells/merge'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['startRow'] = @start_row
+      query['startColumn'] = @start_column
+      query['totalRows'] = @total_rows
+      query['totalColumns'] = @total_columns
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'startRow')
-          self.start_row = attributes[:'startRow']
-      end
-
-      if attributes.has_key?(:'startColumn')
-          self.start_column = attributes[:'startColumn']
-      end
-
-      if attributes.has_key?(:'totalRows')
-          self.total_rows = attributes[:'totalRows']
-      end
-
-      if attributes.has_key?(:'totalColumns')
-          self.total_columns = attributes[:'totalColumns']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'start_row' => :'startRow',
-        :'start_column' => :'startColumn',
-        :'total_rows' => :'totalRows',
-        :'total_columns' => :'totalColumns',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'start_row' => :'Integer',
-        :'start_column' => :'Integer',
-        :'total_rows' => :'Integer',
-        :'total_columns' => :'Integer',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_worksheet_merge ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_worksheet_merge "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.post_worksheet_merge "
-      end 
-      # verify the required parameter 'start_row' is set
-      if api_client.config.client_side_validation && start_row.nil?
-          fail ArgumentError, "Missing the required parameter 'start_row' when calling CellsApi.post_worksheet_merge "
-      end 
-      # verify the required parameter 'start_column' is set
-      if api_client.config.client_side_validation && start_column.nil?
-          fail ArgumentError, "Missing the required parameter 'start_column' when calling CellsApi.post_worksheet_merge "
-      end 
-      # verify the required parameter 'total_rows' is set
-      if api_client.config.client_side_validation && total_rows.nil?
-          fail ArgumentError, "Missing the required parameter 'total_rows' when calling CellsApi.post_worksheet_merge "
-      end 
-      # verify the required parameter 'total_columns' is set
-      if api_client.config.client_side_validation && total_columns.nil?
-          fail ArgumentError, "Missing the required parameter 'total_columns' when calling CellsApi.post_worksheet_merge "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/cells/merge".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'startRow'] = self.start_row if !self.start_row.nil? 
-      query_params[:'startColumn'] = self.start_column if !self.start_column.nil? 
-      query_params[:'totalRows'] = self.total_rows if !self.total_rows.nil? 
-      query_params[:'totalColumns'] = self.total_columns if !self.total_columns.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_worksheet_merge\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

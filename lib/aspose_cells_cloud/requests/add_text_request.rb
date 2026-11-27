@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="AddText_request.rb.cs">
+ <copyright company="Aspose" file="AddTextRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,171 +25,95 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class AddTextRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :text  
-    attr_accessor :position  
-    attr_accessor :select_text  
-    attr_accessor :skip_empty_cells  
-    attr_accessor :worksheet  
-    attr_accessor :range  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :region  
-    attr_accessor :password  
+  class AddTextRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :position
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [String]
+    attr_accessor :text
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :range
+    # @return [String, nil when omitted]
+    attr_accessor :region
+    # @return [String, nil when omitted]
+    attr_accessor :select_text
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :skip_empty_cells
+    # @return [String, nil when omitted]
+    attr_accessor :worksheet
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(position:, spreadsheet:, text:, out_path: nil, out_storage_name: nil, password: nil, range: nil, region: nil, select_text: nil, skip_empty_cells: nil, worksheet: nil)
+      raise ArgumentError, 'Missing the required parameter `position` when calling `AddTextRequest.new`' if position.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `AddTextRequest.new`' if spreadsheet.nil?
+      raise ArgumentError, 'Missing the required parameter `text` when calling `AddTextRequest.new`' if text.nil?
+      @position = position
+      @spreadsheet = spreadsheet
+      @text = text
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @password = password
+      @range = range
+      @region = region
+      @select_text = select_text
+      @skip_empty_cells = skip_empty_cells
+      @worksheet = worksheet
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/content/add/text'
+      path
+    end
 
-      if attributes.has_key?(:'text')
-          self.text = attributes[:'text']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['text'] = @text
+      query['position'] = @position
+      query['selectText'] = @select_text unless @select_text.nil?
+      query['skipEmptyCells'] = @skip_empty_cells unless @skip_empty_cells.nil?
+      query['worksheet'] = @worksheet unless @worksheet.nil?
+      query['range'] = @range unless @range.nil?
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'position')
-          self.position = attributes[:'position']
-      end
-
-      if attributes.has_key?(:'selectText')
-          self.select_text = attributes[:'selectText']
-      end
-
-      if attributes.has_key?(:'skipEmptyCells')
-          self.skip_empty_cells = attributes[:'skipEmptyCells']
-      end
-
-      if attributes.has_key?(:'worksheet')
-          self.worksheet = attributes[:'worksheet']
-      end
-
-      if attributes.has_key?(:'range')
-          self.range = attributes[:'range']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'text' => :'text',
-        :'position' => :'position',
-        :'select_text' => :'selectText',
-        :'skip_empty_cells' => :'skipEmptyCells',
-        :'worksheet' => :'worksheet',
-        :'range' => :'range',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'spreadsheet' => :'String',
-        :'text' => :'String',
-        :'position' => :'String',
-        :'select_text' => :'String',
-        :'skip_empty_cells' => :'BOOLEAN',
-        :'worksheet' => :'String',
-        :'range' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.add_text ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.add_text "
-      end 
-      # verify the required parameter 'text' is set
-      if api_client.config.client_side_validation && text.nil?
-          fail ArgumentError, "Missing the required parameter 'text' when calling CellsApi.add_text "
-      end 
-      # verify the required parameter 'position' is set
-      if api_client.config.client_side_validation && position.nil?
-          fail ArgumentError, "Missing the required parameter 'position' when calling CellsApi.add_text "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/content/add/text"
-      # query parameters
-      query_params = {}
-      query_params[:'text'] = self.text if !self.text.nil? 
-      query_params[:'position'] = self.position if !self.position.nil? 
-      query_params[:'selectText'] = self.select_text if !self.select_text.nil? 
-      query_params[:'skipEmptyCells'] = self.skip_empty_cells if !self.skip_empty_cells.nil? 
-      query_params[:'worksheet'] = self.worksheet if !self.worksheet.nil? 
-      query_params[:'range'] = self.range if !self.range.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.add_text\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

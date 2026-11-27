@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="Rangerb.cs">
+ <copyright company="Aspose" file="Range.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,30 +25,29 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
 require 'date'
 
 module AsposeCellsCloud
 
   class Range
-        #            
-        attr_accessor :column_count
-        #            
-        attr_accessor :column_width
-        #            
-        attr_accessor :first_column
-        #            
-        attr_accessor :first_row
-        #            
-        attr_accessor :name
-        #            
-        attr_accessor :refers_to
-        #            
-        attr_accessor :row_count
-        #            
-        attr_accessor :row_height
-        #            
-        attr_accessor :worksheet
+    # @return [Integer]
+    attr_accessor :column_count
+    # @return [Float]
+    attr_accessor :column_width
+    # @return [Integer]
+    attr_accessor :first_column
+    # @return [Integer]
+    attr_accessor :first_row
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :refers_to
+    # @return [Integer]
+    attr_accessor :row_count
+    # @return [Float]
+    attr_accessor :row_height
+    # @return [String]
+    attr_accessor :worksheet
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -61,7 +60,7 @@ module AsposeCellsCloud
         :'refers_to' => :'RefersTo',
         :'row_count' => :'RowCount',
         :'row_height' => :'RowHeight',
-        :'worksheet' => :'Worksheet'
+        :'worksheet' => :'Worksheet',
       }
     end
 
@@ -76,7 +75,7 @@ module AsposeCellsCloud
         :'refers_to' => :'String',
         :'row_count' => :'Integer',
         :'row_height' => :'Float',
-        :'worksheet' => :'String'
+        :'worksheet' => :'String',
       }
     end
 
@@ -84,221 +83,63 @@ module AsposeCellsCloud
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       return unless attributes.is_a?(Hash)
-
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
-
-      if attributes.has_key?(:'ColumnCount')
-          self.column_count = attributes[:'ColumnCount']
-      end
-      if attributes.has_key?(:'ColumnWidth')
-          self.column_width = attributes[:'ColumnWidth']
-      end
-      if attributes.has_key?(:'FirstColumn')
-          self.first_column = attributes[:'FirstColumn']
-      end
-      if attributes.has_key?(:'FirstRow')
-          self.first_row = attributes[:'FirstRow']
-      end
-      if attributes.has_key?(:'Name')
-          self.name = attributes[:'Name']
-      end
-      if attributes.has_key?(:'RefersTo')
-          self.refers_to = attributes[:'RefersTo']
-      end
-      if attributes.has_key?(:'RowCount')
-          self.row_count = attributes[:'RowCount']
-      end
-      if attributes.has_key?(:'RowHeight')
-          self.row_height = attributes[:'RowHeight']
-      end
-      if attributes.has_key?(:'Worksheet')
-          self.worksheet = attributes[:'Worksheet']
-      end
-
+      attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
+      self.column_count = attributes[:column_count] if attributes.key?(:column_count)
+      self.column_width = attributes[:column_width] if attributes.key?(:column_width)
+      self.first_column = attributes[:first_column] if attributes.key?(:first_column)
+      self.first_row = attributes[:first_row] if attributes.key?(:first_row)
+      self.name = attributes[:name] if attributes.key?(:name)
+      self.refers_to = attributes[:refers_to] if attributes.key?(:refers_to)
+      self.row_count = attributes[:row_count] if attributes.key?(:row_count)
+      self.row_height = attributes[:row_height] if attributes.key?(:row_height)
+      self.worksheet = attributes[:worksheet] if attributes.key?(:worksheet)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
-    # @return Array for valid properies with the reasons
+    # @return [Array] invalid properties with the reasons
     def list_invalid_properties
-      invalid_properties = Array.new
-      if @column_count.nil?
-          invalid_properties.push("invalid value for 'column_count', column_count cannot be nil.")
-      end
-      if @column_width.nil?
-          invalid_properties.push("invalid value for 'column_width', column_width cannot be nil.")
-      end
-      if @first_column.nil?
-          invalid_properties.push("invalid value for 'first_column', first_column cannot be nil.")
-      end
-      if @first_row.nil?
-          invalid_properties.push("invalid value for 'first_row', first_row cannot be nil.")
-      end
-      if @name.nil?
-          invalid_properties.push("invalid value for 'name', name cannot be nil.")
-      end
-      if @refers_to.nil?
-          invalid_properties.push("invalid value for 'refers_to', refers_to cannot be nil.")
-      end
-      if @row_count.nil?
-          invalid_properties.push("invalid value for 'row_count', row_count cannot be nil.")
-      end
-      if @row_height.nil?
-          invalid_properties.push("invalid value for 'row_height', row_height cannot be nil.")
-      end
-      if @worksheet.nil?
-          invalid_properties.push("invalid value for 'worksheet', worksheet cannot be nil.")
-      end
-
+      invalid_properties = []
       return invalid_properties
     end
 
-    # Check to see if the all the properties in the model are valid
-    # @return true if the model is valid
+    # Check to see if all the properties in the model are valid
+    # @return [Boolean] true if the model is valid
     def valid?
-      return false if @column_count.nil?
-      return false if @column_width.nil?
-      return false if @first_column.nil?
-      return false if @first_row.nil?
-      return false if @name.nil?
-      return false if @refers_to.nil?
-      return false if @row_count.nil?
-      return false if @row_height.nil?
-      return false if @worksheet.nil?
-      return true
+      return list_invalid_properties.empty?
     end
 
-    # Checks equality by comparing each attribute.
-    # @param [Object] Object to be compared
-    def ==(o)
-      return true if self.equal?(o)
-      self.class == o.class &&
-          column_count == o.column_count &&
-          column_width == o.column_width &&
-          first_column == o.first_column &&
-          first_row == o.first_row &&
-          name == o.name &&
-          refers_to == o.refers_to &&
-          row_count == o.row_count &&
-          row_height == o.row_height &&
-          worksheet == o.worksheet 
-          std_dev == o.std_dev
-    end
-
-    # @see the `==` method
-    # @param [Object] Object to be compared
-    def eql?(o)
-      self == o
-    end
-
-    # Calculates hash code according to all attributes.
-    # @return [Fixnum] Hash code
-    def hash
-      [ column_count , column_width , first_column , first_row , name , refers_to , row_count , row_height , worksheet ].hash
-    end
-
-    # Builds the object from hash
-    # @param [Hash] attributes Model attributes in the form of hash
-    # @return [Object] Returns the model itself
-    def build_from_hash(attributes)
-      return nil unless attributes.is_a?(Hash)
-      self.class.swagger_types.each_pair do |key, type|
-        if type =~ /\AArray<(.*)>/i
-          # check to ensure the input is an array given that the the attribute
-          # is documented as an array but the input is not
-          if attributes[self.class.attribute_map[key]].is_a?(Array)
-            self.send("#{key}=", attributes[self.class.attribute_map[key]].map{ |v| _deserialize($1, v) } )
-          end
-        elsif !attributes[self.class.attribute_map[key]].nil?
-          self.send("#{key}=", _deserialize(type, attributes[self.class.attribute_map[key]]))
-        end # or else data not found in attributes(hash), not an issue as the data can be optional
-      end
-
-      self
-    end
-
-    # Deserializes the data based on type
-    # @param string type Data type
-    # @param string value Value to be deserialized
-    # @return [Object] Deserialized data
-    def _deserialize(type, value)
-      case type.to_sym
-      when :DateTime
-        DateTime.parse(value)
-      when :Date
-        Date.parse(value)
-      when :String
-        value.to_s
-      when :Integer
-        value.to_i
-      when :Float
-        value.to_f
-      when :BOOLEAN
-        if value.to_s =~ /\A(true|t|yes|y|1)\z/i
-          true
-        else
-          false
-        end
-      when :Object
-        # generic object (usually a Hash), return directly
-        value
-      when /\AArray<(?<inner_type>.+)>\z/
-        inner_type = Regexp.last_match[:inner_type]
-        value.map { |v| _deserialize(inner_type, v) }
-      when /\AHash<(?<k_type>.+?), (?<v_type>.+)>\z/
-        k_type = Regexp.last_match[:k_type]
-        v_type = Regexp.last_match[:v_type]
-        {}.tap do |hash|
-          value.each do |k, v|
-            hash[_deserialize(k_type, k)] = _deserialize(v_type, v)
-          end
-        end
-      else # model
-        temp_model = AsposeCellsCloud.const_get(type).new
-        temp_model.build_from_hash(value)
-      end
-    end
-
-    # Returns the string representation of the object
-    # @return [String] String presentation of the object
-    def to_s
-      to_hash.to_s
-    end
-
-    # to_body is an alias to to_hash (backward compatibility)
-    # @return [Hash] Returns the object in the form of hash
-    def to_body
-      to_hash
-    end
-
-    # Returns the object in the form of hash
-    # @return [Hash] Returns the object in the form of hash
+    # Returns the object in the form of hash (JSON key names, JSON-ready values)
+    # @return [Hash] the model in the form of a hash
     def to_hash
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
-        hash[param] = _to_hash(value)
+        hash[param] = case value
+                      when Array
+                        value.compact.map { |v| v.respond_to?(:to_hash) ? v.to_hash : v }
+                      else
+                        value.respond_to?(:to_hash) ? value.to_hash : value
+                      end
       end
-      hash
+      return hash
     end
 
-    # Outputs non-array value in the form of hash
-    # For object, use to_hash. Otherwise, just return the value
-    # @param [Object] value Any valid value
-    # @return [Hash] Returns the value in the form of hash
-    def _to_hash(value)
-      if value.is_a?(Array)
-        value.compact.map{ |v| _to_hash(v) }
-      elsif value.is_a?(Hash)
-        {}.tap do |hash|
-          value.each { |k, v| hash[k] = _to_hash(v) }
-        end
-      elsif value.respond_to? :to_hash
-        value.to_hash
-      else
-        value
-      end
+    # Returns the string representation of the object
+    # @return [String] string presentation of the object
+    def to_s
+      return to_hash.to_s
+    end
+
+    # Compares two instances by their attribute values.
+    # @return [Boolean] true when both instances carry equal attributes
+    def ==(other)
+      return true if equal?(other)
+      return false unless other.is_a?(self.class)
+      to_hash == other.to_hash
+    end
+
+    def eql?(other)
+      self == other
     end
 
   end

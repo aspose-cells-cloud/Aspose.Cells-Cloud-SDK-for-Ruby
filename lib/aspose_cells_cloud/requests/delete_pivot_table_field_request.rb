@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="DeletePivotTableField_request.rb.cs">
+ <copyright company="Aspose" file="DeletePivotTableFieldRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,140 +25,86 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class DeletePivotTableFieldRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :pivot_table_index  
-    attr_accessor :pivot_field_type  
-    attr_accessor :pivot_table_field_request  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class DeletePivotTableFieldRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :pivot_field_type
+    # @return [PivotTableFieldRequest]
+    attr_accessor :pivot_table_field_request
+    # @return [Integer]
+    attr_accessor :pivot_table_index
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, pivot_field_type:, pivot_table_field_request:, pivot_table_index:, sheet_name:, folder: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `DeletePivotTableFieldRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `pivot_field_type` when calling `DeletePivotTableFieldRequest.new`' if pivot_field_type.nil?
+      raise ArgumentError, 'Missing the required parameter `pivot_table_field_request` when calling `DeletePivotTableFieldRequest.new`' if pivot_table_field_request.nil?
+      raise ArgumentError, 'Missing the required parameter `pivot_table_index` when calling `DeletePivotTableFieldRequest.new`' if pivot_table_index.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `DeletePivotTableFieldRequest.new`' if sheet_name.nil?
+      @name = name
+      @pivot_field_type = pivot_field_type
+      @pivot_table_field_request = pivot_table_field_request
+      @pivot_table_index = pivot_table_index
+      @sheet_name = sheet_name
+      @folder = folder
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'DELETE'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/pivottables/{pivotTableIndex}/PivotField'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path = path.gsub('{pivotTableIndex}', encode_path_segment(@pivot_table_index))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['pivotFieldType'] = @pivot_field_type
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'pivotTableIndex')
-          self.pivot_table_index = attributes[:'pivotTableIndex']
-      end
-
-      if attributes.has_key?(:'pivotFieldType')
-          self.pivot_field_type = attributes[:'pivotFieldType']
-      end
-
-      if attributes.has_key?(:'pivotTableFieldRequest')
-          self.pivot_table_field_request = attributes[:'pivotTableFieldRequest']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'pivot_table_index' => :'pivotTableIndex',
-        :'pivot_field_type' => :'pivotFieldType',
-        :'pivot_table_field_request' => :'pivotTableFieldRequest',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'pivot_table_index' => :'Integer',
-        :'pivot_field_type' => :'String',
-        :'pivot_table_field_request' => :'PivotTableFieldRequest',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @pivot_table_field_request.nil?
+      if @pivot_table_field_request.is_a?(Array)
+        @pivot_table_field_request.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @pivot_table_field_request.respond_to?(:to_hash)
+        @pivot_table_field_request.to_hash
+      else
+        @pivot_table_field_request
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.delete_pivot_table_field ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.delete_pivot_table_field "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.delete_pivot_table_field "
-      end 
-      # verify the required parameter 'pivot_table_index' is set
-      if api_client.config.client_side_validation && pivot_table_index.nil?
-          fail ArgumentError, "Missing the required parameter 'pivot_table_index' when calling CellsApi.delete_pivot_table_field "
-      end 
-      # verify the required parameter 'pivot_field_type' is set
-      if api_client.config.client_side_validation && pivot_field_type.nil?
-          fail ArgumentError, "Missing the required parameter 'pivot_field_type' when calling CellsApi.delete_pivot_table_field "
-      end 
-      # verify the required parameter 'pivot_table_field_request' is set
-      if api_client.config.client_side_validation && pivot_table_field_request.nil?
-          fail ArgumentError, "Missing the required parameter 'pivot_table_field_request' when calling CellsApi.delete_pivot_table_field "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/pivottables/{pivotTableIndex}/PivotField".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s).sub('{' + 'pivotTableIndex' + '}', pivot_table_index.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'pivotFieldType'] = self.pivot_field_type if !self.pivot_field_type.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(pivot_table_field_request) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:DELETE, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.delete_pivot_table_field\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

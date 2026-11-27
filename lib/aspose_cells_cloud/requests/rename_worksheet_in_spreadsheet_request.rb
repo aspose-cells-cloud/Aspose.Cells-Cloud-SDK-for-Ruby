@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="RenameWorksheetInSpreadsheet_request.rb.cs">
+ <copyright company="Aspose" file="RenameWorksheetInSpreadsheetRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,139 +25,79 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class RenameWorksheetInSpreadsheetRequest
 
-    attr_accessor :spreadsheet  
-    attr_accessor :source_name  
-    attr_accessor :target_name  
-    attr_accessor :out_path  
-    attr_accessor :out_storage_name  
-    attr_accessor :region  
-    attr_accessor :password  
+  class RenameWorksheetInSpreadsheetRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :source_name
+    # @return [File]
+    attr_accessor :spreadsheet
+    # @return [String]
+    attr_accessor :target_name
+    # @return [String, nil when omitted]
+    attr_accessor :out_path
+    # @return [String, nil when omitted]
+    attr_accessor :out_storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :password
+    # @return [String, nil when omitted]
+    attr_accessor :region
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(source_name:, spreadsheet:, target_name:, out_path: nil, out_storage_name: nil, password: nil, region: nil)
+      raise ArgumentError, 'Missing the required parameter `source_name` when calling `RenameWorksheetInSpreadsheetRequest.new`' if source_name.nil?
+      raise ArgumentError, 'Missing the required parameter `spreadsheet` when calling `RenameWorksheetInSpreadsheetRequest.new`' if spreadsheet.nil?
+      raise ArgumentError, 'Missing the required parameter `target_name` when calling `RenameWorksheetInSpreadsheetRequest.new`' if target_name.nil?
+      @source_name = source_name
+      @spreadsheet = spreadsheet
+      @target_name = target_name
+      @out_path = out_path
+      @out_storage_name = out_storage_name
+      @password = password
+      @region = region
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'Spreadsheet')
-          self.spreadsheet = attributes[:'Spreadsheet']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v4.0/cells/spreadsheet/rename/worksheet'
+      path
+    end
 
-      if attributes.has_key?(:'sourceName')
-          self.source_name = attributes[:'sourceName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['sourceName'] = @source_name
+      query['targetName'] = @target_name
+      query['outPath'] = @out_path unless @out_path.nil?
+      query['outStorageName'] = @out_storage_name unless @out_storage_name.nil?
+      query['region'] = @region unless @region.nil?
+      query['password'] = @password unless @password.nil?
+      query
+    end
 
-      if attributes.has_key?(:'targetName')
-          self.target_name = attributes[:'targetName']
-      end
-
-      if attributes.has_key?(:'outPath')
-          self.out_path = attributes[:'outPath']
-      end
-
-      if attributes.has_key?(:'outStorageName')
-          self.out_storage_name = attributes[:'outStorageName']
-      end
-
-      if attributes.has_key?(:'region')
-          self.region = attributes[:'region']
-      end
-
-      if attributes.has_key?(:'password')
-          self.password = attributes[:'password']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'spreadsheet' => :'Spreadsheet',
-        :'source_name' => :'sourceName',
-        :'target_name' => :'targetName',
-        :'out_path' => :'outPath',
-        :'out_storage_name' => :'outStorageName',
-        :'region' => :'region',
-        :'password' => :'password'
+        'Accept' => 'application/json',
+        'Content-Type' => 'multipart/form-data',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'spreadsheet' => :'String',
-        :'source_name' => :'String',
-        :'target_name' => :'String',
-        :'out_path' => :'String',
-        :'out_storage_name' => :'String',
-        :'region' => :'String',
-        :'password' => :'String'
-      }
+    # @return [Hash] multipart form fields (paths, IO or FormFile values)
+    def get_multipart_form
+      form = {}
+      form['file'] = @spreadsheet
+      form
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.rename_worksheet_in_spreadsheet ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'spreadsheet' is set
-      if api_client.config.client_side_validation && spreadsheet.nil?
-          fail ArgumentError, "Missing the required parameter 'spreadsheet' when calling CellsApi.rename_worksheet_in_spreadsheet "
-      end 
-      # verify the required parameter 'source_name' is set
-      if api_client.config.client_side_validation && source_name.nil?
-          fail ArgumentError, "Missing the required parameter 'source_name' when calling CellsApi.rename_worksheet_in_spreadsheet "
-      end 
-      # verify the required parameter 'target_name' is set
-      if api_client.config.client_side_validation && target_name.nil?
-          fail ArgumentError, "Missing the required parameter 'target_name' when calling CellsApi.rename_worksheet_in_spreadsheet "
-      end 
-
-      # resource path
-      local_var_path = "v4.0/cells/spreadsheet/rename/worksheet"
-      # query parameters
-      query_params = {}
-      query_params[:'sourceName'] = self.source_name if !self.source_name.nil? 
-      query_params[:'targetName'] = self.target_name if !self.target_name.nil? 
-      query_params[:'outPath'] = self.out_path if !self.out_path.nil? 
-      query_params[:'outStorageName'] = self.out_storage_name if !self.out_storage_name.nil? 
-      query_params[:'region'] = self.region if !self.region.nil? 
-      query_params[:'password'] = self.password if !self.password.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      header_params['Content-Type'] = api_client.select_header_content_type(['multipart/form-data'])
-      if !spreadsheet.empty? && File.exist?(spreadsheet )
-          form_params[File.basename(spreadsheet)] =  ::File.open(spreadsheet,"r")   
-      end 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'File')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.rename_worksheet_in_spreadsheet\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

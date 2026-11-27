@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PutWorksheetShape_request.rb.cs">
+ <copyright company="Aspose" file="PutWorksheetShapeRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,169 +25,103 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PutWorksheetShapeRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :shape_dto  
-    attr_accessor :drawing_type  
-    attr_accessor :upper_left_row  
-    attr_accessor :upper_left_column  
-    attr_accessor :top  
-    attr_accessor :left  
-    attr_accessor :width  
-    attr_accessor :height  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PutWorksheetShapeRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :drawing_type
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [Integer, nil when omitted]
+    attr_accessor :height
+    # @return [Integer, nil when omitted]
+    attr_accessor :left
+    # @return [Shape, nil when omitted]
+    attr_accessor :shape_dto
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [Integer, nil when omitted]
+    attr_accessor :top
+    # @return [Integer, nil when omitted]
+    attr_accessor :upper_left_column
+    # @return [Integer, nil when omitted]
+    attr_accessor :upper_left_row
+    # @return [Integer, nil when omitted]
+    attr_accessor :width
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(name:, sheet_name:, drawing_type: nil, folder: nil, height: nil, left: nil, shape_dto: nil, storage_name: nil, top: nil, upper_left_column: nil, upper_left_row: nil, width: nil)
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PutWorksheetShapeRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PutWorksheetShapeRequest.new`' if sheet_name.nil?
+      @name = name
+      @sheet_name = sheet_name
+      @drawing_type = drawing_type
+      @folder = folder
+      @height = height
+      @left = left
+      @shape_dto = shape_dto
+      @storage_name = storage_name
+      @top = top
+      @upper_left_column = upper_left_column
+      @upper_left_row = upper_left_row
+      @width = width
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/shapes'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['DrawingType'] = @drawing_type unless @drawing_type.nil?
+      query['upperLeftRow'] = @upper_left_row unless @upper_left_row.nil?
+      query['upperLeftColumn'] = @upper_left_column unless @upper_left_column.nil?
+      query['top'] = @top unless @top.nil?
+      query['left'] = @left unless @left.nil?
+      query['width'] = @width unless @width.nil?
+      query['height'] = @height unless @height.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'shapeDTO')
-          self.shape_dto = attributes[:'shapeDTO']
-      end
-
-      if attributes.has_key?(:'DrawingType')
-          self.drawing_type = attributes[:'DrawingType']
-      end
-
-      if attributes.has_key?(:'upperLeftRow')
-          self.upper_left_row = attributes[:'upperLeftRow']
-      end
-
-      if attributes.has_key?(:'upperLeftColumn')
-          self.upper_left_column = attributes[:'upperLeftColumn']
-      end
-
-      if attributes.has_key?(:'top')
-          self.top = attributes[:'top']
-      end
-
-      if attributes.has_key?(:'left')
-          self.left = attributes[:'left']
-      end
-
-      if attributes.has_key?(:'width')
-          self.width = attributes[:'width']
-      end
-
-      if attributes.has_key?(:'height')
-          self.height = attributes[:'height']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'shape_dto' => :'shapeDTO',
-        :'drawing_type' => :'DrawingType',
-        :'upper_left_row' => :'upperLeftRow',
-        :'upper_left_column' => :'upperLeftColumn',
-        :'top' => :'top',
-        :'left' => :'left',
-        :'width' => :'width',
-        :'height' => :'height',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'shape_dto' => :'Shape',
-        :'drawing_type' => :'String',
-        :'upper_left_row' => :'Integer',
-        :'upper_left_column' => :'Integer',
-        :'top' => :'Integer',
-        :'left' => :'Integer',
-        :'width' => :'Integer',
-        :'height' => :'Integer',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @shape_dto.nil?
+      if @shape_dto.is_a?(Array)
+        @shape_dto.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @shape_dto.respond_to?(:to_hash)
+        @shape_dto.to_hash
+      else
+        @shape_dto
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.put_worksheet_shape ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.put_worksheet_shape "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.put_worksheet_shape "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/shapes".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'DrawingType'] = self.drawing_type if !self.drawing_type.nil? 
-      query_params[:'upperLeftRow'] = self.upper_left_row if !self.upper_left_row.nil? 
-      query_params[:'upperLeftColumn'] = self.upper_left_column if !self.upper_left_column.nil? 
-      query_params[:'top'] = self.top if !self.top.nil? 
-      query_params[:'left'] = self.left if !self.left.nil? 
-      query_params[:'width'] = self.width if !self.width.nil? 
-      query_params[:'height'] = self.height if !self.height.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(shape_dto) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.put_worksheet_shape\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

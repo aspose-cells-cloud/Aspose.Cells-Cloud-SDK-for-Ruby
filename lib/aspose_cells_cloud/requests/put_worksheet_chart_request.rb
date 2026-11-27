@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PutWorksheetChart_request.rb.cs">
+ <copyright company="Aspose" file="PutWorksheetChartRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,221 +25,117 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PutWorksheetChartRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :chart_type  
-    attr_accessor :upper_left_row  
-    attr_accessor :upper_left_column  
-    attr_accessor :lower_right_row  
-    attr_accessor :lower_right_column  
-    attr_accessor :area  
-    attr_accessor :is_vertical  
-    attr_accessor :category_data  
-    attr_accessor :is_auto_get_serial_name  
-    attr_accessor :title  
-    attr_accessor :folder  
-    attr_accessor :data_labels  
-    attr_accessor :data_labels_position  
-    attr_accessor :pivot_table_sheet  
-    attr_accessor :pivot_table_name  
-    attr_accessor :storage_name  
+  class PutWorksheetChartRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [String]
+    attr_accessor :chart_type
+    # @return [String]
+    attr_accessor :name
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :area
+    # @return [String, nil when omitted]
+    attr_accessor :category_data
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :data_labels
+    # @return [String, nil when omitted]
+    attr_accessor :data_labels_position
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :is_auto_get_serial_name
+    # @return [BOOLEAN, nil when omitted]
+    attr_accessor :is_vertical
+    # @return [Integer, nil when omitted]
+    attr_accessor :lower_right_column
+    # @return [Integer, nil when omitted]
+    attr_accessor :lower_right_row
+    # @return [String, nil when omitted]
+    attr_accessor :pivot_table_name
+    # @return [String, nil when omitted]
+    attr_accessor :pivot_table_sheet
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
+    # @return [String, nil when omitted]
+    attr_accessor :title
+    # @return [Integer, nil when omitted]
+    attr_accessor :upper_left_column
+    # @return [Integer, nil when omitted]
+    attr_accessor :upper_left_row
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(chart_type:, name:, sheet_name:, area: nil, category_data: nil, data_labels: nil, data_labels_position: nil, folder: nil, is_auto_get_serial_name: nil, is_vertical: nil, lower_right_column: nil, lower_right_row: nil, pivot_table_name: nil, pivot_table_sheet: nil, storage_name: nil, title: nil, upper_left_column: nil, upper_left_row: nil)
+      raise ArgumentError, 'Missing the required parameter `chart_type` when calling `PutWorksheetChartRequest.new`' if chart_type.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PutWorksheetChartRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PutWorksheetChartRequest.new`' if sheet_name.nil?
+      @chart_type = chart_type
+      @name = name
+      @sheet_name = sheet_name
+      @area = area
+      @category_data = category_data
+      @data_labels = data_labels
+      @data_labels_position = data_labels_position
+      @folder = folder
+      @is_auto_get_serial_name = is_auto_get_serial_name
+      @is_vertical = is_vertical
+      @lower_right_column = lower_right_column
+      @lower_right_row = lower_right_row
+      @pivot_table_name = pivot_table_name
+      @pivot_table_sheet = pivot_table_sheet
+      @storage_name = storage_name
+      @title = title
+      @upper_left_column = upper_left_column
+      @upper_left_row = upper_left_row
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'PUT'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/charts'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['chartType'] = @chart_type
+      query['upperLeftRow'] = @upper_left_row unless @upper_left_row.nil?
+      query['upperLeftColumn'] = @upper_left_column unless @upper_left_column.nil?
+      query['lowerRightRow'] = @lower_right_row unless @lower_right_row.nil?
+      query['lowerRightColumn'] = @lower_right_column unless @lower_right_column.nil?
+      query['area'] = @area unless @area.nil?
+      query['isVertical'] = @is_vertical unless @is_vertical.nil?
+      query['categoryData'] = @category_data unless @category_data.nil?
+      query['isAutoGetSerialName'] = @is_auto_get_serial_name unless @is_auto_get_serial_name.nil?
+      query['title'] = @title unless @title.nil?
+      query['folder'] = @folder unless @folder.nil?
+      query['dataLabels'] = @data_labels unless @data_labels.nil?
+      query['dataLabelsPosition'] = @data_labels_position unless @data_labels_position.nil?
+      query['pivotTableSheet'] = @pivot_table_sheet unless @pivot_table_sheet.nil?
+      query['pivotTableName'] = @pivot_table_name unless @pivot_table_name.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'chartType')
-          self.chart_type = attributes[:'chartType']
-      end
-
-      if attributes.has_key?(:'upperLeftRow')
-          self.upper_left_row = attributes[:'upperLeftRow']
-      end
-
-      if attributes.has_key?(:'upperLeftColumn')
-          self.upper_left_column = attributes[:'upperLeftColumn']
-      end
-
-      if attributes.has_key?(:'lowerRightRow')
-          self.lower_right_row = attributes[:'lowerRightRow']
-      end
-
-      if attributes.has_key?(:'lowerRightColumn')
-          self.lower_right_column = attributes[:'lowerRightColumn']
-      end
-
-      if attributes.has_key?(:'area')
-          self.area = attributes[:'area']
-      end
-
-      if attributes.has_key?(:'isVertical')
-          self.is_vertical = attributes[:'isVertical']
-      end
-
-      if attributes.has_key?(:'categoryData')
-          self.category_data = attributes[:'categoryData']
-      end
-
-      if attributes.has_key?(:'isAutoGetSerialName')
-          self.is_auto_get_serial_name = attributes[:'isAutoGetSerialName']
-      end
-
-      if attributes.has_key?(:'title')
-          self.title = attributes[:'title']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'dataLabels')
-          self.data_labels = attributes[:'dataLabels']
-      end
-
-      if attributes.has_key?(:'dataLabelsPosition')
-          self.data_labels_position = attributes[:'dataLabelsPosition']
-      end
-
-      if attributes.has_key?(:'pivotTableSheet')
-          self.pivot_table_sheet = attributes[:'pivotTableSheet']
-      end
-
-      if attributes.has_key?(:'pivotTableName')
-          self.pivot_table_name = attributes[:'pivotTableName']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'chart_type' => :'chartType',
-        :'upper_left_row' => :'upperLeftRow',
-        :'upper_left_column' => :'upperLeftColumn',
-        :'lower_right_row' => :'lowerRightRow',
-        :'lower_right_column' => :'lowerRightColumn',
-        :'area' => :'area',
-        :'is_vertical' => :'isVertical',
-        :'category_data' => :'categoryData',
-        :'is_auto_get_serial_name' => :'isAutoGetSerialName',
-        :'title' => :'title',
-        :'folder' => :'folder',
-        :'data_labels' => :'dataLabels',
-        :'data_labels_position' => :'dataLabelsPosition',
-        :'pivot_table_sheet' => :'pivotTableSheet',
-        :'pivot_table_name' => :'pivotTableName',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'chart_type' => :'String',
-        :'upper_left_row' => :'Integer',
-        :'upper_left_column' => :'Integer',
-        :'lower_right_row' => :'Integer',
-        :'lower_right_column' => :'Integer',
-        :'area' => :'String',
-        :'is_vertical' => :'BOOLEAN',
-        :'category_data' => :'String',
-        :'is_auto_get_serial_name' => :'BOOLEAN',
-        :'title' => :'String',
-        :'folder' => :'String',
-        :'data_labels' => :'BOOLEAN',
-        :'data_labels_position' => :'String',
-        :'pivot_table_sheet' => :'String',
-        :'pivot_table_name' => :'String',
-        :'storage_name' => :'String'
-      }
-    end
-
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.put_worksheet_chart ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.put_worksheet_chart "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.put_worksheet_chart "
-      end 
-      # verify the required parameter 'chart_type' is set
-      if api_client.config.client_side_validation && chart_type.nil?
-          fail ArgumentError, "Missing the required parameter 'chart_type' when calling CellsApi.put_worksheet_chart "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/charts".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'chartType'] = self.chart_type if !self.chart_type.nil? 
-      query_params[:'upperLeftRow'] = self.upper_left_row if !self.upper_left_row.nil? 
-      query_params[:'upperLeftColumn'] = self.upper_left_column if !self.upper_left_column.nil? 
-      query_params[:'lowerRightRow'] = self.lower_right_row if !self.lower_right_row.nil? 
-      query_params[:'lowerRightColumn'] = self.lower_right_column if !self.lower_right_column.nil? 
-      query_params[:'area'] = self.area if !self.area.nil? 
-      query_params[:'isVertical'] = self.is_vertical if !self.is_vertical.nil? 
-      query_params[:'categoryData'] = self.category_data if !self.category_data.nil? 
-      query_params[:'isAutoGetSerialName'] = self.is_auto_get_serial_name if !self.is_auto_get_serial_name.nil? 
-      query_params[:'title'] = self.title if !self.title.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'dataLabels'] = self.data_labels if !self.data_labels.nil? 
-      query_params[:'dataLabelsPosition'] = self.data_labels_position if !self.data_labels_position.nil? 
-      query_params[:'pivotTableSheet'] = self.pivot_table_sheet if !self.pivot_table_sheet.nil? 
-      query_params[:'pivotTableName'] = self.pivot_table_name if !self.pivot_table_name.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:PUT, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.put_worksheet_chart\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end

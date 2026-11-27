@@ -1,6 +1,6 @@
 =begin
 --------------------------------------------------------------------------------------------------------------------
- <copyright company="Aspose" file="PostWorksheetCellsRangeMoveTo_request.rb.cs">
+ <copyright company="Aspose" file="PostWorksheetCellsRangeMoveToRequest.rb">
    Copyright (c) 2026 Aspose.Cells Cloud
  </copyright>
  <summary>
@@ -25,141 +25,86 @@
 --------------------------------------------------------------------------------------------------------------------
 =end
 
-
-require "uri"
+require 'date'
+require_relative '../request_option'
 
 module AsposeCellsCloud
-  class PostWorksheetCellsRangeMoveToRequest
 
-    attr_accessor :name  
-    attr_accessor :sheet_name  
-    attr_accessor :range  
-    attr_accessor :dest_row  
-    attr_accessor :dest_column  
-    attr_accessor :folder  
-    attr_accessor :storage_name  
+  class PostWorksheetCellsRangeMoveToRequest < Aspose::Cells::Cloud::RequestOption
+    # @return [Integer]
+    attr_accessor :dest_column
+    # @return [Integer]
+    attr_accessor :dest_row
+    # @return [String]
+    attr_accessor :name
+    # @return [Range]
+    attr_accessor :range
+    # @return [String]
+    attr_accessor :sheet_name
+    # @return [String, nil when omitted]
+    attr_accessor :folder
+    # @return [String, nil when omitted]
+    attr_accessor :storage_name
 
-    def initialize(attributes = {})
-      return unless attributes.is_a?(Hash)
+    # @raise [ArgumentError] when a required parameter is missing or nil
+    def initialize(dest_column:, dest_row:, name:, range:, sheet_name:, folder: nil, storage_name: nil)
+      raise ArgumentError, 'Missing the required parameter `dest_column` when calling `PostWorksheetCellsRangeMoveToRequest.new`' if dest_column.nil?
+      raise ArgumentError, 'Missing the required parameter `dest_row` when calling `PostWorksheetCellsRangeMoveToRequest.new`' if dest_row.nil?
+      raise ArgumentError, 'Missing the required parameter `name` when calling `PostWorksheetCellsRangeMoveToRequest.new`' if name.nil?
+      raise ArgumentError, 'Missing the required parameter `range` when calling `PostWorksheetCellsRangeMoveToRequest.new`' if range.nil?
+      raise ArgumentError, 'Missing the required parameter `sheet_name` when calling `PostWorksheetCellsRangeMoveToRequest.new`' if sheet_name.nil?
+      @dest_column = dest_column
+      @dest_row = dest_row
+      @name = name
+      @range = range
+      @sheet_name = sheet_name
+      @folder = folder
+      @storage_name = storage_name
+    end
 
-      # convert string to symbol for hash key
-      attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+    # @return [String] HTTP method for this operation
+    def get_method
+      'POST'
+    end
 
-      if attributes.has_key?(:'name')
-          self.name = attributes[:'name']
-      end
+    # @return [String] versioned request path with placeholders substituted
+    def get_path
+      path = '/v3.0/cells/{name}/worksheets/{sheetName}/ranges/moveto'
+      path = path.gsub('{name}', encode_path_segment(@name))
+      path = path.gsub('{sheetName}', encode_path_segment(@sheet_name))
+      path
+    end
 
-      if attributes.has_key?(:'sheetName')
-          self.sheet_name = attributes[:'sheetName']
-      end
+    # @return [Hash] query parameters (required plus present optional)
+    def get_query_parameters
+      query = {}
+      query['destRow'] = @dest_row
+      query['destColumn'] = @dest_column
+      query['folder'] = @folder unless @folder.nil?
+      query['storageName'] = @storage_name unless @storage_name.nil?
+      query
+    end
 
-      if attributes.has_key?(:'range')
-          self.range = attributes[:'range']
-      end
-
-      if attributes.has_key?(:'destRow')
-          self.dest_row = attributes[:'destRow']
-      end
-
-      if attributes.has_key?(:'destColumn')
-          self.dest_column = attributes[:'destColumn']
-      end
-
-      if attributes.has_key?(:'folder')
-          self.folder = attributes[:'folder']
-      end
-
-      if attributes.has_key?(:'storageName')
-          self.storage_name = attributes[:'storageName']
-      end
-
-    end    
-    # Attribute mapping from ruby-style variable name to JSON key.
-    def self.attribute_map
+    # @return [Hash] default headers for this operation
+    def get_header_parameters
       {
-        :'name' => :'name',
-        :'sheet_name' => :'sheetName',
-        :'range' => :'range',
-        :'dest_row' => :'destRow',
-        :'dest_column' => :'destColumn',
-        :'folder' => :'folder',
-        :'storage_name' => :'storageName'
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json',
       }
     end
 
-    # Attribute type mapping.
-    def self.swagger_types
-      {
-        :'name' => :'String',
-        :'sheet_name' => :'String',
-        :'range' => :'Range',
-        :'dest_row' => :'Integer',
-        :'dest_column' => :'Integer',
-        :'folder' => :'String',
-        :'storage_name' => :'String'
-      }
+    # @return [Hash, Array, nil] JSON body (models are converted via to_hash)
+    def get_json_body
+      return nil if @range.nil?
+      if @range.is_a?(Array)
+        @range.map { |item| item.respond_to?(:to_hash) ? item.to_hash : item }
+      elsif @range.respond_to?(:to_hash)
+        @range.to_hash
+      else
+        @range
+      end
     end
 
-    def create_http_request(api_client,opts = {})
-      if api_client.config.debugging
-        api_client.config.logger.debug "Calling API: CellsApi.post_worksheet_cells_range_move_to ..."
-      end
-      api_client.request_token_if_needed
-      # verify the required parameter 'name' is set
-      if api_client.config.client_side_validation && name.nil?
-          fail ArgumentError, "Missing the required parameter 'name' when calling CellsApi.post_worksheet_cells_range_move_to "
-      end 
-      # verify the required parameter 'sheet_name' is set
-      if api_client.config.client_side_validation && sheet_name.nil?
-          fail ArgumentError, "Missing the required parameter 'sheet_name' when calling CellsApi.post_worksheet_cells_range_move_to "
-      end 
-      # verify the required parameter 'range' is set
-      if api_client.config.client_side_validation && range.nil?
-          fail ArgumentError, "Missing the required parameter 'range' when calling CellsApi.post_worksheet_cells_range_move_to "
-      end 
-      # verify the required parameter 'dest_row' is set
-      if api_client.config.client_side_validation && dest_row.nil?
-          fail ArgumentError, "Missing the required parameter 'dest_row' when calling CellsApi.post_worksheet_cells_range_move_to "
-      end 
-      # verify the required parameter 'dest_column' is set
-      if api_client.config.client_side_validation && dest_column.nil?
-          fail ArgumentError, "Missing the required parameter 'dest_column' when calling CellsApi.post_worksheet_cells_range_move_to "
-      end 
-
-      # resource path
-      local_var_path = "v3.0/cells/{name}/worksheets/{sheetName}/ranges/moveto".sub('{' + 'name' + '}', name.to_s).sub('{' + 'sheetName' + '}', sheet_name.to_s)
-      # query parameters
-      query_params = {}
-      query_params[:'destRow'] = self.dest_row if !self.dest_row.nil? 
-      query_params[:'destColumn'] = self.dest_column if !self.dest_column.nil? 
-      query_params[:'folder'] = self.folder if !self.folder.nil? 
-      query_params[:'storageName'] = self.storage_name if !self.storage_name.nil? 
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-      post_body = nil 
-      post_body = api_client.object_to_http_body(range) 
-
-      #auth_names = []
-      auth_names = ['JWT']
-      data, status_code, headers = api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'CellsCloudResponse')
-      if api_client.config.debugging
-        api_client.config.logger.debug "API called: Specification.Name>Api.post_worksheet_cells_range_move_to\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
   end
+
 end
