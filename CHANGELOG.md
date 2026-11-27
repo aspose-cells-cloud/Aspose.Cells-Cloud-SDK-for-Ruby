@@ -1,117 +1,77 @@
 # Release History Version
 
-## Feature & Enhancements in Version 26.9
+## Feature & Enhancements in Version v26.10.0
 
-Full list of issues covering all changes in this release:
+| **Summary**                                                                                                  | **Category** |
+| :----------------------------------------------------------------------------------------------------------- | :----------- |
+| Refactor SearchController.cs: replace 7 remote read endpoints with [HttpGet] and remove deprecated forwarder | Improvement  |
+| Fix typo in CalculateController.cs: correct route 'aggergate' to 'aggregate'                                 | Bug          |
+| Fix operationName copy-paste errors in ManagementController.cs                                               | Bug          |
+| Mark StatisticalController.cs as obsolete                                                                    | Improvement  |
+| Security & Stability Fixes for Aspose.Cells Cloud API                                                        | Improvement  |
+| Add Exception Chain Support to CellsApiException and HttpWebException                                        | New Feature  |
 
-| **Summary**                                                                                                   | **Category** |
-| :------------------------------------------------------------------------------------------------------------ | :----------- |
+## Feature & Enhancements in Version v26.9.0
+
+| **Summary**                                                                          | **Category** |
+| :----------------------------------------------------------------------------------- | :----------- |
 | Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement  |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+| Fix code-gen/swagger specification for Aspose.Cells Cloud.                           | Bug          |
 
+## Feature & Enhancements in Version v26.8.0
 
------------------------
+| **Summary**                                | **Category** |
+| :----------------------------------------- | :----------- |
+| Enchent smart template feature.            | Improvement  |
+| A new AI data analysis API has been added. | New Feature  |
 
-## 版本 26.9 的功能与增强
+## Feature & Enhancements in Version v26.7.0
 
-涵盖此版本所有更改的完整问题列表：
+| **Summary**                                                             | **Category** |
+| :---------------------------------------------------------------------- | :----------- |
+| Fix AutoFitsCanAutoFitsAttribute value data type.                       | Bug          |
+| Support for the calculation formula in Aspose.Cells Cloud 4.0 Web APIs. | New Feature  |
+| Support for the smart template in Aspose.Cells Cloud 4.0 Web APIs.      | New Feature  |
+| Fix calc error about MathCalculate Web API.                             | Bug          |
 
-| **摘要**                                                                                                   | **类别** |
-| :-------------------------------------------------------------------------------------------------------- | :------- |
-| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
+## Feature & Enhancements in Version v26.6.0
 
-
------------------------
-
-## バージョン 26.9 の機能と拡張
-
-このリリースのすべての変更を含む問題の完全なリスト：
-
-| **概要**                                                                                                   | **カテゴリ** |
-| :-------------------------------------------------------------------------------------------------------- | :----------- |
-| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug  |
-
-
------------------------
-
-## Funktionen & Erweiterungen in Version 26.9
-
-Vollständige Liste der Probleme, die alle Änderungen in dieser Version abdecken:
-
-| **Zusammenfassung**                                                          | **Kategorie** |
-| :--------------------------------------------------------------------------- | :------------ |
-| Enhancement CheckCloudServiceHealth: Add Aspose.Cells Cloud information description. | Improvement |
-| Fix code-gen/swagger specification for Aspose.Cells Cloud. | Bug |
-
-## Features & Enhancements in Version 26.8
-
-Full list of issues covering all changes in this release:
-
-| **Summary**                               | **Category** |
-| :---------------------------------------- | :----------- |
-| Enchent smart template feature.           | Improvement  |
-| A new AI data analysis API has been added.| New Feature |
-
-## Features & Enhancements in Version 26.7
-
-Full list of issues covering all changes in this release:
-
-| **Summary**                                                                                     | **Category** |
-| :---------------------------------------------------------------------------------------------- | :----------- |
-| Fix AutoFitsCanAutoFitsAttribute value data type.                                               | Bug          |
-| Support for the calculation formula in Aspose.Cells Cloud 4.0 Web APIs.                         | New Feature  |
-| Support for the smart template in Aspose.Cells Cloud 4.0 Web APIs.                              | New Feature  |
-| Fix calc error about MathCalculate Web API.                                                     | Bug          |
-
-## Feature & Enhancements in Version v26.6
-
-Full list of issues covering all changes in this release:
-
-| **Summary**                                                                                                   | **Category** |
-| :------------------------------------------------------------------------------------------------------------ | :----------- |
-| New Web API: Enable AI-Powered Data Analysis. | New Feature |
-| Add Auto-fit function to the format conversion feature. | Improvement |
-| AI development API summary | New Feature |
-| Fix the bug about Object reference not set to an instance of an object. | Bug |
+| **Summary**                                                             | **Category** |
+| :---------------------------------------------------------------------- | :----------- |
+| New Web API: Enable AI-Powered Data Analysis.                           | New Feature  |
+| Add Auto-fit function to the format conversion feature.                 | Improvement  |
+| AI development API summary                                              | New Feature  |
+| Fix the bug about Object reference not set to an instance of an object. | Bug          |
 
 ## Feature & Enhancements in Version v26.5.0
 
-Full list of issues covering all changes in this release:
-
-| **Summary**                                                                                                   | **Category** |
-| :------------------------------------------------------------------------------------------------------------ | :----------- |
-| New Web API:  Get the spreadsheet structure. | Task |
-| Enhance the return file token for the upload file function. | Improvement |
-| New MCP Tool: Download file based on file token. | New Feature |
-| Enhance MCP Tools: Save file as with file token | Improvement |
-| Enhance Get Workbook endpoint functionality. | Improvement |
-| Support trim content in remote storage | New Feature |
-| Support to case word in remote spreadsheet | New Feature |
-| Support to remove characters in remote spreadsheet | New Feature |
-| Support to add text in remote spreadsheet. | New Feature |
-| Support to convert text in remote spreadsheet. | New Feature |
-| [Forum] Test topic-2026-0402 | Bug |
+| **Summary**                                                 | **Category** |
+| :---------------------------------------------------------- | :----------- |
+| New Web API: Get the spreadsheet structure.                 | Task         |
+| Enhance the return file token for the upload file function. | Improvement  |
+| New MCP Tool: Download file based on file token.            | New Feature  |
+| Enhance MCP Tools: Save file as with file token             | Improvement  |
+| Enhance Get Workbook endpoint functionality.                | Improvement  |
+| Support trim content in remote storage                      | New Feature  |
+| Support to case word in remote spreadsheet                  | New Feature  |
+| Support to remove characters in remote spreadsheet          | New Feature  |
+| Support to add text in remote spreadsheet.                  | New Feature  |
+| Support to convert text in remote spreadsheet.              | New Feature  |
+| [Forum] Test topic-2026-0402                                | Bug          |
 
 ## Feature & Enhancements in Version v26.4.0
 
-Full list of issues covering all changes in this release:
-
-| **Summary**                                                                                                   | **Category** |
-| :------------------------------------------------------------------------------------------------------------ | :----------- |
-| Implement the data transpose Web API on Aspose Cells Cloud.                                                   | New Feature |
-| Implement the data unpivot Web API on Aspose Cells Cloud.                                                    | New Feature |
+| **Summary**                                                 | **Category** |
+| :---------------------------------------------------------- | :----------- |
+| Implement the data transpose Web API on Aspose Cells Cloud. | New Feature  |
+| Implement the data unpivot Web API on Aspose Cells Cloud.   | New Feature  |
 
 ## Feature & Enhancements in Version v26.3.1
 
-Full list of issues covering all changes in this release:
-
-| **Summary**                                                                                                   | **Category** |
-| :------------------------------------------------------------------------------------------------------------ | :----------- |
-| Enhancing the DecomposeUserTask API of Aspose Cells Cloud.                                                    | Task |
-| Optimize the APIs related to document splitting                                                               | Improvement |
-| Support the accept all revisions feature for share Excel file.                                                | New Feature |
+| **Summary**                                                 | **Category** |
+| :---------------------------------------------------------- | :----------- |
+| Implement the data transpose Web API on Aspose Cells Cloud. | New Feature  |
+| Implement the data unpivot Web API on Aspose Cells Cloud.   | New Feature  |
 
 ## Feature & Enhancements in Version v26.2
 
@@ -119,7 +79,6 @@ Full list of issues covering all changes in this release:
 
 | **Summary**                                                                                                   | **Category** |
 | :------------------------------------------------------------------------------------------------------------ | :----------- |
-| Aspose.Cells Cloud python plugin for marker.                                                                  | New Feature  |
 | Support converting Worksheet to JSON format file                                                              | New Feature  |
 | Support converting Worksheet to CSV format file                                                               | New Feature  |
 | Support getting worksheets with the spreadsheet                                                               | New Feature  |
@@ -143,13 +102,13 @@ Full list of issues covering all changes in this release:
 | Support to flip data in worksheet.                                                       | New Feature  |
 | Fix object reference not set to an instance of an object.                                | Bug          |
 
-## Feature & Enhancements in Version 25.12
+## Feature & Enhancements in Version v25.12
 
-| **Summary**                         | **Category** |
-| :---------------------------------- | :----------- |
-| Support split table of spreadsheet. | New Feature  |
+| **ID**                              | **Summary** | **Category** |
+| :---------------------------------- | :---------- | :----------- |
+| Support split table of spreadsheet. | New Feature |
 
-## Feature & Enhancements in Version 25.11
+## Feature & Enhancements in Version v25.11
 
 | **Summary**                                                                            | **Category** |
 | :------------------------------------------------------------------------------------- | :----------- |
@@ -184,6 +143,8 @@ Full list of issues covering all changes in this release:
 | Support trim spreadsheet content in Cells Cloud 4.0.     | Improvement  |
 | Support trim worksheet range content in Cells Cloud 4.0. | Improvement  |
 | Fix few issues about spelling error.                     | Bug          |
+
+## Feature & Enhancements in Version v25.8
 
 | **Summary**                                                                               | **Category** |
 | :---------------------------------------------------------------------------------------- | :----------- |
@@ -248,6 +209,12 @@ Full list of issues covering all changes in this release:
 
 - Add the new API for splitting text in the cell.
 - Optimize pivot table filter-related APIs.
+
+## Feature & Enhancements in Version 24.12
+
+- Add the new remove duplicates api.
+- Add the new extract text API.
+- The pivot filter could not be created successfully.
 
 ## Feature & Enhancements in Version 24.11
 

@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.10.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.10.0?style=for-the-badge)
+![](https://img.shields.io/badge/aspose.cells%20Cloud%20SDK-26.11.0-green?style=for-the-badge&logo=ruby) [![Product Page](https://img.shields.io/badge/Product-0288d1?style=for-the-badge&logo=Google-Chrome&logoColor=white)](https://products.aspose.cloud/cells/ruby/) [![Documentation](https://img.shields.io/badge/Documentation-388e3c?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.aspose.cloud/cells/) [![API Ref](https://img.shields.io/badge/Reference-f39c12?style=for-the-badge&logo=html5&logoColor=white)](https://reference.aspose.cloud/cells/) [![Examples](https://img.shields.io/badge/Examples-1565c0?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-perl/tree/master/Examples) [![Blog](https://img.shields.io/badge/Blog-d32f2f?style=for-the-badge&logo=WordPress&logoColor=white)](https://blog.aspose.cloud/categories/aspose.cells-cloud-product-family/) [![Support](https://img.shields.io/badge/Support-7b1fa2?style=for-the-badge&logo=Discourse&logoColor=white)](https://forum.aspose.cloud/c/cells/7) [![Gem](https://img.shields.io/gem/v/aspose_cells_cloud?style=for-the-badge)](https://rubygems.org/gems/aspose_cells_cloud) [![Gem](https://img.shields.io/gem/dt/aspose_cells_cloud?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/archive/refs/heads/master.zip) [![GitHub license](https://img.shields.io/github/license/aspose-cells-cloud/aspose-cells-cloud-ruby?style=for-the-badge)](https://github.com/aspose-cells-cloud/aspose-cells-cloud-ruby/blob/master/LICENSE) ![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/aspose-cells-cloud/aspose-cells-cloud-ruby/26.11.0?style=for-the-badge)
 
 # Aspose.Cells Cloud SDK for Ruby
 
@@ -14,6 +14,8 @@ Built on the **Aspose.Cells Cloud Web API**, this MIT-licensed SDK supports adva
 
 It seamlessly integrates with **AWS**, **Microsoft Azure**, and **Google Cloud**, ensuring **high availability**, **scalability**, and **data integrity**. Ideal for serverless apps, microservices, and cloud automation workflows.
 
+**Starting with version v26.11.0, the Aspose.Cells Cloud SDK adopts a new model.**
+
 ## Quick Start Guide
 
 To get started with Aspose.Cells Cloud, here's what you need to do:
@@ -24,7 +26,7 @@ To get started with Aspose.Cells Cloud, here's what you need to do:
 - Execute the following command to get the latest Gem package.
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.10.0'
+gem 'aspose_cells_cloud', '~> 26.11.0'
 ```
 
 Or install directly:
@@ -36,111 +38,71 @@ gem install aspose_cells_cloud
 3. Use the conversion code provided below as a reference to add or modify your application.
 
 ```ruby
-require 'openssl'
-require 'bundler'
-require 'aspose_cells_cloud'
+require_relative '_common'
 
-CellsCloudClientId = "..."  # Get from https://dashboard.aspose.cloud/#/applications -> Set ENV['CellsCloudClientId']
-CellsCloudClientSecret = "..."   # Get from https://dashboard.aspose.cloud/#/applications -> Set ENV['CellsCloudClientSecret']
+Examples.run do
+  client = Examples.client_from_env
+  output = Examples.output_path('EmployeeSalesSummary.pdf')
 
-@instance = AsposeCellsCloud::CellsApi.new(CellsCloudClientId, CellsCloudClientSecret)
-request = AsposeCellsCloud::ConvertSpreadsheetRequest.new(:Spreadsheet => 'EmployeeSalesSummary.xlsx', :format => format)
-response = @instance.convert_spreadsheet(request)
-FileUtils.cp(response.path, 'EmployeeSalesSummary.csv')
-```
+  AsposeCellsCloud::Converter.convert(
+    client,
+    AsposeCellsCloud::Datasource::FilePathSource.new(
+      Examples.data_path('EmployeeSalesSummary.xlsx')
+    ),
+    AsposeCellsCloud::Datasource::FilePathSink.new(output),
+    AsposeCellsCloud::Converter::FORMAT_PDF
+  )
 
-4. How to upload a file to cloud storage.
+  puts "Converted EmployeeSalesSummary.xlsx to #{output}"
+end
 
-```ruby
-require 'openssl'
-require 'bundler'
-require 'aspose_cells_cloud'
-
-CellsCloudClientId = "..."  # Get from https://dashboard.aspose.cloud/#/applications -> Set ENV['CellsCloudClientId']
-CellsCloudClientSecret = "..."   # Get from https://dashboard.aspose.cloud/#/applications -> Set ENV['CellsCloudClientSecret']
-
-@instance = AsposeCellsCloud::CellsApi.new(CellsCloudClientId, CellsCloudClientSecret)
-request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSalesSummary.xlsx", :path => "TestData/EmployeeSalesSummary.xlsx", :storageName => '')
-@instance.upload_file(request)
 ```
 
 ## Supported File Formats
 
-| **Format**                                                        | **Description**                                                                                                                                               | **Load** | **Save** |
-| :---------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- | :------- |
-| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 Workbook.                                                                                                                                 | &radic;  | &radic;  |
-| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML Workbook or template file, with or without macros.                                                                              | &radic;  | &radic;  |
-| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel Binary Workbook.                                                                                                                                        | &radic;  | &radic;  |
-| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel Macro-Enabled Workbook.                                                                                                                                 | &radic;  | &radic;  |
-| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 Template.                                                                                                                               | &radic;  | &radic;  |
-| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel Template.                                                                                                                                               | &radic;  | &radic;  |
-| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel Macro-Enabled Template.                                                                                                                                 | &radic;  | &radic;  |
-| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | An Excel Macro-Enabled Add-In file used to add new functions to Excel.                                                                                        |          | &radic;  |
-| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV (Comma-Separated Values) file.                                                                                                                            | &radic;  | &radic;  |
-| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV (Tab-Separated Values) file.                                                                                                                              | &radic;  | &radic;  |
-| [TXT](https://docs.fileformat.com/word-processing/txt/)           | Delimited plain text file.                                                                                                                                    | &radic;  | &radic;  |
-| [HTML](https://docs.fileformat.com/web/html/)                     | HTML format.                                                                                                                                                  | &radic;  | &radic;  |
-| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML file.                                                                                                                                                   | &radic;  | &radic;  |
-| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS (OpenDocument Spreadsheet).                                                                                                                               | &radic;  | &radic;  |
-| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Document created by Apple's "Numbers" application, part of Apple's iWork office suite running on macOS and iOS.                                               | &radic;  |          |
-| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                                                                    | &radic;  | &radic;  |
-| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format.                                                                                                                                      |          | &radic;  |
-| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                                                                               |          | &radic;  |
-| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                                                                               |          | &radic;  |
-| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format.                                                                                                                              |          | &radic;  |
-| [TIFF](https://docs.fileformat.com/image/tiff/)                   | Tagged Image File Format                                                                                                                                      |          | &radic;  |
-| [PNG](https://docs.fileformat.com/image/png/)                     | Portable Network Graphics Format                                                                                                                              |          | &radic;  |
-| [BMP](https://docs.fileformat.com/image/bmp/)                     | Bitmap Image Format                                                                                                                                           |          | &radic;  |
-| [EMF](https://docs.fileformat.com/image/emf/)                     | Enhanced Metafile Format                                                                                                                                      |          | &radic;  |
-| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG is a type of image format saved using lossy compression.                                                                                                 |          | &radic;  |
-| [GIF](https://docs.fileformat.com/image/gif/)                     | Graphics Interchange Format                                                                                                                                   |          | &radic;  |
-| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | Represents a Markdown document.                                                                                                                               |          | &radic;  |
-| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | An XML-based format used by OpenOffice and StarOffice                                                                                                         | &radic;  | &radic;  |
-| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | An Open Document format stored as flat XML.                                                                                                                   | &radic;  | &radic;  |
-| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | A well-known format for Microsoft Word documents that combines XML and binary files.                                                                          |          | &radic;  |
-| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML presentation file format.                                                                                                       |          | &radic;  |
-| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS (OpenDocument Spreadsheet Template).                                                                                                                      | &radic;  | &radic;  |
-| [XML](https://docs.fileformat.com/web/xml/)                       | XML file.                                                                                                                                                     | &radic;  | &radic;  |
-| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM file.                                                                                                                                                     | &radic;  | &radic;  |
-| [TIF](https://docs.fileformat.com/image/tiff/)                    | Tagged Image File Format                                                                                                                                      |          | &radic;  |
-| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF Image Format                                                                                                                                              |          | &radic;  |
-| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | Printer Command Language Format                                                                                                                               |          | &radic;  |
-| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 File Format                                                                                                                                          |          | &radic;  |
-| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB File Format                                                                                                                                              |          | &radic;  |
-| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF File Format                                                                                                                                               |          | &radic;  |
-| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML File Format                                                                                                                                             |          | &radic;  |
-
-## Architecture
-
-![architecture.png](architecture.png)
-
-```mermaid
-graph TB
-
-    subgraph "Client Layer"
-        C1[Web Application]
-        C2[Mobile Application]
-        C3[Desktop Application]
-    end
-
-    subgraph "API Gateway Layer"
-        G1[Gateway Service]
-        G2[Authentication Services]
-        G3[Load Balancing]
-    end
-
-    subgraph "Cloud Microservices Layer"
-        S1[User Application]
-        S2[Product Services]
-    end
-
-    C1 & C2 & C3 --> G1
-    G1 --> S1 & S2
-
-    style C1 fill:#e1f5fe
-    style G1 fill:#f3e5f5
-    style S1 fill:#e8f5e8
-```
+| **Format**                                                        | **Description**                                                                                                 | **Load** | **Save** |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- | :------- | :------- |
+| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 Workbook.                                                                                   | &radic;  | &radic;  |
+| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML Workbook or template file, with or without macros.                                | &radic;  | &radic;  |
+| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel Binary Workbook.                                                                                          | &radic;  | &radic;  |
+| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel Macro-Enabled Workbook.                                                                                   | &radic;  | &radic;  |
+| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 Template.                                                                                 | &radic;  | &radic;  |
+| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel Template.                                                                                                 | &radic;  | &radic;  |
+| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel Macro-Enabled Template.                                                                                   | &radic;  | &radic;  |
+| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | An Excel Macro-Enabled Add-In file used to add new functions to Excel.                                          |          | &radic;  |
+| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV (Comma-Separated Values) file.                                                                              | &radic;  | &radic;  |
+| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV (Tab-Separated Values) file.                                                                                | &radic;  | &radic;  |
+| [TXT](https://docs.fileformat.com/word-processing/txt/)           | Delimited plain text file.                                                                                      | &radic;  | &radic;  |
+| [HTML](https://docs.fileformat.com/web/html/)                     | HTML format.                                                                                                    | &radic;  | &radic;  |
+| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML file.                                                                                                     | &radic;  | &radic;  |
+| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS (OpenDocument Spreadsheet).                                                                                 | &radic;  | &radic;  |
+| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Document created by Apple's "Numbers" application, part of Apple's iWork office suite running on macOS and iOS. | &radic;  |          |
+| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                      | &radic;  | &radic;  |
+| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format.                                                                                        |          | &radic;  |
+| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                                 |          | &radic;  |
+| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                                 |          | &radic;  |
+| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format.                                                                                |          | &radic;  |
+| [TIFF](https://docs.fileformat.com/image/tiff/)                   | Tagged Image File Format                                                                                        |          | &radic;  |
+| [PNG](https://docs.fileformat.com/image/png/)                     | Portable Network Graphics Format                                                                                |          | &radic;  |
+| [BMP](https://docs.fileformat.com/image/bmp/)                     | Bitmap Image Format                                                                                             |          | &radic;  |
+| [EMF](https://docs.fileformat.com/image/emf/)                     | Enhanced Metafile Format                                                                                        |          | &radic;  |
+| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG is a type of image format saved using lossy compression.                                                   |          | &radic;  |
+| [GIF](https://docs.fileformat.com/image/gif/)                     | Graphics Interchange Format                                                                                     |          | &radic;  |
+| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | Represents a Markdown document.                                                                                 |          | &radic;  |
+| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | An XML-based format used by OpenOffice and StarOffice                                                           | &radic;  | &radic;  |
+| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | An Open Document format stored as flat XML.                                                                     | &radic;  | &radic;  |
+| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | A well-known format for Microsoft Word documents that combines XML and binary files.                            |          | &radic;  |
+| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML presentation file format.                                                         |          | &radic;  |
+| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS (OpenDocument Spreadsheet Template).                                                                        | &radic;  | &radic;  |
+| [XML](https://docs.fileformat.com/web/xml/)                       | XML file.                                                                                                       | &radic;  | &radic;  |
+| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM file.                                                                                                       | &radic;  | &radic;  |
+| [TIF](https://docs.fileformat.com/image/tiff/)                    | Tagged Image File Format                                                                                        |          | &radic;  |
+| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF Image Format                                                                                                |          | &radic;  |
+| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | Printer Command Language Format                                                                                 |          | &radic;  |
+| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 File Format                                                                                            |          | &radic;  |
+| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB File Format                                                                                                |          | &radic;  |
+| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF File Format                                                                                                 |          | &radic;  |
+| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML File Format                                                                                               |          | &radic;  |
 
 ## [Developer Reference](docs/DeveloperGuide.md#overview)
 
@@ -157,18 +119,18 @@ graph TB
 - Import/Export: Facilitates importing data from various sources into spreadsheets and exporting spreadsheet data to other formats.
 - Security Management: Offers a range of security features like data encryption, access control, and permission management to safeguard the security and integrity of spreadsheet data.
 
-## Features & Enhancements in Version 26.10
+## Features & Enhancements in Version 26.11
 
 Full list of issues covering all changes in this release:
 
-| **Summary**                                                                                                   | **Category** |
-| :------------------------------------------------------------------------------------------------------------ | :----------- |
+| **Summary**                                                                                                  | **Category** |
+| :----------------------------------------------------------------------------------------------------------- | :----------- |
 | Refactor SearchController.cs: replace 7 remote read endpoints with [HttpGet] and remove deprecated forwarder | Improvement  |
-| Fix typo in CalculateController.cs: correct route 'aggergate' to 'aggregate' | Bug  |
-| Fix operationName copy-paste errors in ManagementController.cs | Bug  |
-| Mark StatisticalController.cs as obsolete | Improvement  |
-| Security & Stability Fixes for Aspose.Cells Cloud API | Improvement  |
-| Add Exception Chain Support to CellsApiException and HttpWebException | New Feature  |
+| Fix typo in CalculateController.cs: correct route 'aggergate' to 'aggregate'                                 | Bug          |
+| Fix operationName copy-paste errors in ManagementController.cs                                               | Bug          |
+| Mark StatisticalController.cs as obsolete                                                                    | Improvement  |
+| Security & Stability Fixes for Aspose.Cells Cloud API                                                        | Improvement  |
+| Add Exception Chain Support to CellsApiException and HttpWebException                                        | New Feature  |
 
 ## Available SDKs
 
@@ -218,7 +180,7 @@ The Aspose.Cells Cloud SDK is available in multiple popular programming language
 - 执行以下命令获取最新的 Gem 包。
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.10.0'
+gem 'aspose_cells_cloud', '~> 26.11.0'
 ```
 
 或直接安装：
@@ -260,49 +222,49 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 
 ## 支持的文件格式
 
-| **格式**                                                          | **描述**                                                                                             | **加载** | **保存** |
-| :---------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- | :------- | :------- |
-| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 工作簿。                                                                         | &radic;  | &radic;  |
-| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML 工作簿或模板文件，带或不带宏。                                         | &radic;  | &radic;  |
-| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel 二进制工作簿。                                                                                 | &radic;  | &radic;  |
-| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel 启用宏的工作簿。                                                                               | &radic;  | &radic;  |
-| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 模板。                                                                         | &radic;  | &radic;  |
-| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel 模板。                                                                                         | &radic;  | &radic;  |
-| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel 启用宏的模板。                                                                                 | &radic;  | &radic;  |
-| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Excel 启用宏的加载项文件，用于向 Excel 添加新功能。                                                  |          | &radic;  |
-| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV（逗号分隔值）文件。                                                                              | &radic;  | &radic;  |
-| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV（制表符分隔值）文件。                                                                            | &radic;  | &radic;  |
-| [TXT](https://docs.fileformat.com/word-processing/txt/)           | 分隔纯文本文件。                                                                                     | &radic;  | &radic;  |
-| [HTML](https://docs.fileformat.com/web/html/)                     | HTML 格式。                                                                                          | &radic;  | &radic;  |
-| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML 文件。                                                                                         | &radic;  | &radic;  |
-| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS（OpenDocument 电子表格）。                                                                       | &radic;  | &radic;  |
-| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | 由 Apple "Numbers" 应用程序创建的文档，属于 Apple iWork 办公套件，运行于 macOS 和 iOS。              | &radic;  |          |
-| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                            | &radic;  | &radic;  |
-| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | 数据交换格式。                                                                                       |          | &radic;  |
-| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                     |          | &radic;  |
-| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                     |          | &radic;  |
-| [SVG](https://docs.fileformat.com/page-description-language/svg/) | 可缩放矢量图形格式。                                                                                 |          | &radic;  |
-| [TIFF](https://docs.fileformat.com/image/tiff/)                   | 标记图像文件格式                                                                                     |          | &radic;  |
-| [PNG](https://docs.fileformat.com/image/png/)                     | 便携式网络图形格式                                                                                   |          | &radic;  |
-| [BMP](https://docs.fileformat.com/image/bmp/)                     | 位图图像格式                                                                                         |          | &radic;  |
-| [EMF](https://docs.fileformat.com/image/emf/)                     | 增强型图元文件格式                                                                                   |          | &radic;  |
-| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG 是一种使用有损压缩保存的图像格式。                                                              |          | &radic;  |
-| [GIF](https://docs.fileformat.com/image/gif/)                     | 图形交换格式                                                                                         |          | &radic;  |
-| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | 表示 Markdown 文档。                                                                                 |          | &radic;  |
-| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | OpenOffice 和 StarOffice 使用的基于 XML 的格式                                                       | &radic;  | &radic;  |
-| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | 以平面 XML 存储的 Open Document 格式                                                                   | &radic;  | &radic;  |
-| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Microsoft Word 文档的知名格式，结合了 XML 和二进制文件。                                             |          | &radic;  |
-| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML 演示文稿文件格式。                                                     |          | &radic;  |
-| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS（OpenDocument 电子表格模板）。                                                                   | &radic;  | &radic;  |
-| [XML](https://docs.fileformat.com/web/xml/)                       | XML 文件。                                                                                           | &radic;  | &radic;  |
-| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM 文件。                                                                                           | &radic;  | &radic;  |
-| [TIF](https://docs.fileformat.com/image/tiff/)                    | 标记图像文件格式                                                                                     |          | &radic;  |
-| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF 图像格式                                                                                         |          | &radic;  |
-| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | 打印机命令语言格式                                                                                   |          | &radic;  |
-| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 文件格式                                                                                    |          | &radic;  |
-| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB 文件格式                                                                                        |          | &radic;  |
-| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF 文件格式                                                                                         |          | &radic;  |
-| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML 文件格式                                                                                       |          | &radic;  |
+| **格式**                                                          | **描述**                                                                                | **加载** | **保存** |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------------------------- | :------- | :------- |
+| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 工作簿。                                                            | &radic;  | &radic;  |
+| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML 工作簿或模板文件，带或不带宏。                            | &radic;  | &radic;  |
+| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel 二进制工作簿。                                                                    | &radic;  | &radic;  |
+| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel 启用宏的工作簿。                                                                  | &radic;  | &radic;  |
+| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 模板。                                                            | &radic;  | &radic;  |
+| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel 模板。                                                                            | &radic;  | &radic;  |
+| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel 启用宏的模板。                                                                    | &radic;  | &radic;  |
+| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Excel 启用宏的加载项文件，用于向 Excel 添加新功能。                                     |          | &radic;  |
+| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV（逗号分隔值）文件。                                                                 | &radic;  | &radic;  |
+| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV（制表符分隔值）文件。                                                               | &radic;  | &radic;  |
+| [TXT](https://docs.fileformat.com/word-processing/txt/)           | 分隔纯文本文件。                                                                        | &radic;  | &radic;  |
+| [HTML](https://docs.fileformat.com/web/html/)                     | HTML 格式。                                                                             | &radic;  | &radic;  |
+| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML 文件。                                                                            | &radic;  | &radic;  |
+| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS（OpenDocument 电子表格）。                                                          | &radic;  | &radic;  |
+| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | 由 Apple "Numbers" 应用程序创建的文档，属于 Apple iWork 办公套件，运行于 macOS 和 iOS。 | &radic;  |          |
+| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                              | &radic;  | &radic;  |
+| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | 数据交换格式。                                                                          |          | &radic;  |
+| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                         |          | &radic;  |
+| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                         |          | &radic;  |
+| [SVG](https://docs.fileformat.com/page-description-language/svg/) | 可缩放矢量图形格式。                                                                    |          | &radic;  |
+| [TIFF](https://docs.fileformat.com/image/tiff/)                   | 标记图像文件格式                                                                        |          | &radic;  |
+| [PNG](https://docs.fileformat.com/image/png/)                     | 便携式网络图形格式                                                                      |          | &radic;  |
+| [BMP](https://docs.fileformat.com/image/bmp/)                     | 位图图像格式                                                                            |          | &radic;  |
+| [EMF](https://docs.fileformat.com/image/emf/)                     | 增强型图元文件格式                                                                      |          | &radic;  |
+| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG 是一种使用有损压缩保存的图像格式。                                                 |          | &radic;  |
+| [GIF](https://docs.fileformat.com/image/gif/)                     | 图形交换格式                                                                            |          | &radic;  |
+| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | 表示 Markdown 文档。                                                                    |          | &radic;  |
+| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | OpenOffice 和 StarOffice 使用的基于 XML 的格式                                          | &radic;  | &radic;  |
+| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | 以平面 XML 存储的 Open Document 格式                                                    | &radic;  | &radic;  |
+| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Microsoft Word 文档的知名格式，结合了 XML 和二进制文件。                                |          | &radic;  |
+| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML 演示文稿文件格式。                                        |          | &radic;  |
+| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS（OpenDocument 电子表格模板）。                                                      | &radic;  | &radic;  |
+| [XML](https://docs.fileformat.com/web/xml/)                       | XML 文件。                                                                              | &radic;  | &radic;  |
+| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM 文件。                                                                              | &radic;  | &radic;  |
+| [TIF](https://docs.fileformat.com/image/tiff/)                    | 标记图像文件格式                                                                        |          | &radic;  |
+| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF 图像格式                                                                            |          | &radic;  |
+| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | 打印机命令语言格式                                                                      |          | &radic;  |
+| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 文件格式                                                                       |          | &radic;  |
+| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB 文件格式                                                                           |          | &radic;  |
+| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF 文件格式                                                                            |          | &radic;  |
+| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML 文件格式                                                                          |          | &radic;  |
 
 ## 架构
 
@@ -355,14 +317,14 @@ graph TB
 
 涵盖此版本所有更改的完整问题列表：
 
-| **摘要**                                                                                                   | **类别** |
-| :-------------------------------------------------------------------------------------------------------- | :------- |
+| **摘要**                                                                         | **类别** |
+| :------------------------------------------------------------------------------- | :------- |
 | 重构 SearchController.cs：用 [HttpGet] 替换 7 个远程读取端点并移除已弃用的转发器 | 改进     |
-| 修复 CalculateController.cs 中的拼写错误：将路由 'aggergate' 更正为 'aggregate' | Bug     |
-| 修复 ManagementController.cs 中的 operationName 复制粘贴错误 | Bug     |
-| 将 StatisticalController.cs 标记为已过时 | 改进     |
-| Aspose.Cells Cloud API 的安全与稳定性修复 | 改进     |
-| 为 CellsApiException 和 HttpWebException 添加异常链支持 | 新功能   |
+| 修复 CalculateController.cs 中的拼写错误：将路由 'aggergate' 更正为 'aggregate'  | Bug      |
+| 修复 ManagementController.cs 中的 operationName 复制粘贴错误                     | Bug      |
+| 将 StatisticalController.cs 标记为已过时                                         | 改进     |
+| Aspose.Cells Cloud API 的安全与稳定性修复                                        | 改进     |
+| 为 CellsApiException 和 HttpWebException 添加异常链支持                          | 新功能   |
 
 ## 可用的 SDK
 
@@ -412,7 +374,7 @@ Aspose.Cells Cloud を始めるには、以下の手順に従ってください�
 - 以下のコマンドを実行して最新の Gem パッケージを取得します。
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.10.0'
+gem 'aspose_cells_cloud', '~> 26.11.0'
 ```
 
 または直接インストール：
@@ -454,49 +416,49 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 
 ## サポートされているファイル形式
 
-| **形式**                                                          | **説明**                                                                                                    | **読み込み** | **保存** |
-| :---------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :----------- | :------- |
-| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 ワークブック。                                                                          | &radic;      | &radic;  |
-| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML ワークブックまたはテンプレートファイル（マクロあり/なし）。                    | &radic;      | &radic;  |
-| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel バイナリワークブック。                                                                                | &radic;      | &radic;  |
-| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel マクロ有効ワークブック。                                                                              | &radic;      | &radic;  |
-| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 テンプレート。                                                                        | &radic;      | &radic;  |
-| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel テンプレート。                                                                                        | &radic;      | &radic;  |
-| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel マクロ有効テンプレート。                                                                              | &radic;      | &radic;  |
-| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Excel に新しい関数を追加するために使用される Excel マクロ有効アドインファイル。                             |              | &radic;  |
-| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV（カンマ区切り値）ファイル。                                                                             | &radic;      | &radic;  |
-| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV（タブ区切り値）ファイル。                                                                               | &radic;      | &radic;  |
-| [TXT](https://docs.fileformat.com/word-processing/txt/)           | 区切り付きプレーンテキストファイル。                                                                          | &radic;      | &radic;  |
-| [HTML](https://docs.fileformat.com/web/html/)                     | HTML 形式。                                                                                                 | &radic;      | &radic;  |
-| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML ファイル。                                                                                            | &radic;      | &radic;  |
-| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS（OpenDocument スプレッドシート）。                                                                      | &radic;      | &radic;  |
+| **形式**                                                          | **説明**                                                                                                                    | **読み込み** | **保存** |
+| :---------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- | :----------- | :------- |
+| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 ワークブック。                                                                                          | &radic;      | &radic;  |
+| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML ワークブックまたはテンプレートファイル（マクロあり/なし）。                                   | &radic;      | &radic;  |
+| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel バイナリワークブック。                                                                                                | &radic;      | &radic;  |
+| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel マクロ有効ワークブック。                                                                                              | &radic;      | &radic;  |
+| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 テンプレート。                                                                                        | &radic;      | &radic;  |
+| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel テンプレート。                                                                                                        | &radic;      | &radic;  |
+| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel マクロ有効テンプレート。                                                                                              | &radic;      | &radic;  |
+| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Excel に新しい関数を追加するために使用される Excel マクロ有効アドインファイル。                                             |              | &radic;  |
+| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV（カンマ区切り値）ファイル。                                                                                             | &radic;      | &radic;  |
+| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV（タブ区切り値）ファイル。                                                                                               | &radic;      | &radic;  |
+| [TXT](https://docs.fileformat.com/word-processing/txt/)           | 区切り付きプレーンテキストファイル。                                                                                        | &radic;      | &radic;  |
+| [HTML](https://docs.fileformat.com/web/html/)                     | HTML 形式。                                                                                                                 | &radic;      | &radic;  |
+| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML ファイル。                                                                                                            | &radic;      | &radic;  |
+| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS（OpenDocument スプレッドシート）。                                                                                      | &radic;      | &radic;  |
 | [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Apple の iWork オフィススイートの一部である「Numbers」アプリケーションで作成されたドキュメント（macOS および iOS で動作）。 | &radic;      |          |
-| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                  | &radic;      | &radic;  |
-| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format。                                                                                   |              | &radic;  |
-| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                            |              | &radic;  |
-| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                            |              | &radic;  |
-| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format.                                                                           |              | &radic;  |
-| [TIFF](https://docs.fileformat.com/image/tiff/)                   | Tagged Image File Format                                                                                    |              | &radic;  |
-| [PNG](https://docs.fileformat.com/image/png/)                     | Portable Network Graphics Format                                                                            |              | &radic;  |
-| [BMP](https://docs.fileformat.com/image/bmp/)                     | Bitmap Image Format                                                                                         |              | &radic;  |
-| [EMF](https://docs.fileformat.com/image/emf/)                     | Enhanced Metafile Format                                                                                    |              | &radic;  |
-| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG は非可逆圧縮方式で保存される画像形式です。                                                             |              | &radic;  |
-| [GIF](https://docs.fileformat.com/image/gif/)                     | Graphics Interchange Format                                                                                 |              | &radic;  |
-| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | Markdown ドキュメントを表します。                                                                           |              | &radic;  |
-| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | OpenOffice および StarOffice で使用される XML ベースの形式                                                  | &radic;      | &radic;  |
-| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | フラット XML として保存された Open Document 形式                                                          | &radic;      | &radic;  |
-| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Microsoft Word ドキュメントの有名な形式，XML とバイナリファイルを組み合わせています。                        |              | &radic;  |
-| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML プレゼンテーションファイル形式。                                              |              | &radic;  |
-| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS（OpenDocument スプレッドシートテンプレート）。                                                          | &radic;      | &radic;  |
-| [XML](https://docs.fileformat.com/web/xml/)                       | XML ファイル。                                                                                              | &radic;      | &radic;  |
-| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM ファイル。                                                                                              | &radic;      | &radic;  |
-| [TIF](https://docs.fileformat.com/image/tiff/)                    | Tagged Image File Format                                                                                    |              | &radic;  |
-| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF Image Format                                                                                            |              | &radic;  |
-| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | Printer Command Language Format                                                                             |              | &radic;  |
-| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 File Format                                                                                        |              | &radic;  |
-| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB File Format                                                                                            |              | &radic;  |
-| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF File Format                                                                                             |              | &radic;  |
-| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML File Format                                                                                           |              | &radic;  |
+| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                                  | &radic;      | &radic;  |
+| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format。                                                                                                   |              | &radic;  |
+| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                                             |              | &radic;  |
+| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                                             |              | &radic;  |
+| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format.                                                                                            |              | &radic;  |
+| [TIFF](https://docs.fileformat.com/image/tiff/)                   | Tagged Image File Format                                                                                                    |              | &radic;  |
+| [PNG](https://docs.fileformat.com/image/png/)                     | Portable Network Graphics Format                                                                                            |              | &radic;  |
+| [BMP](https://docs.fileformat.com/image/bmp/)                     | Bitmap Image Format                                                                                                         |              | &radic;  |
+| [EMF](https://docs.fileformat.com/image/emf/)                     | Enhanced Metafile Format                                                                                                    |              | &radic;  |
+| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG は非可逆圧縮方式で保存される画像形式です。                                                                             |              | &radic;  |
+| [GIF](https://docs.fileformat.com/image/gif/)                     | Graphics Interchange Format                                                                                                 |              | &radic;  |
+| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | Markdown ドキュメントを表します。                                                                                           |              | &radic;  |
+| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | OpenOffice および StarOffice で使用される XML ベースの形式                                                                  | &radic;      | &radic;  |
+| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | フラット XML として保存された Open Document 形式                                                                            | &radic;      | &radic;  |
+| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Microsoft Word ドキュメントの有名な形式，XML とバイナリファイルを組み合わせています。                                       |              | &radic;  |
+| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML プレゼンテーションファイル形式。                                                              |              | &radic;  |
+| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS（OpenDocument スプレッドシートテンプレート）。                                                                          | &radic;      | &radic;  |
+| [XML](https://docs.fileformat.com/web/xml/)                       | XML ファイル。                                                                                                              | &radic;      | &radic;  |
+| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM ファイル。                                                                                                              | &radic;      | &radic;  |
+| [TIF](https://docs.fileformat.com/image/tiff/)                    | Tagged Image File Format                                                                                                    |              | &radic;  |
+| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF Image Format                                                                                                            |              | &radic;  |
+| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | Printer Command Language Format                                                                                             |              | &radic;  |
+| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 File Format                                                                                                        |              | &radic;  |
+| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB File Format                                                                                                            |              | &radic;  |
+| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF File Format                                                                                                             |              | &radic;  |
+| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML File Format                                                                                                           |              | &radic;  |
 
 ## アーキテクチャ
 
@@ -549,14 +511,14 @@ graph TB
 
 このリリースのすべての変更を含む問題の完全なリスト：
 
-| **概要**                                                                                                   | **カテゴリ** |
-| :-------------------------------------------------------------------------------------------------------- | :----------- |
+| **概要**                                                                                                                        | **カテゴリ** |
+| :------------------------------------------------------------------------------------------------------------------------------ | :----------- |
 | SearchController.cs のリファクタリング：7 つのリモート読み取りエンドポイントを [HttpGet] に置き換え、非推奨のフォワーダーを削除 | 改善         |
-| CalculateController.cs のタイプミスの修正：ルート 'aggergate' を 'aggregate' に修正 | バグ         |
-| ManagementController.cs の operationName のコピペエラーの修正 | バグ         |
-| StatisticalController.cs を非推奨としてマーク | 改善         |
-| Aspose.Cells Cloud API のセキュリティと安定性の修正 | 改善         |
-| CellsApiException および HttpWebException への例外チェーンサポートの追加 | 新機能       |
+| CalculateController.cs のタイプミスの修正：ルート 'aggergate' を 'aggregate' に修正                                             | バグ         |
+| ManagementController.cs の operationName のコピペエラーの修正                                                                   | バグ         |
+| StatisticalController.cs を非推奨としてマーク                                                                                   | 改善         |
+| Aspose.Cells Cloud API のセキュリティと安定性の修正                                                                             | 改善         |
+| CellsApiException および HttpWebException への例外チェーンサポートの追加                                                        | 新機能       |
 
 ## 利用可能な SDK
 
@@ -606,7 +568,7 @@ Um mit Aspose.Cells Cloud zu beginnen, müssen Sie Folgendes tun:
 - Führen Sie den folgenden Befehl aus, um das neueste Gem-Paket zu erhalten.
 
 ```console
-gem 'aspose_cells_cloud', '~> 26.10.0'
+gem 'aspose_cells_cloud', '~> 26.11.0'
 ```
 
 Oder direkt installieren:
@@ -648,49 +610,49 @@ request = AsposeCellsCloud::UploadFileRequest.new(:UploadFiles => "EmployeeSales
 
 ## Unterstützte Dateiformate
 
-| **Format**                                                        | **Beschreibung**                                                                                                                                          | **Laden** | **Speichern** |
-| :---------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- | :------------ |
-| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 Arbeitsmappe.                                                                                                                         | &radic;   | &radic;       |
-| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML Arbeitsmappe oder Vorlagendatei, mit oder ohne Makros.                                                                      | &radic;   | &radic;       |
-| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel-Binärarbeitsmappe.                                                                                                                                  | &radic;   | &radic;       |
-| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel-Arbeitsmappe mit Makros.                                                                                                                            | &radic;   | &radic;       |
-| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 Vorlage.                                                                                                                            | &radic;   | &radic;       |
-| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel-Vorlage.                                                                                                                                           | &radic;   | &radic;       |
-| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel-Vorlage mit Makros.                                                                                                                                 | &radic;   | &radic;       |
-| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Eine Excel-Add-In-Datei mit Makros, die zum Hinzufügen neuer Funktionen zu Excel verwendet wird.                                                          |           | &radic;       |
-| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV (Durch Kommas getrennte Werte) Datei.                                                                                                                 | &radic;   | &radic;       |
-| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV (Durch Tabulatoren getrennte Werte) Datei.                                                                                                            | &radic;   | &radic;       |
-| [TXT](https://docs.fileformat.com/word-processing/txt/)           | Begrenzte reine Textdatei.                                                                                                                                | &radic;   | &radic;       |
-| [HTML](https://docs.fileformat.com/web/html/)                     | HTML-Format.                                                                                                                                              | &radic;   | &radic;       |
-| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML-Datei.                                                                                                                                              | &radic;   | &radic;       |
-| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS (OpenDocument Spreadsheet).                                                                                                                           | &radic;   | &radic;       |
-| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Dokument, das mit Apples „Numbers“ Anwendung erstellt wurde, Teil von Apples iWork‑Bürosoftware, die unter macOS und iOS läuft.                             | &radic;   |               |
-| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                                                                | &radic;   | &radic;       |
-| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format.                                                                                                                                  |           | &radic;       |
-| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                                                                           |           | &radic;       |
-| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                                                                           |           | &radic;       |
-| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format.                                                                                                                          |           | &radic;       |
-| [TIFF](https://docs.fileformat.com/image/tiff/)                   | Tagged Image File Format                                                                                                                                  |           | &radic;       |
-| [PNG](https://docs.fileformat.com/image/png/)                     | Portable Network Graphics Format                                                                                                                          |           | &radic;       |
-| [BMP](https://docs.fileformat.com/image/bmp/)                     | Bitmap Image Format                                                                                                                                       |           | &radic;       |
-| [EMF](https://docs.fileformat.com/image/emf/)                     | Enhanced Metafile Format                                                                                                                                  |           | &radic;       |
-| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG ist ein Bildformat, das mit verlustbehafteter Komprimierung gespeichert wird.                                                                    |           | &radic;       |
-| [GIF](https://docs.fileformat.com/image/gif/)                     | Graphics Interchange Format                                                                                                                               |           | &radic;       |
-| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | Stellt ein Markdown-Dokument dar.                                                                                                                         |           | &radic;       |
-| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | Ein XML-basierter Format, das von OpenOffice und StarOffice verwendet wird                                                                                | &radic;   | &radic;       |
-| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | Ein Open Document-Format, das als flaches XML gespeichert wird.                                                                                           | &radic;   | &radic;       |
-| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Ein bekanntes Format für Microsoft Word-Dokumente, das XML und Binärdateien kombiniert.                                                                 |           | &radic;       |
-| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML Präsentationsdateiformat.                                                                                                   |           | &radic;       |
-| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS (OpenDocument Spreadsheet-Vorlage).                                                                                                                   | &radic;   | &radic;       |
-| [XML](https://docs.fileformat.com/web/xml/)                       | XML-Datei.                                                                                                                                               | &radic;   | &radic;       |
-| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM-Datei.                                                                                                                                               | &radic;   | &radic;       |
-| [TIF](https://docs.fileformat.com/image/tiff/)                    | Tagged Image File Format                                                                                                                                  |           | &radic;       |
-| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF Image Format                                                                                                                                          |           | &radic;       |
-| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | Printer Command Language Format                                                                                                                            |           | &radic;       |
-| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 File Format                                                                                                                                      |           | &radic;       |
-| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB File Format                                                                                                                                          |           | &radic;       |
-| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF File Format                                                                                                                                           |           | &radic;       |
-| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML File Format                                                                                                                                         |           | &radic;       |
+| **Format**                                                        | **Beschreibung**                                                                                                                | **Laden** | **Speichern** |
+| :---------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ | :-------- | :------------ |
+| [XLS](https://docs.fileformat.com/spreadsheet/xls/)               | Excel 95/5.0 - 2003 Arbeitsmappe.                                                                                               | &radic;   | &radic;       |
+| [XLSX](https://docs.fileformat.com/spreadsheet/xlsx/)             | Office Open XML SpreadsheetML Arbeitsmappe oder Vorlagendatei, mit oder ohne Makros.                                            | &radic;   | &radic;       |
+| [XLSB](https://docs.fileformat.com/spreadsheet/xlsb/)             | Excel-Binärarbeitsmappe.                                                                                                        | &radic;   | &radic;       |
+| [XLSM](https://docs.fileformat.com/spreadsheet/xlsm/)             | Excel-Arbeitsmappe mit Makros.                                                                                                  | &radic;   | &radic;       |
+| [XLT](https://docs.fileformat.com/spreadsheet/xlt/)               | Excel 97 - Excel 2003 Vorlage.                                                                                                  | &radic;   | &radic;       |
+| [XLTX](https://docs.fileformat.com/spreadsheet/xltx/)             | Excel-Vorlage.                                                                                                                  | &radic;   | &radic;       |
+| [XLTM](https://docs.fileformat.com/spreadsheet/xltm/)             | Excel-Vorlage mit Makros.                                                                                                       | &radic;   | &radic;       |
+| [XLAM](https://docs.fileformat.com/spreadsheet/xlam/)             | Eine Excel-Add-In-Datei mit Makros, die zum Hinzufügen neuer Funktionen zu Excel verwendet wird.                                |           | &radic;       |
+| [CSV](https://docs.fileformat.com/spreadsheet/csv/)               | CSV (Durch Kommas getrennte Werte) Datei.                                                                                       | &radic;   | &radic;       |
+| [TSV](https://docs.fileformat.com/spreadsheet/tsv/)               | TSV (Durch Tabulatoren getrennte Werte) Datei.                                                                                  | &radic;   | &radic;       |
+| [TXT](https://docs.fileformat.com/word-processing/txt/)           | Begrenzte reine Textdatei.                                                                                                      | &radic;   | &radic;       |
+| [HTML](https://docs.fileformat.com/web/html/)                     | HTML-Format.                                                                                                                    | &radic;   | &radic;       |
+| [MHTML](https://docs.fileformat.com/web/mhtml/)                   | MHTML-Datei.                                                                                                                    | &radic;   | &radic;       |
+| [ODS](https://docs.fileformat.com/spreadsheet/ods/)               | ODS (OpenDocument Spreadsheet).                                                                                                 | &radic;   | &radic;       |
+| [Numbers](https://docs.fileformat.com/spreadsheet/numbers/)       | Dokument, das mit Apples „Numbers“ Anwendung erstellt wurde, Teil von Apples iWork‑Bürosoftware, die unter macOS und iOS läuft. | &radic;   |               |
+| [JSON](https://docs.fileformat.com/web/json/)                     | JavaScript Object Notation                                                                                                      | &radic;   | &radic;       |
+| [DIF](https://docs.fileformat.com/spreadsheet/dif/)               | Data Interchange Format.                                                                                                        |           | &radic;       |
+| [PDF](https://docs.fileformat.com/pdf/)                           | Adobe Portable Document Format.                                                                                                 |           | &radic;       |
+| [XPS](https://docs.fileformat.com/page-description-language/xps/) | XML Paper Specification Format.                                                                                                 |           | &radic;       |
+| [SVG](https://docs.fileformat.com/page-description-language/svg/) | Scalable Vector Graphics Format.                                                                                                |           | &radic;       |
+| [TIFF](https://docs.fileformat.com/image/tiff/)                   | Tagged Image File Format                                                                                                        |           | &radic;       |
+| [PNG](https://docs.fileformat.com/image/png/)                     | Portable Network Graphics Format                                                                                                |           | &radic;       |
+| [BMP](https://docs.fileformat.com/image/bmp/)                     | Bitmap Image Format                                                                                                             |           | &radic;       |
+| [EMF](https://docs.fileformat.com/image/emf/)                     | Enhanced Metafile Format                                                                                                        |           | &radic;       |
+| [JPEG](https://docs.fileformat.com/image/jpeg/)                   | JPEG ist ein Bildformat, das mit verlustbehafteter Komprimierung gespeichert wird.                                              |           | &radic;       |
+| [GIF](https://docs.fileformat.com/image/gif/)                     | Graphics Interchange Format                                                                                                     |           | &radic;       |
+| [MARKDOWN](https://docs.fileformat.com/word-processing/md/)       | Stellt ein Markdown-Dokument dar.                                                                                               |           | &radic;       |
+| [SXC](https://docs.fileformat.com/spreadsheet/sxc/)               | Ein XML-basierter Format, das von OpenOffice und StarOffice verwendet wird                                                      | &radic;   | &radic;       |
+| [FODS](https://docs.fileformat.com/spreadsheet/fods/)             | Ein Open Document-Format, das als flaches XML gespeichert wird.                                                                 | &radic;   | &radic;       |
+| [DOCX](https://docs.fileformat.com/word-processing/docx/)         | Ein bekanntes Format für Microsoft Word-Dokumente, das XML und Binärdateien kombiniert.                                         |           | &radic;       |
+| [PPTX](https://docs.fileformat.com/presentation/pptx/)            | Microsoft PowerPoint Open XML Präsentationsdateiformat.                                                                         |           | &radic;       |
+| [OTS](https://docs.fileformat.com/spreadsheet/ots/)               | OTS (OpenDocument Spreadsheet-Vorlage).                                                                                         | &radic;   | &radic;       |
+| [XML](https://docs.fileformat.com/web/xml/)                       | XML-Datei.                                                                                                                      | &radic;   | &radic;       |
+| [HTM](https://docs.fileformat.com/web/htm/)                       | HTM-Datei.                                                                                                                      | &radic;   | &radic;       |
+| [TIF](https://docs.fileformat.com/image/tiff/)                    | Tagged Image File Format                                                                                                        |           | &radic;       |
+| [WMF](https://docs.fileformat.com/image/wmf/)                     | WMF Image Format                                                                                                                |           | &radic;       |
+| [PCL](https://docs.fileformat.com/page-description-language/pcl/) | Printer Command Language Format                                                                                                 |           | &radic;       |
+| [AZW3](https://docs.fileformat.com/ebook/azw3/)                   | AZW3/KF8 File Format                                                                                                            |           | &radic;       |
+| [EPUB](https://docs.fileformat.com/ebook/epub/)                   | EPUB File Format                                                                                                                |           | &radic;       |
+| [DBF](https://docs.fileformat.com/database/dbf/)                  | DBF File Format                                                                                                                 |           | &radic;       |
+| [XHTML](https://docs.fileformat.com/web/xhtml/)                   | XHTML File Format                                                                                                               |           | &radic;       |
 
 ## Architektur
 
@@ -739,18 +701,19 @@ graph TB
 - Import/Export: Ermöglicht den Import von Daten aus verschiedenen Quellen in Tabellen und den Export von Tabellendaten in andere Formate.
 - Sicherheitsverwaltung: Bietet eine Reihe von Sicherheitsfunktionen wie Datenverschlüsselung, Zugriffskontrolle und Berechtigungsverwaltung zum Schutz der Sicherheit und Integrität von Tabellendaten.
 
-## Funktionen & Erweiterungen in Version 26.10
+## Funktionen & Erweiterungen in Version 26.11
 
 Vollständige Liste der Probleme, die alle Änderungen in dieser Version abdecken:
 
-| **Zusammenfassung**                                                                                                   | **Kategorie** |
-| :------------------------------------------------------------------------------------------------------------ | :----------- |
-| Refactor SearchController.cs: replace 7 remote read endpoints with [HttpGet] and remove deprecated forwarder | Improvement  |
-| Fix typo in CalculateController.cs: correct route 'aggergate' to 'aggregate' | Bug  |
-| Fix operationName copy-paste errors in ManagementController.cs | Bug  |
-| Mark StatisticalController.cs as obsolete | Improvement  |
-| Security & Stability Fixes for Aspose.Cells Cloud API | Improvement  |
-| Add Exception Chain Support to CellsApiException and HttpWebException | New Feature  |
+| **ID**           | **Summary**                                                                  | **Category** |
+| :--------------- | :--------------------------------------------------------------------------- | :----------- |
+| CELLSCLOUD-14291 | Single-property delete returns 200 and removes nothing                       | Bug          |
+| CELLSCLOUD-14292 | htmlstring has no request body in the spec                                   | Bug          |
+| CELLSCLOUD-14293 | Secondary-axis routes answer 200 but the value read back is not the one sent | Bug          |
+| CELLSCLOUD-14294 | A string auto-filter is saved as the literal text Aspose.Cells.FilterValue   | Bug          |
+| CELLSCLOUD-14307 | Support converting worksheet page                                            | New Feature  |
+| CELLSCLOUD-14326 | Improve SmartMarkerTemplate API in Aspose.Cells Cloud                        | Improvement  |
+| CELLSCLOUD-14327 | Add new feature: support generate report                                     | New Feature  |
 
 ## Verfügbare SDK
 

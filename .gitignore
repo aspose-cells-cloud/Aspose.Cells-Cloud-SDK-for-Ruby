@@ -41,3 +41,4 @@ data/roywang.pfx
 package-lock.json
 spec/
 TestData/
+.sfdx
