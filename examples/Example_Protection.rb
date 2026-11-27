@@ -10,7 +10,7 @@
 
 require_relative '_common'
 
-FOLDER = 'RubySDKExamples'
+FOLDER = 'data'
 NAME = 'Book1.xlsx'
 PASSWORD = 'ExampleSecret123!'
 

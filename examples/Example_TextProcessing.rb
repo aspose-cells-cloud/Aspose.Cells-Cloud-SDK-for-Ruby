@@ -10,7 +10,7 @@
 
 require_relative '_common'
 
-FOLDER = 'RubySDKExamples'
+FOLDER = 'data'
 NAME = 'BookText.xlsx'
 
 Examples.run do

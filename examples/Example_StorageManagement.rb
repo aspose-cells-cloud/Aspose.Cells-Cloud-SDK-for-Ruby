@@ -10,7 +10,7 @@
 
 require_relative '_common'
 
-FOLDER = 'RubySDKExamples'
+FOLDER = 'data'
 REMOTE = "#{FOLDER}/Book1.xlsx"
 
 Examples.run do

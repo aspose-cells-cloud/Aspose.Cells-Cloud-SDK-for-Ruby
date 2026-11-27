@@ -10,7 +10,7 @@
 
 require_relative '_common'
 
-FOLDER = 'RubySDKExamples'
+FOLDER = 'data'
 
 Examples.run do
   client = Examples.client_from_env
