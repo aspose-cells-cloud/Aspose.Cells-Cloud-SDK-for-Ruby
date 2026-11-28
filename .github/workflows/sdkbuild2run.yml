@@ -1,10 +1,10 @@
-name: Aspose Cells Cloud SDK for Ruby
+name: Build product and run examples
 
 on:
   push:
-    branches: [  master ]
+    branches: [master]
   pull_request:
-    branches: [  master ]
+    branches: [master]
 
 jobs:
   build-and-test:
@@ -14,33 +14,31 @@ jobs:
       CellsCloudClientSecret: ${{ secrets.PRODUCTCLIENTSECRET }}
     strategy:
       matrix:
-        ruby-version: [ "3.1"] 
+        ruby-version: ["3.1"]
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true  
-        
-    - name: Install Dependencies
-      run: |
-        gem install bundler  
-        gem install typhoeus
-        gem install json
-        gem install faraday
-        gem install faraday-multipart
-        bundle install
-        gem build aspose_cells_cloud.gemspec
-        gem install aspose_cells_cloud-*.gem
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
 
-    - name: Run examples
-      run: |
-        cd examples
-        ruby -I ../lib ./Example_QuickStart.rb
-        ruby -I ../lib ./Example_FileOperations.rb
-  
+      - name: Install Dependencies
+        run: |
+          gem install bundler  
+          gem install typhoeus
+          gem install json
+          gem install faraday
+          gem install faraday-multipart
+          bundle install
+          gem build aspose_cells_cloud.gemspec
+          gem install aspose_cells_cloud-*.gem
 
+      - name: Run examples
+        run: |
+          cd examples
+          ruby  ./Example_QuickStart.rb
+          ruby  ./Example_FileOperations.rb
