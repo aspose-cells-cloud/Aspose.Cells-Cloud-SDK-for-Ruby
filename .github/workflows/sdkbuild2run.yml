@@ -41,4 +41,12 @@ jobs:
         run: |
           cd examples
           ruby  ./Example_QuickStart.rb
-          ruby  ./Example_FileOperations.rb
+          ruby  ./Example_CalculateFormula.rb
+          ruby  ./Example_ConvertWorkbook.rb
+          ruby  ./Example_GetWorksheetCell.rb
+          ruby  ./Example_MergeWorkbooks.rb
+          ruby  ./Example_Protection.rb
+          ruby  ./Example_SplitWorkbook.rb
+          ruby  ./Example_StorageManagement.rb
+          ruby  ./Example_TextProcessing.rb
+          ruby  ./Example_WorksheetManagement.rb
